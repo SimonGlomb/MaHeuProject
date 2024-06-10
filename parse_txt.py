@@ -28,11 +28,3 @@ def parse_file(file_path):
     dataframes = {section: pd.DataFrame(rows, columns=columns[section]) for section, rows in data.items() if rows}
 
     return dataframes
-
-file_path = './data/inst001.txt'
-dataframes = parse_file(file_path)
-
-for section, df in dataframes.items():
-    print(f"{section} DataFrame:")
-    print(df)
-    print()
