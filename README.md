@@ -1,5 +1,13 @@
 # MaHeuProject
 
+## How To Use
+
+1. Put according data in the directory "data"
+2. Run the interface: "python .\interface.py"
+3. Select dataset and algorithm
+4. Profit
+
+## How To Contribute
 How to contribute an optimization method:
 1. Create a file in the folder "optimization_functions"
 2. write a method "apply(result, dataframe)" with the following signature: "def apply(result: pd.DataFrame, dataframes: dict) -> Tuple[dict, dict]:"
