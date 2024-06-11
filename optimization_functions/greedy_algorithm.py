@@ -1,6 +1,8 @@
 from datetime import timedelta
+import pandas as pd
+from typing import Tuple
 
-def apply(result, dataframes):
+def apply(result: pd.DataFrame, dataframes: dict) -> Tuple[dict, dict]:
     all_ids = dataframes["TRO"]["ID(long)"].unique()
     car_to_path_segment_mapping = {id: [] for id in all_ids}
 
@@ -11,7 +13,6 @@ def apply(result, dataframes):
     for _, path_segment in unique_path_segment_codes.iterrows():
         mask = (dataframes["PTR"]['PathSegmentCode'] == path_segment['PathSegmentCode']) & (dataframes["PTR"]["TimeSlotDate"] == path_segment['TimeSlotDate'])
         selected_row = dataframes["PTR"][mask]
-        # LeadTimeHours einbeziehen und das man erst am nächsten tag den neuen transportweg nehmen kann, sodass man nicht zwei mal am selben tag eine strecke nimmt
         path_segment_dict[path_segment['PathSegmentCode'], path_segment['TimeSlotDate']] = {"Capacity": selected_row["Capacity"].astype(float).astype(int).iloc[0], "LeadTimeHours": selected_row["LeadTimeHours"].astype(float).astype(int).iloc[0]}
 
 
@@ -30,9 +31,9 @@ def apply(result, dataframes):
             origin_code_TRO = dataframes["TRO"].loc[dataframes["TRO"]['ID(long)'] == id, 'OriginCode'].values[0]
             destination_code_TRO = dataframes["TRO"].loc[dataframes["TRO"]['ID(long)'] == id, 'DestinationCode'].values[0]
 
-            for code, _, _ in car_to_path_segment_mapping[id]:
-                origin_code_SEG = dataframes["SEG"].loc[dataframes["SEG"]['Code'] == code, 'OriginCode'].values[0]
-                destination_code_SEG = dataframes["SEG"].loc[dataframes["SEG"]['Code'] == code, 'DestinationCode'].values[0]
+            for mapping_dict_el in car_to_path_segment_mapping[id]:
+                origin_code_SEG = dataframes["SEG"].loc[dataframes["SEG"]['Code'] == mapping_dict_el["PathSegmentCode"], 'OriginCode'].values[0]
+                destination_code_SEG = dataframes["SEG"].loc[dataframes["SEG"]['Code'] == mapping_dict_el["PathSegmentCode"], 'DestinationCode'].values[0]
                 if origin_code_SEG == origin_code_TRO:
                     have_origin_match = True
                 if destination_code_SEG == destination_code_TRO:
@@ -43,9 +44,7 @@ def apply(result, dataframes):
 
     def transport_is_usable(timeslotdate, mapping):
         for el in mapping:
-            item_date = el[1]
-            duration_hours = el[2]
-            car_finished_transport_and_next_day = item_date + timedelta(hours=int(duration_hours) + 24)
+            car_finished_transport_and_next_day = el["TimeSlotDate"] + timedelta(hours=int(el["LeadTimeHours"]) + 24)
             # Check if the end of transpor is at least 48 hours plus 24 hours before timeslotdate
             # if it is <= then we are good, because then our new transport is doable as the car is available again
             if car_finished_transport_and_next_day > timeslotdate:
@@ -61,8 +60,8 @@ def apply(result, dataframes):
                 # first condition checks if list is empty
                 # second condition checks if we already have that segment
                 if int(dict_element["Capacity"]) > 0:
-                    if not car_to_path_segment_mapping[row["ID(long)"]] or (not any(el[0] == row['PathSegmentCode'] for el in car_to_path_segment_mapping[row["ID(long)"]]) and transport_is_usable(row['TimeSlotDate'], car_to_path_segment_mapping[row["ID(long)"]])):
-                        car_to_path_segment_mapping[row["ID(long)"]].append((row['PathSegmentCode'], row['TimeSlotDate'], dict_element["LeadTimeHours"]))
+                    if not car_to_path_segment_mapping[row["ID(long)"]] or (not any(el["PathSegmentCode"] == row["PathSegmentCode"] for el in car_to_path_segment_mapping[row["ID(long)"]]) and transport_is_usable(row["TimeSlotDate"], car_to_path_segment_mapping[row["ID(long)"]])):
+                        car_to_path_segment_mapping[row["ID(long)"]].append({"PathSegmentCode": row["PathSegmentCode"], "TimeSlotDate": row["TimeSlotDate"], "LeadTimeHours": dict_element["LeadTimeHours"]})
                         dict_element["Capacity"] -= 1
     return car_to_path_segment_mapping, path_segment_dict
     #Greedy:

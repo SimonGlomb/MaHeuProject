@@ -10,9 +10,7 @@ def compute_costs_of_mapping(car_to_path_segment_mapping, path_segment_dict, dat
         last_element = val[-1]
         due_date_destination = dataframes["TRO"].loc[dataframes["TRO"]['ID(long)'] == key, 'DueDateDestinaton'].values[0]
 
-        item_date = last_element[1]
-        duration_hours = last_element[2]
-        car_finished_transport = item_date + timedelta(hours=int(duration_hours))
+        car_finished_transport = last_element["TimeSlotDate"] + timedelta(hours=int(last_element["LeadTimeHours"]))
         if not due_date_destination == "-":
             if car_finished_transport > due_date_destination:
                 costs += 100
@@ -22,7 +20,7 @@ def compute_costs_of_mapping(car_to_path_segment_mapping, path_segment_dict, dat
                 costs += 25 * number_of_days_delayed
         # additional delay penalty if a car takes longer than its double net transportation time, i.e. transport time without waiting times to arrive #at the
         #customer: 5e
-        double_transportation_time = timedelta(hours=int(2 * sum([el[2] for el in val])))
+        double_transportation_time = timedelta(hours=int(2 * sum([el["LeadTimeHours"] for el in val])))
         available_date_origin = dataframes["TRO"].loc[dataframes["TRO"]['ID(long)'] == key, 'AvailableDateOrigin'].values[0]
         if car_finished_transport - available_date_origin > double_transportation_time:
             costs += 5 
