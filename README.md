@@ -17,3 +17,5 @@ How to contribute an optimization method:
 4. Import the file in "interface.py", and add it to the list of "choices=[...]" under the 'message="Select an optimization strategy"'
 
 Notably, there are functions available in the file "utility.py" which may be useful for your algorithm.
+
+The results of each execution are saved in a "results.csv" file.
