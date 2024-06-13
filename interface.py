@@ -8,6 +8,7 @@ import parse_txt
 import preprocessing
 from optimization_functions import greedy_algorithm
 import evaluation
+from utility import all_cars_have_path_without_gaps_from_origin_to_destination
 
 
 def main():
@@ -47,6 +48,9 @@ def main():
     pprint(mapping)
     print(f"The algorithm took {elapsed_time:.2f} seconds to run")
     execution_data.append(elapsed_time)
+
+    if not all_cars_have_path_without_gaps_from_origin_to_destination(car_ids=dataframes["TRO"]["ID(long)"].unique(), car_to_path_segment_mapping=mapping):
+        print("The solution is not valid! Not all cars get to their destination without gaps!")
 
     costs = evaluation.compute_costs_of_mapping(mapping, dataframes)
     execution_data.append(costs)
