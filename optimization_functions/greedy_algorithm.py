@@ -50,15 +50,15 @@ def apply(result: pd.DataFrame, dataframes: dict) -> dict:
         return True
 
 
-    while not all_cars_have_path_without_gaps_from_origin_to_destination(all_ids, car_to_path_segment_mapping):
-        for _, row in result_sorted.iterrows():
-            dict_element = path_segment_dict[row['PathSegmentCode'], row['TimeSlotDate']]
-            # first condition checks if list is empty
-            # second condition checks if we already have that segment
-            if dict_element["Capacity"] > 0:
-                if not car_to_path_segment_mapping[row["ID(long)"]] or (not any(el["PathSegmentCode"] == row["PathSegmentCode"] for el in car_to_path_segment_mapping[row["ID(long)"]]) and transport_is_usable(row["TimeSlotDate"], car_to_path_segment_mapping[row["ID(long)"]])):
-                    car_to_path_segment_mapping[row["ID(long)"]].append({"PathSegmentCode": row["PathSegmentCode"], "TimeSlotDate": row["TimeSlotDate"], "LeadTimeHours": dict_element["LeadTimeHours"]})
-                    dict_element["Capacity"] -= 1
+    #while not all_cars_have_path_without_gaps_from_origin_to_destination(all_ids, car_to_path_segment_mapping):
+    for _, row in result_sorted.iterrows():
+        dict_element = path_segment_dict[row['PathSegmentCode'], row['TimeSlotDate']]
+        # first condition checks if list is empty
+        # second condition checks if we already have that segment
+        if dict_element["Capacity"] > 0:
+            if not car_to_path_segment_mapping[row["ID(long)"]] or (not any(el["PathSegmentCode"] == row["PathSegmentCode"] for el in car_to_path_segment_mapping[row["ID(long)"]]) and transport_is_usable(row["TimeSlotDate"], car_to_path_segment_mapping[row["ID(long)"]])):
+                car_to_path_segment_mapping[row["ID(long)"]].append({"PathSegmentCode": row["PathSegmentCode"], "TimeSlotDate": row["TimeSlotDate"], "LeadTimeHours": dict_element["LeadTimeHours"]})
+                dict_element["Capacity"] -= 1
     return car_to_path_segment_mapping
     #Greedy:
     #1) sortiere nach Deadline (und oder fertigstellungsdatum)
