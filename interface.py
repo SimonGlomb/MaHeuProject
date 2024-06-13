@@ -33,10 +33,9 @@ def main():
     dataframes = parse_txt.parse_file("./data/" + selected_file)
     result = preprocessing.convert_to_dataframe(dataframes)
     
-    mapping, path_segment_dict = selected_function.apply(result, dataframes)
+    mapping = selected_function.apply(result, dataframes)
 
-    print("Costs:")
-    print(evaluation.compute_costs_of_mapping(mapping, path_segment_dict, dataframes))
+    evaluation.compute_costs_of_mapping(mapping, dataframes)
 
 if __name__ == '__main__':
     main()

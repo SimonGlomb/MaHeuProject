@@ -8,7 +8,7 @@ def convert_to_dataframe(dataframes):
     # Wir vernachlässigen die kapazität der knoten; wäre in #STE "Capacity" zu finden
     dataframes["PTH"] = dataframes["PTH"].filter(["PathOriginCode", "PathDestinationCode", "PathCode"])
     dataframes["PTHSG"] = dataframes["PTHSG"].filter(["PathCode", "SegmentCode", "SegmentOriginCode", "SegmentDestinationCode"])
-    dataframes["SEG"] = dataframes["SEG"].filter(["Code", "OriginCode", "DestinationCode"])
+    dataframes["SEG"] = dataframes["SEG"].filter(["Code", "OriginCode", "DestinationCode", "DefaultLeadTimeHours"])
     dataframes["PTR"] = dataframes["PTR"].filter(["PathSegmentCode", "TimeSlotDate", "Capacity", "LeadTimeHours"])
     # define an explicit ID to assess the PlannedTransport uniquely (instead of by TimeSlotDate or something)
     dataframes["PTR"]['PTR_ID'] = range(1, len(dataframes["PTR"]) + 1)
@@ -18,6 +18,7 @@ def convert_to_dataframe(dataframes):
     dataframes["TRO"]['AvailableDateOrigin'] = pd.to_datetime(dataframes["TRO"]['AvailableDateOrigin'], format='%d/%m/%Y-%H:%M:%S')
     dataframes["PTR"]['TimeSlotDate'] = pd.to_datetime(dataframes["PTR"]['TimeSlotDate'], format='%d/%m/%Y-%H:%M:%S')
     dataframes["PTR"]["Capacity"] = pd.to_numeric(dataframes["PTR"]["Capacity"])
+    dataframes["SEG"]["DefaultLeadTimeHours"] = pd.to_numeric(dataframes["SEG"]["DefaultLeadTimeHours"])
     # had some problems with using the pd.to_datetime here, so this will do for now (and it is not a performance bottleneck anyway)
     def handle_dates(date_str):
         if date_str == "-":
@@ -26,6 +27,10 @@ def convert_to_dataframe(dataframes):
             return datetime.strptime(date_str, '%d/%m/%Y-%H:%M:%S')
     dataframes["TRO"]['DueDateDestinaton'] = dataframes["TRO"]['DueDateDestinaton'].apply(handle_dates)
 
+
+    # Compute net transportation time per path
+    merged_df = pd.merge( dataframes["PTHSG"], dataframes["SEG"], left_on=["SegmentCode"], right_on=["Code"], how="inner" )
+    dataframes["PTH"]["DefaultLeadTimeHours"] = merged_df.groupby("PathCode")["DefaultLeadTimeHours"].sum().reset_index()["DefaultLeadTimeHours"]
 
     # Merge all the things which i have marked green and purple in my notes: which can be found in OneNote
     ## inner join to find the cars which fit the origin and destination of paths

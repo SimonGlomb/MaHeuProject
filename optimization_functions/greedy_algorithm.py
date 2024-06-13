@@ -2,32 +2,23 @@ from datetime import timedelta
 import pandas as pd
 from typing import Tuple
 
-def apply(result: pd.DataFrame, dataframes: dict) -> Tuple[dict, dict]:
+def apply(result: pd.DataFrame, dataframes: dict) -> dict:
     all_ids = dataframes["TRO"]["ID(long)"].unique()
     car_to_path_segment_mapping = {id: [] for id in all_ids}
 
     unique_path_segment_codes = result[['PathSegmentCode', 'TimeSlotDate']].drop_duplicates()
+    # to look which capacities already have been booked
     path_segment_dict = {}
 
-
+    # TODO: aus den dataframes rauslesen, ist schöner
     for _, path_segment in unique_path_segment_codes.iterrows():
         mask = (dataframes["PTR"]['PathSegmentCode'] == path_segment['PathSegmentCode']) & (dataframes["PTR"]["TimeSlotDate"] == path_segment['TimeSlotDate'])
         selected_row = dataframes["PTR"][mask]
         path_segment_dict[path_segment['PathSegmentCode'], path_segment['TimeSlotDate']] = {"Capacity": selected_row["Capacity"].astype(float).astype(int).iloc[0], "LeadTimeHours": selected_row["LeadTimeHours"].astype(float).astype(int).iloc[0]}
 
+    result_sorted = result.sort_values(by=['DueDateDestinaton', 'TimeSlotDate', 'AvailableDateOrigin'])
 
-    result_sorted = result.sort_values(by=['DueDateDestinaton', 'AvailableDateOrigin', 'TimeSlotDate'])
-    # Use this to compare without sorting
-    # without sorting: costs = 4348 for dataset001
-    # with sorting: costs = 704 for dataset001
-    #result_sorted = result
-
-    dataframes["SEG"]["OriginCode"]
-    dataframes["SEG"]["DestinationCode"]
-
-
-
-
+# TODO: gucken ob lücke entstehen kann
     def has_path_from_origin_to_destination(id: int, car_to_path_segment_mapping: dict):
         have_origin_match = False
         have_destination_match = False
@@ -46,10 +37,11 @@ def apply(result: pd.DataFrame, dataframes: dict) -> Tuple[dict, dict]:
                     return True
         return False
 
+    
+    # Check if the end of transport is at least the leadtimehours (time to deliver) of the mapping before (if existent) plus 24 hours before timeslotdate (when the transport is available)
     def transport_is_usable(timeslotdate, mapping):
         for el in mapping:
             car_finished_transport_and_next_day = el["TimeSlotDate"] + timedelta(hours=int(el["LeadTimeHours"]) + 24)
-            # Check if the end of transpor is at least 48 hours plus 24 hours before timeslotdate
             # if it is <= then we are good, because then our new transport is doable as the car is available again
             if car_finished_transport_and_next_day > timeslotdate:
                 return False
@@ -67,7 +59,7 @@ def apply(result: pd.DataFrame, dataframes: dict) -> Tuple[dict, dict]:
                     if not car_to_path_segment_mapping[row["ID(long)"]] or (not any(el["PathSegmentCode"] == row["PathSegmentCode"] for el in car_to_path_segment_mapping[row["ID(long)"]]) and transport_is_usable(row["TimeSlotDate"], car_to_path_segment_mapping[row["ID(long)"]])):
                         car_to_path_segment_mapping[row["ID(long)"]].append({"PathSegmentCode": row["PathSegmentCode"], "TimeSlotDate": row["TimeSlotDate"], "LeadTimeHours": dict_element["LeadTimeHours"]})
                         dict_element["Capacity"] -= 1
-    return car_to_path_segment_mapping, path_segment_dict
+    return car_to_path_segment_mapping
     #Greedy:
     #1) sortiere nach Deadline (und oder fertigstellungsdatum)
     #2) ordne strecken zu: a) mit frühester ankunft
