@@ -32,7 +32,7 @@ def compute_costs_of_mapping(car_to_path_segment_mapping, dataframes):
             #    net_transport_time = dataframes["PTH"][dataframes["PTH"] == filtered_df["PathCode"].values[0]]["DefaultLeadTimeHours"]
             double_transportation_time = timedelta(hours=int(2 * net_transport_time.iloc[0]))
             if car_finished_transport - available_date_origin > double_transportation_time:
-                delay_longer_than_double_net_penalty += 5 * days_delayed
+                delay_longer_than_double_net_penalty += 5 * days_delayed.days
         else:
             cost_days_without_reaching_destination += days_delayed.days
     print("One Time Delay Penalty:", one_time_delay_penalty)

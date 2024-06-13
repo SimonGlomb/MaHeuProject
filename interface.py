@@ -2,6 +2,7 @@ import os
 import inquirer
 import time
 import csv
+from pprint import pprint
 
 import parse_txt
 import preprocessing
@@ -27,7 +28,8 @@ def main():
         )
     ]
 
-
+    execution_data = []
+    
     answers = inquirer.prompt(questions)
 
     # Print the selected file
@@ -35,7 +37,8 @@ def main():
     selected_function = answers["function"]
     dataframes = parse_txt.parse_file("./data/" + selected_file)
     result = preprocessing.convert_to_dataframe(dataframes)
-    execution_data = [questions[1].choices[0]]    
+    execution_data.append(answers["file"])
+    execution_data.append(answers["function"])
 
     start_time = time.time()
     mapping = selected_function.apply(result, dataframes)
@@ -43,6 +46,8 @@ def main():
     elapsed_time = end_time - start_time
     print(f"The algorithm took {elapsed_time:.2f} seconds to run")
     execution_data.append(elapsed_time)
+
+    pprint(mapping)
 
     costs = evaluation.compute_costs_of_mapping(mapping, dataframes)
     execution_data.append(costs)
@@ -54,7 +59,7 @@ def main():
         file_exists = os.path.isfile(csv_file)
         file_empty = os.stat(csv_file).st_size == 0 if file_exists else True
         if not file_exists or file_empty:
-            writer.writerow(["Algorithm", "Time", "Costs"])
+            writer.writerow(["Data", "Algorithm", "Time", "Costs"])
         writer.writerow(execution_data)
 
     

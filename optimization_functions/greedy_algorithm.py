@@ -10,7 +10,7 @@ def apply(result: pd.DataFrame, dataframes: dict) -> dict:
     # to look which capacities already have been booked
     path_segment_dict = {}
 
-    # TODO: aus den dataframes rauslesen, ist schöner
+    # use my own dict and not read it from the dataframe, because i want to update this dict to keep track of the capacities
     for _, path_segment in unique_path_segment_codes.iterrows():
         mask = (dataframes["PTR"]['PathSegmentCode'] == path_segment['PathSegmentCode']) & (dataframes["PTR"]["TimeSlotDate"] == path_segment['TimeSlotDate'])
         selected_row = dataframes["PTR"][mask]
