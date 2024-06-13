@@ -15,3 +15,5 @@ How to contribute an optimization method:
    - The output is the following: A dictionary which has as key the id of the car as string (e.g. "1") and the values are lists dictionaries ("PathSegmentCode": \<VALUE>, "TimeSlotDate": \<VALUE>, "LeadTimeHours": \<VALUE>)
 3. Implement the Algorithm
 4. Import the file in "interface.py", and add it to the list of "choices=[...]" under the 'message="Select an optimization strategy"'
+
+Notably, there are functions available in the file "utility.py" which may be useful for your algorithm.

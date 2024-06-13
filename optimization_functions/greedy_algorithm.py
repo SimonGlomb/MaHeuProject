@@ -1,38 +1,32 @@
-from datetime import timedelta
 import pandas as pd
 from typing import Tuple
 
-from utility import transport_is_usable
+from utility import transport_is_usable, get_dict_to_keep_track_of_capacities, all_cars_have_path_without_gaps_from_origin_to_destination
 
 def apply(result: pd.DataFrame, dataframes: dict) -> dict:
     all_ids = dataframes["TRO"]["ID(long)"].unique()
     car_to_path_segment_mapping = {id: [] for id in all_ids}
 
-    unique_path_segment_codes = result[['PathSegmentCode', 'TimeSlotDate']].drop_duplicates()
-    # to look which capacities already have been booked
-    path_segment_dict = {}
-
-    # use my own dict and not read it from the dataframe, because i want to update this dict to keep track of the capacities
-    for _, path_segment in unique_path_segment_codes.iterrows():
-        mask = (dataframes["PTR"]['PathSegmentCode'] == path_segment['PathSegmentCode']) & (dataframes["PTR"]["TimeSlotDate"] == path_segment['TimeSlotDate'])
-        selected_row = dataframes["PTR"][mask]
-        path_segment_dict[path_segment['PathSegmentCode'], path_segment['TimeSlotDate']] = {"Capacity": selected_row["Capacity"].astype(float).astype(int).iloc[0], "LeadTimeHours": selected_row["LeadTimeHours"].astype(float).astype(int).iloc[0]}
+    path_segment_dict = get_dict_to_keep_track_of_capacities(dataframes=dataframes, result=result)
 
     result_sorted = result.sort_values(by=['DueDateDestinaton', 'TimeSlotDate', 'AvailableDateOrigin'])
 
+    current_car_position = {id: dataframes["TRO"]["OriginCode"].values[0] for id in all_ids}
+
     # here, we now take the rows greedy
-    #while not all_cars_have_path_without_gaps_from_origin_to_destination(all_ids, car_to_path_segment_mapping):
     for _, row in result_sorted.iterrows():
         dict_element = path_segment_dict[row['PathSegmentCode'], row['TimeSlotDate']]
-        # first condition checks if list is empty
-        # second condition checks if we already have that segment
+        # condition checks if PTR is usable
+        # condition checks if car has a position (if not, it is already at its destination)
+        # condition checks if the car can use the segment from its "current" (dependent on iteration) position
+        current_car_id = row["ID(long)"]
         if dict_element["Capacity"] > 0:
-            if not car_to_path_segment_mapping[row["ID(long)"]] or (not any(el["PathSegmentCode"] == row["PathSegmentCode"] for el in car_to_path_segment_mapping[row["ID(long)"]]) and transport_is_usable(row["TimeSlotDate"], car_to_path_segment_mapping[row["ID(long)"]])):
-                car_to_path_segment_mapping[row["ID(long)"]].append({"PathSegmentCode": row["PathSegmentCode"], "TimeSlotDate": row["TimeSlotDate"], "LeadTimeHours": dict_element["LeadTimeHours"]})
+            if transport_is_usable(row["TimeSlotDate"], car_to_path_segment_mapping[current_car_id]) and current_car_id in current_car_position and current_car_position[current_car_id] == row["SegmentOriginCode"]:
+                # The following outcommented line checks if we already have that segment: not needed!
+                #if not any(el["PathSegmentCode"] == row["PathSegmentCode"] for el in car_to_path_segment_mapping[current_car_id]) 
+                car_to_path_segment_mapping[current_car_id].append({"PathSegmentCode": row["PathSegmentCode"], "TimeSlotDate": row["TimeSlotDate"], "LeadTimeHours": dict_element["LeadTimeHours"]})
                 dict_element["Capacity"] -= 1
+                current_car_position[current_car_id] = row["SegmentDestinationCode"]
+                if current_car_id in current_car_position and current_car_position[current_car_id] == dataframes["TRO"].loc[dataframes["TRO"]["ID(long)"]==current_car_id, "DestinationCode"].values[0]:
+                    del current_car_position[current_car_id]
     return car_to_path_segment_mapping
-    #Greedy:
-    #1) sortiere nach Deadline (und oder fertigstellungsdatum)
-    #2) ordne strecken zu: a) mit frühester ankunft
-    #                                          b) kleinsten kosten
-    #                                          c) random mit frühesten freine slots
