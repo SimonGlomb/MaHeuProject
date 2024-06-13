@@ -44,10 +44,9 @@ def main():
     mapping = selected_function.apply(result, dataframes)
     end_time = time.time()
     elapsed_time = end_time - start_time
+    pprint(mapping)
     print(f"The algorithm took {elapsed_time:.2f} seconds to run")
     execution_data.append(elapsed_time)
-
-    pprint(mapping)
 
     costs = evaluation.compute_costs_of_mapping(mapping, dataframes)
     execution_data.append(costs)

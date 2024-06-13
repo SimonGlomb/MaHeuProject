@@ -19,7 +19,7 @@ def apply(result: pd.DataFrame, dataframes: dict) -> dict:
     result_sorted = result.sort_values(by=['DueDateDestinaton', 'TimeSlotDate', 'AvailableDateOrigin'])
 
 # TODO: gucken ob lücke entstehen kann
-    def has_path_from_origin_to_destination(id: int, car_to_path_segment_mapping: dict):
+    def has_path_without_gaps_from_origin_to_destination(id: int, car_to_path_segment_mapping: dict):
         have_origin_match = False
         have_destination_match = False
         if car_to_path_segment_mapping[id]:
@@ -36,7 +36,9 @@ def apply(result: pd.DataFrame, dataframes: dict) -> dict:
                 if have_origin_match and have_destination_match:
                     return True
         return False
-
+    
+    def all_cars_have_path_without_gaps_from_origin_to_destination(car_ids: int, car_to_path_segment_mapping: dict):
+        return all(has_path_without_gaps_from_origin_to_destination(id, car_to_path_segment_mapping) for id in car_ids)
     
     # Check if the end of transport is at least the leadtimehours (time to deliver) of the mapping before (if existent) plus 24 hours before timeslotdate (when the transport is available)
     def transport_is_usable(timeslotdate, mapping):
@@ -48,17 +50,15 @@ def apply(result: pd.DataFrame, dataframes: dict) -> dict:
         return True
 
 
-    # NOTE: can probably be optimized a lot!
-    for _, row in result_sorted.iterrows():
-        while not has_path_from_origin_to_destination(row["ID(long)"], car_to_path_segment_mapping):
-            for _, row in result_sorted.iterrows():
-                dict_element = path_segment_dict[row['PathSegmentCode'], row['TimeSlotDate']]
-                # first condition checks if list is empty
-                # second condition checks if we already have that segment
-                if int(dict_element["Capacity"]) > 0:
-                    if not car_to_path_segment_mapping[row["ID(long)"]] or (not any(el["PathSegmentCode"] == row["PathSegmentCode"] for el in car_to_path_segment_mapping[row["ID(long)"]]) and transport_is_usable(row["TimeSlotDate"], car_to_path_segment_mapping[row["ID(long)"]])):
-                        car_to_path_segment_mapping[row["ID(long)"]].append({"PathSegmentCode": row["PathSegmentCode"], "TimeSlotDate": row["TimeSlotDate"], "LeadTimeHours": dict_element["LeadTimeHours"]})
-                        dict_element["Capacity"] -= 1
+    while not all_cars_have_path_without_gaps_from_origin_to_destination(all_ids, car_to_path_segment_mapping):
+        for _, row in result_sorted.iterrows():
+            dict_element = path_segment_dict[row['PathSegmentCode'], row['TimeSlotDate']]
+            # first condition checks if list is empty
+            # second condition checks if we already have that segment
+            if dict_element["Capacity"] > 0:
+                if not car_to_path_segment_mapping[row["ID(long)"]] or (not any(el["PathSegmentCode"] == row["PathSegmentCode"] for el in car_to_path_segment_mapping[row["ID(long)"]]) and transport_is_usable(row["TimeSlotDate"], car_to_path_segment_mapping[row["ID(long)"]])):
+                    car_to_path_segment_mapping[row["ID(long)"]].append({"PathSegmentCode": row["PathSegmentCode"], "TimeSlotDate": row["TimeSlotDate"], "LeadTimeHours": dict_element["LeadTimeHours"]})
+                    dict_element["Capacity"] -= 1
     return car_to_path_segment_mapping
     #Greedy:
     #1) sortiere nach Deadline (und oder fertigstellungsdatum)
