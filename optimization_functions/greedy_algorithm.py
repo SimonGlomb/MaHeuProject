@@ -26,16 +26,19 @@ def apply(result: pd.DataFrame, dataframes: dict) -> dict:
             origin_code_TRO = dataframes["TRO"].loc[dataframes["TRO"]['ID(long)'] == id, 'OriginCode'].values[0]
             destination_code_TRO = dataframes["TRO"].loc[dataframes["TRO"]['ID(long)'] == id, 'DestinationCode'].values[0]
 
+            # for the first iteration, to check if start is fine, initialize it like this:
+            last_mapping_dict_el_destination = origin_code_TRO
+            # check of the final destination
+            last_element_destination = dataframes["SEG"].loc[dataframes["SEG"]['Code'] == car_to_path_segment_mapping[id][-1]["PathSegmentCode"], 'DestinationCode'].values[0]
+            if destination_code_TRO != last_element_destination:
+                return False
             for mapping_dict_el in car_to_path_segment_mapping[id]:
                 origin_code_SEG = dataframes["SEG"].loc[dataframes["SEG"]['Code'] == mapping_dict_el["PathSegmentCode"], 'OriginCode'].values[0]
-                destination_code_SEG = dataframes["SEG"].loc[dataframes["SEG"]['Code'] == mapping_dict_el["PathSegmentCode"], 'DestinationCode'].values[0]
-                if origin_code_SEG == origin_code_TRO:
-                    have_origin_match = True
-                if destination_code_SEG == destination_code_TRO:
-                    have_destination_match = True
-                if have_origin_match and have_destination_match:
-                    return True
-        return False
+                # checks if there is a gap
+                if last_mapping_dict_el_destination != origin_code_SEG:
+                    return False
+                last_mapping_dict_el_destination = origin_code_SEG
+        return True
     
     def all_cars_have_path_without_gaps_from_origin_to_destination(car_ids: int, car_to_path_segment_mapping: dict):
         return all(has_path_without_gaps_from_origin_to_destination(id, car_to_path_segment_mapping) for id in car_ids)
@@ -59,6 +62,7 @@ def apply(result: pd.DataFrame, dataframes: dict) -> dict:
             if not car_to_path_segment_mapping[row["ID(long)"]] or (not any(el["PathSegmentCode"] == row["PathSegmentCode"] for el in car_to_path_segment_mapping[row["ID(long)"]]) and transport_is_usable(row["TimeSlotDate"], car_to_path_segment_mapping[row["ID(long)"]])):
                 car_to_path_segment_mapping[row["ID(long)"]].append({"PathSegmentCode": row["PathSegmentCode"], "TimeSlotDate": row["TimeSlotDate"], "LeadTimeHours": dict_element["LeadTimeHours"]})
                 dict_element["Capacity"] -= 1
+    all_cars_have_path_without_gaps_from_origin_to_destination(all_ids, car_to_path_segment_mapping)
     return car_to_path_segment_mapping
     #Greedy:
     #1) sortiere nach Deadline (und oder fertigstellungsdatum)
