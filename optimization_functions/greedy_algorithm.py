@@ -17,6 +17,10 @@ def apply(result: pd.DataFrame, dataframes: dict) -> Tuple[dict, dict]:
 
 
     result_sorted = result.sort_values(by=['DueDateDestinaton', 'AvailableDateOrigin', 'TimeSlotDate'])
+    # Use this to compare without sorting
+    # without sorting: costs = 4348 for dataset001
+    # with sorting: costs = 704 for dataset001
+    #result_sorted = result
 
     dataframes["SEG"]["OriginCode"]
     dataframes["SEG"]["DestinationCode"]
