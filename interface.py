@@ -1,5 +1,6 @@
 import os
 import inquirer
+import time
 
 import parse_txt
 import preprocessing
@@ -33,7 +34,11 @@ def main():
     dataframes = parse_txt.parse_file("./data/" + selected_file)
     result = preprocessing.convert_to_dataframe(dataframes)
     
+    start_time = time.time()
     mapping = selected_function.apply(result, dataframes)
+    end_time = time.time()
+    elapsed_time = end_time - start_time
+    print(f"The algorithm took {elapsed_time:.2f} seconds to run")
 
     evaluation.compute_costs_of_mapping(mapping, dataframes)
 
