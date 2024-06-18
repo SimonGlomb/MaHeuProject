@@ -7,7 +7,7 @@ import random
 #################### teststuff #######################
 import parse_txt
 
-df=parse_txt.parse_file("data\inst003.txt")
+df=parse_txt.parse_file("data\inst001.txt")
 
 ######################################################
 
@@ -162,23 +162,19 @@ def construct_instance(dataframes):
                 ref = current
         car['deliveryRef'] = ref
 
+        # lower bound for the costs
+        car['costBound'] = simple_lower_bound(id, paths, segments)
+
         # set remaining values to default values (they are set during the algorithm)
         car['assignedPath'] = None
         car['currentDelivery'] = None
         car['inducedCosts'] = 0
-        car['costBound'] = 0
 
         cars[id] = car
     
 
 
     return cars, paths, segments
-
-
-# local search
-def local_search(dataframes):
-    return 0
-
 
 # greedy
 def greedy(dataframes):
@@ -191,10 +187,10 @@ def greedy(dataframes):
             cars[id]['dueDate'] = eot + timedelta(hours=24)
 
     # greedy algorithm -> variants
-    # car_list = sorted([(id, cars[id]['avlDate'], cars[id]['dueDate']) for id in cars.keys()], key=lambda car: (car[2],car[1])) # sort by duedate -> 6108, 19739, 27286, 28650, 144459
+    car_list = sorted([(id, cars[id]['avlDate'], cars[id]['dueDate']) for id in cars.keys()], key=lambda car: (car[2],car[1])) # sort by duedate -> 6108, 19739, 27286, 28650, 144459
     # car_list = sorted([(id, cars[id]['avlDate'], cars[id]['dueDate']) for id in cars.keys()], key=lambda car: (car[1],car[2])) # sort by avldate -> 6589, 22008, 33360, 33785, 176729
     # car_list = sorted([(id, cars[id]['avlDate'], cars[id]['dueDate']) for id in cars.keys()], key=lambda car: (car[2]-car[1],car[2])) # sort by space -> 6123, 19652, 25180, 26411, 147109
-    car_list = sorted([(id, cars[id]['avlDate'], cars[id]['dueDate']) for id in cars.keys()], key=lambda car: (car[2],car[1]), reverse=True)
+
     # undo changes to not affect other methods
     for id in cars.keys():
         if cars[id]['dueDate'] == eot + timedelta(hours=24):
@@ -235,7 +231,7 @@ def random_greedy(dataframes):
 
     # greedy algorithm -> variants
     car_list = [k for k in cars.keys()]
-    random.shuffle(car_list) # random shuffle -> ? ? ? ? ?
+    random.shuffle(car_list) # random shuffle
     
     # assign timeslots with earliest arrival (maybe just earliest first departure or shortest net time?)
     for i in range(len(car_list)):
@@ -251,19 +247,31 @@ def random_greedy(dataframes):
             for j in range(len(d)):
                 segments[paths[p][j]]['timeslots'][d[j]] -= 1
 
-    nd = 0 # count non delivered cars
     # pretend: cars that were not delivered, arrived at the last day of the timeframe
     for car_id in cars.keys():
         if cars[car_id]['currentDelivery'] == None:
             nd += 1
             cars[car_id]['currentDelivery'] = eot
-    print(nd)
+
     # detemine costs of the solution
     costs = 0
     for car_id in cars.keys():
-        costs += compute_car_costs(cars[car_id]['avlDate'], cars[car_id]['dueDate'], cars[car_id]['currentDelivery'], cars[car_id]['deliveryRef'])
+        car_cost = compute_car_costs(cars[car_id]['avlDate'], cars[car_id]['dueDate'], cars[car_id]['currentDelivery'], cars[car_id]['deliveryRef'])
+        cars[car_id]['inducedCosts'] = car_cost
+        costs += car_cost
     
-    return cars, costs
+    return cars, paths, segments, costs
+
+
+# local search
+def local_search(dataframes):
+    cars, paths, segments, currentCost = random_greedy(dataframes) # start with the solution of the random greedy assignment
+    
+    # TODO: search neighborhood, find proper swapping mechanism
+
+    return 0
+
+
 
 ###################### do stuff #######################
 c,p,s=construct_instance(df)
@@ -279,5 +287,5 @@ for car_id in c:
     total_bound += compute_car_costs(c[car_id]['avlDate'], c[car_id]['dueDate'], eot, c[car_id]['deliveryRef'])
 print(total_bound)
 
-
-print(f"result greedy: {random_greedy(df)[1]}")
+res = greedy(df)
+print(f"result greedy: {res[1]}")
