@@ -7,7 +7,7 @@ import random
 #################### teststuff #######################
 import parse_txt
 
-df=parse_txt.parse_file("data\inst001.txt")
+df=parse_txt.parse_file("data\inst003.txt")
 
 ######################################################
 
@@ -38,7 +38,7 @@ def compute_car_costs(avlDate, dueDate, deliveryDate, referenceTime):
         cost = cost + 100 # single time delay penalty: 100 euro
         cost = cost + 25*(math.ceil((deliveryDate-dueDate).total_seconds()/(24*60*60))) # delay penalty per day: 25 euro
     if (deliveryDate-avlDate).total_seconds()/(60*60) > 2*referenceTime:
-        cost = cost + 5*(math.ceil((deliveryDate-dueDate).total_seconds()/(24*60*60))) # additional delay penalty per day: 5 euro
+        cost = cost + 5*(math.ceil(((deliveryDate - avlDate).total_seconds()/(60*60) - 2*referenceTime)/24)) # additional delay penalty per day (after 2*net transport time is exceeded): 5 euro
     return cost
 
 # find the earliest possible timeslots (and corresponding path) for a car
@@ -48,7 +48,7 @@ def assign_timeslots(car, paths, segments):
     earliest_arrival = None
     for i in range(len(car['paths'])):
         p = car['paths'][i]
-        earliest_start = (car['avlDate'] + timedelta(hours=24)).replace(hour=0, minute=0, second=0, microsecond=0)
+        earliest_start = car['avlDate']
         current_timetable = []
         for j in range(len(paths[p])):
             potential_times = [s for s in segments[paths[p][j]]['timeslots'].keys() if s >= earliest_start and segments[paths[p][j]]['timeslots'][s] > 0] # timeslots after the ealiest possible departure with open capacities
@@ -206,7 +206,7 @@ def greedy(dataframes):
         # link car to chosen path, save corresponding delivery date
         cars[id]['assignedPath'] = p
         cars[id]['currentDelivery'] = a
-        
+
         # assign [(segID, time)] shaped schedule to car
         schedule = []
         path = paths[p] # path segments the car is assigned to 
@@ -291,18 +291,17 @@ def local_search(dataframes):
 
     swaps_made = 0 # for analysis: count successful swapping operations
 
-    # TODO: search neighborhood, find proper swapping mechanism
     swap_candidates = [c for c in cars.keys() if cars[c]['inducedCosts'] > cars[c]['costBound']] # cars which currently have costs higher than their lower bound
 
     # sort stuff first?, extra routine for non assigned cars?
     while swap_candidates != [] and currentCost > lower_bound:
         i = swap_candidates.pop(0)
-        # TODO: maybe test for earlier, free timeslots and or later starts for in time cars, to free earlier capacities
-        earliest_start = (cars[i]['avlDate'] + timedelta(hours=24)).replace(hour=0, minute=0, second=0, microsecond=0)
+
+        earliest_start = cars[i]['avlDate']
 
         # cars to potentially swap with (same start- and endpoint, earlier arrival, compatible starttimes) TODO: handle swap candidates without a route
         partners = [c for c in cars.keys() if cars[c]['origin'] == cars[i]['origin'] and cars[c]['destination'] == cars[i]['destination'] and cars[c]['currentDelivery'] < cars[i]['currentDelivery']
-                    and cars[c]['schedule'][0][1] >= earliest_start and cars[i]['schedule'][0][1] >= (cars[c]['avlDate'] + timedelta(hours=24)).replace(hour=0, minute=0, second=0, microsecond=0)]
+                    and cars[c]['schedule'][0][1] >= earliest_start and cars[i]['schedule'][0][1] >= cars[c]['avlDate']]
     
         for p in partners:
             new_costs_i = compute_car_costs(cars[i]['avlDate'], cars[i]['dueDate'], cars[p]['currentDelivery'], cars[i]['deliveryRef'])
