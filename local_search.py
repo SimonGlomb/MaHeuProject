@@ -206,7 +206,14 @@ def greedy(dataframes):
         # link car to chosen path, save corresponding delivery date
         cars[id]['assignedPath'] = p
         cars[id]['currentDelivery'] = a
-        # TODO: assign [(segID, time)] shaped schedule to car? -> total schedule can currently not be derived
+        
+        # assign [(segID, time)] shaped schedule to car
+        schedule = []
+        path = paths[p] # path segments the car is assigned to 
+
+        for s in range(len(path)):
+            schedule.append((path[s], d[s]))
+        cars[id]['schedule'] = schedule
 
         # block used capacities in transport segments (if a path was assigned)
         if p != None:
