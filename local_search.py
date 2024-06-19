@@ -146,7 +146,9 @@ def construct_instance(dataframes):
         
         # find possible paths for the car
         start = car_df['OriginCode'][i]
+        car['origin'] = start
         end = car_df['DestinationCode'][i]
+        car['destination'] = end
         filtered_paths = path_df[(path_df['PathOriginCode'] == start) & (path_df['PathDestinationCode'] == end)]
         pths=[]
         for j in filtered_paths.index:
@@ -163,11 +165,12 @@ def construct_instance(dataframes):
         car['deliveryRef'] = ref
 
         # lower bound for the costs
-        car['costBound'] = simple_lower_bound(id, paths, segments)
+        car['costBound'] = simple_lower_bound(car, paths, segments)
 
         # set remaining values to default values (they are set during the algorithm)
         car['assignedPath'] = None
         car['currentDelivery'] = None
+        car['schedule'] = None
         car['inducedCosts'] = 0
 
         cars[id] = car
@@ -240,7 +243,14 @@ def random_greedy(dataframes):
         # link car to chosen path, save corresponding delivery date
         cars[id]['assignedPath'] = p
         cars[id]['currentDelivery'] = a
-        # TODO: assign [(segID, time)] shaped schedule to car? -> total schedule can currently not be derived
+
+        # assign [(segID, time)] shaped schedule to car
+        schedule = []
+        path = paths[p] # path segments the car is assigned to 
+
+        for s in range(len(path)):
+            schedule.append((path[s], d[s]))
+        cars[id]['schedule'] = schedule
 
         # block used capacities in transport segments (if a path was assigned)
         if p != None:
@@ -248,6 +258,7 @@ def random_greedy(dataframes):
                 segments[paths[p][j]]['timeslots'][d[j]] -= 1
 
     # pretend: cars that were not delivered, arrived at the last day of the timeframe
+    nd = 0 # for analysis: count non delivered cars
     for car_id in cars.keys():
         if cars[car_id]['currentDelivery'] == None:
             nd += 1
@@ -260,6 +271,8 @@ def random_greedy(dataframes):
         cars[car_id]['inducedCosts'] = car_cost
         costs += car_cost
     
+    print(f"random greedy costs: {costs}")
+    
     return cars, paths, segments, costs
 
 
@@ -267,9 +280,54 @@ def random_greedy(dataframes):
 def local_search(dataframes):
     cars, paths, segments, currentCost = random_greedy(dataframes) # start with the solution of the random greedy assignment
     
-    # TODO: search neighborhood, find proper swapping mechanism
+    lower_bound = sum([cars[i]['costBound'] for i in cars.keys()])
 
-    return 0
+    swaps_made = 0 # for analysis: count successful swapping operations
+
+    # TODO: search neighborhood, find proper swapping mechanism
+    swap_candidates = [c for c in cars.keys() if cars[c]['inducedCosts'] > cars[c]['costBound']] # cars which currently have costs higher than their lower bound
+
+    # sort stuff first?, extra routine for non assigned cars?
+    while swap_candidates != [] and currentCost > lower_bound:
+        i = swap_candidates.pop(0)
+        # TODO: maybe test for earlier, free timeslots and or later starts for in time cars, to free earlier capacities
+        earliest_start = (cars[i]['avlDate'] + timedelta(hours=24)).replace(hour=0, minute=0, second=0, microsecond=0)
+
+        # cars to potentially swap with (same start- and endpoint, earlier arrival, compatible starttimes) TODO: handle swap candidates without a route
+        partners = [c for c in cars.keys() if cars[c]['origin'] == cars[i]['origin'] and cars[c]['destination'] == cars[i]['destination'] and cars[c]['currentDelivery'] < cars[i]['currentDelivery']
+                    and cars[c]['schedule'][0][1] >= earliest_start and cars[i]['schedule'][0][1] >= (cars[c]['avlDate'] + timedelta(hours=24)).replace(hour=0, minute=0, second=0, microsecond=0)]
+    
+        for p in partners:
+            new_costs_i = compute_car_costs(cars[i]['avlDate'], cars[i]['dueDate'], cars[p]['currentDelivery'], cars[i]['deliveryRef'])
+            new_costs_p = compute_car_costs(cars[p]['avlDate'], cars[p]['dueDate'], cars[i]['currentDelivery'], cars[p]['deliveryRef'])
+
+            # difference: current costs - costs after swap
+            diff = cars[i]['inducedCosts'] + cars[p]['inducedCosts'] - (new_costs_i + new_costs_p)
+            if diff > 0: # if new costs are lower, swap schedules of i and p
+                temp = (cars[i]['assignedPath'], cars[i]['schedule'], cars[i]['currentDelivery'])
+                cars[i]['assignedPath'] = cars[p]['assignedPath']
+                cars[i]['schedule'] = cars[p]['schedule']
+                cars[i]['currentDelivery'] = cars[p]['currentDelivery']
+                cars[i]['inducedCosts'] = new_costs_i
+
+                cars[p]['assignedPath'] = temp[0]
+                cars[p]['schedule'] = temp[1]
+                cars[p]['currentDelivery'] = temp[2]
+                cars[p]['inducedCosts'] = new_costs_p
+
+                currentCost -= diff # adjust current cost
+
+                swaps_made += 1
+
+                # update candidate list
+                if new_costs_i > cars[i]['costBound']:
+                    swap_candidates.append(i)
+                if new_costs_p > cars[p]['costBound'] and p not in swap_candidates:
+                    swap_candidates.append(p)
+                break
+        
+    print(f"final costs: {currentCost}, swaps made: {swaps_made}")
+    return cars, currentCost # maybe also segments..
 
 
 
@@ -289,3 +347,5 @@ print(total_bound)
 
 res = greedy(df)
 print(f"result greedy: {res[1]}")
+
+local_search(df)
