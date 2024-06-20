@@ -7,7 +7,7 @@ import random
 #################### teststuff #######################
 import parse_txt
 
-df=parse_txt.parse_file("data\inst001.txt")
+df=parse_txt.parse_file("data\inst002a.txt")
 
 ######################################################
 
@@ -110,7 +110,7 @@ def print_timetable(car, segments):
     overtime = 0
     if car['dueDate'] != "-":
         delay = (car['currentDelivery']-car['dueDate']).total_seconds()/(60*60*24)
-        overtime = delivery_time - (2*car['deliveryRef']/24)
+        overtime = max(0, delivery_time - (2*car['deliveryRef']/24))
     print(f"total delivery time: {delivery_time} day(s), delay: {delay} day(s), time over 2x net delivery: {overtime} day(s)")
     print(f"=> cost: {car['inducedCosts']}")
     return
