@@ -5,7 +5,6 @@ import csv
 from pprint import pprint
 
 import parse_txt
-import preprocessing
 from optimization_functions import greedy_algorithm
 import evaluation
 from utility import all_cars_have_path_without_gaps_from_origin_to_destination
@@ -37,13 +36,12 @@ def main():
     selected_file = answers["file"]
     selected_function = answers["function"]
     dataframes = parse_txt.parse_file("./data/" + selected_file)
-    result = preprocessing.convert_to_dataframe(dataframes)
+    
     execution_data.append(answers["file"])
     execution_data.append(answers["function"])
 
     start_time = time.time()
-    # TODO: result rausnehmen
-    mapping = selected_function.apply(result, dataframes)
+    mapping = selected_function.apply(dataframes)
     end_time = time.time()
     elapsed_time = end_time - start_time
     pprint(mapping)

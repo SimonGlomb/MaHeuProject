@@ -1,9 +1,11 @@
 import pandas as pd
 from typing import Tuple
+import preprocessing
 
 from utility import transport_is_usable, get_dict_to_keep_track_of_capacities, all_cars_have_path_without_gaps_from_origin_to_destination
 
-def apply(result: pd.DataFrame, dataframes: dict) -> dict:
+def apply(dataframes: dict) -> dict:
+    result = preprocessing.convert_to_dataframe(dataframes)
     all_ids = dataframes["TRO"]["ID(long)"].unique()
     car_to_path_segment_mapping = {id: [] for id in all_ids}
 
