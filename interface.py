@@ -42,6 +42,7 @@ def main():
     execution_data.append(answers["function"])
 
     start_time = time.time()
+    # TODO: result rausnehmen
     mapping = selected_function.apply(result, dataframes)
     end_time = time.time()
     elapsed_time = end_time - start_time

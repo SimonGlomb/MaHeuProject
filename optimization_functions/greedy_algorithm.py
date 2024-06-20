@@ -35,7 +35,6 @@ def apply(result: pd.DataFrame, dataframes: dict) -> dict:
                     current_car_position[current_car_id] = row["SegmentDestinationCode"]
                     if current_car_id in current_car_position and current_car_position[current_car_id] == dataframes["TRO"].loc[dataframes["TRO"]["ID(long)"]==current_car_id, "DestinationCode"].values[0]:
                         del current_car_position[current_car_id]
-    breakpoint()
     # TODO: dataframes["TRO"].loc[dataframes["TRO"]["ID(long)"]=="1", "OriginCode"]
     # car_to_path_segment_mapping["1"]
     # endet in TUR01PORTBEL01PORT-VESSEL-02
@@ -43,4 +42,8 @@ def apply(result: pd.DataFrame, dataframes: dict) -> dict:
     # man könnte jetzt nach gucken ob das überhaupt noch geht
     # bzw macht die leadtimehour mir auch sorgen :[{'PathSegmentCode': 'TUR01PLANTTUR01PORT-TRUCK-01', 'TimeSlotDate': Timestamp('2024-03-13 00:00:00'), 'LeadTimeHours': 12}, {'PathSegmentCode': 'TUR01PORTBEL01PORT-VESSEL-02', 'TimeSlotDate': Timestamp('2024-03-22 00:00:00'), 'LeadTimeHours': 144}]
     # TODO: filtern nach elementen mit länge 2
+    # FOLLOWING CODE TO BRING IT TO datetime datatype, but turns out it is not necessary, so i save a lot computation time
+    #for id in all_ids:
+    #    for path_segment_el in car_to_path_segment_mapping[id]:
+    #        path_segment_el["TimeSlotDate"].to_pydatetime()
     return car_to_path_segment_mapping
