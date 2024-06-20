@@ -30,6 +30,7 @@ def transport_is_usable(timeslotdate, mapping):
     for el in mapping:
         car_finished_transport_and_next_day = el["TimeSlotDate"] + timedelta(hours=int(el["LeadTimeHours"]) + 24)
         # if it is <= then we are good, because then our new transport is doable as the car is available again
+        car_finished_transport_and_next_day = car_finished_transport_and_next_day.replace(hour=0, minute=0, second=0, microsecond=0)
         if car_finished_transport_and_next_day > timeslotdate:
             return False
     return True
