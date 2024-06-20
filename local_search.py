@@ -103,14 +103,14 @@ def print_timetable(car, segments):
         print("no route assigned")
     else:
         for s, t in car['schedule']:
-            print(f"{segments[s]['start']} -> {segments['end']}, departure: {t}, arrival: {t + timedelta(hours=segments[s]['duration'])}")
-    print(f"destination: {car['destination']}, due at: {car['dueDate']}, net delivery time (reference): {car['deliveryRef']}")
-    delivery_time = (car['avlDate']-car['currentDelivery']).total_seconds()/(60*60*24)
+            print(f"{segments[s]['start']} -> {segments[s]['end']}, departure: {t}, arrival: {t + timedelta(hours=segments[s]['duration'])}")
+    print(f"destination: {car['destination']}, due at: {car['dueDate']}, net delivery time (reference): {car['deliveryRef']/24} day(s)")
+    delivery_time = (car['currentDelivery']-car['avlDate']).total_seconds()/(60*60*24)
     delay = 0
     overtime = 0
     if car['dueDate'] != "-":
         delay = (car['currentDelivery']-car['dueDate']).total_seconds()/(60*60*24)
-        overtime = delivery_time - (car['deliveryRef']/24)
+        overtime = delivery_time - (2*car['deliveryRef']/24)
     print(f"total delivery time: {delivery_time} day(s), delay: {delay} day(s), time over 2x net delivery: {overtime} day(s)")
     print(f"=> cost: {car['inducedCosts']}")
     return
@@ -244,7 +244,9 @@ def greedy(dataframes):
     # detemine costs of the solution
     costs = 0
     for car_id in cars.keys():
-        costs += compute_car_costs(cars[car_id]['avlDate'], cars[car_id]['dueDate'], cars[car_id]['currentDelivery'], cars[car_id]['deliveryRef'])
+        car_cost = compute_car_costs(cars[car_id]['avlDate'], cars[car_id]['dueDate'], cars[car_id]['currentDelivery'], cars[car_id]['deliveryRef'])
+        cars[car_id]['inducedCosts'] = car_cost
+        costs += car_cost
     
     return cars, paths, segments, costs
 
@@ -356,10 +358,11 @@ print(total_bound)
 
 total_bound = 0
 for car_id in c:
-    total_bound += compute_car_costs(c[car_id]['avlDate'], c[car_id]['dueDate'], eot, c[car_id]['deliveryRef'])
+    total_bound += simple_upper_bound(c[car_id],p,s)
 print(total_bound)
 
 res = greedy(df)
 print(f"result greedy: {res[3]}")
-
-local_search(df)
+for car in res[0].keys():
+    print(f"------------------------------------------------------------------------------------------------\nCar {car}\n------------------------------------------------------------------------------------------------")
+    print_timetable(res[0][car], s)
