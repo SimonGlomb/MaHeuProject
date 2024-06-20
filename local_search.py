@@ -74,27 +74,46 @@ def assign_timeslots(car, paths, segments):
    # print(f"path: {paths[path]}, times: {departures}, arrival: {earliest_arrival}, deadline: {car['dueDate']}")
     return departures, path, earliest_arrival
 
-
 # compute a very simple lower bound on the costs induced by the given car
 def simple_lower_bound(car, paths, segments):
     # determine earliest possible delivery date
     earliest_arrival = assign_timeslots(car, paths, segments)[2]
     return compute_car_costs(car['avlDate'], car['dueDate'], earliest_arrival, car['deliveryRef'])
 
-# compute upper bound for the costs induced by a single car TODO: change latest arrival to eot?
-# costs induced when the car arrives with the latest available tranport to its destination
+# compute upper bound for the costs induced by a single car
+# costs induced when the car is not delivered at all (so the arrival date is assumed to be the end of the timeframe)
+# computation for the case, where all cars are guaranteed to arrive is commented out
 def simple_upper_bound(car, paths, segments):
     # determine latest possible arrival at the destination
-    latest_arrival = car['avlDate']
-    for p in car['paths']:
-        last_transport = paths[p][-1]
-        last_departure = max(segments[last_transport]['timeslots'].keys())
-        arrival = last_departure + timedelta(hours = segments[last_transport]['duration'])
-        if arrival > latest_arrival:
-            latest_arrival = arrival
+    eot = end_of_timeframe(segments)
+    # latest_arrival = car['avlDate']
+    # for p in car['paths']:
+    #     last_transport = paths[p][-1]
+    #     last_departure = max(segments[last_transport]['timeslots'].keys())
+    #     arrival = last_departure + timedelta(hours = segments[last_transport]['duration'])
+    #     if arrival > latest_arrival:
+    #         latest_arrival = arrival
 
-    return compute_car_costs(car['avlDate'], car['dueDate'], latest_arrival, car['deliveryRef'])
+    return compute_car_costs(car['avlDate'], car['dueDate'], eot, car['deliveryRef'])
 
+# print all relevant routing information of the given car in a nice format
+def print_timetable(car, segments):
+    print(f"origin: {car['origin']}, available at {car['avlDate']}")
+    if car['assignedPath'] == None:
+        print("no route assigned")
+    else:
+        for s, t in car['schedule']:
+            print(f"{segments[s]['start']} -> {segments['end']}, departure: {t}, arrival: {t + timedelta(hours=segments[s]['duration'])}")
+    print(f"destination: {car['destination']}, due at: {car['dueDate']}, net delivery time (reference): {car['deliveryRef']}")
+    delivery_time = (car['avlDate']-car['currentDelivery']).total_seconds()/(60*60*24)
+    delay = 0
+    overtime = 0
+    if car['dueDate'] != "-":
+        delay = (car['currentDelivery']-car['dueDate']).total_seconds()/(60*60*24)
+        overtime = delivery_time - (car['deliveryRef']/24)
+    print(f"total delivery time: {delivery_time} day(s), delay: {delay} day(s), time over 2x net delivery: {overtime} day(s)")
+    print(f"=> cost: {car['inducedCosts']}")
+    return
 
 # read the parsed data frames and
 # transform relevant information into dictionaries for more comfortable access
@@ -129,7 +148,7 @@ def construct_instance(dataframes):
     for i in segment_df.index:
         id = segment_df['ID(long)'][i]
         code = segment_df['Code'][i]
-        segment = {'duration':float(segment_df['DefaultLeadTimeHours'][i])}
+        segment = {'duration':float(segment_df['DefaultLeadTimeHours'][i]), 'start':segment_df['OriginCode'][i] , 'end':segment_df['DestinationCode'][i]}
         timeslots = {}
         departures = departures_df[departures_df['PathSegmentCode'] == code]
         for j in departures.index:
