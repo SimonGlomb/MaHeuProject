@@ -7,7 +7,7 @@ import random
 #################### teststuff #######################
 import parse_txt
 
-df=parse_txt.parse_file("data\inst002c.txt")
+df=parse_txt.parse_file("data\inst003.txt")
 
 ######################################################
 
@@ -41,6 +41,13 @@ def compute_car_costs(avlDate, dueDate, deliveryDate, referenceTime):
         cost = cost + 5*(math.ceil(((deliveryDate - avlDate).total_seconds()/(60*60) - 2*referenceTime)/24)) # additional delay penalty per day (after 2*net transport time is exceeded): 5 euro
 
     return cost
+
+# compute the value of the complete solution, maybe add computation of delivery date
+def compute_total_costs(cars):
+    costs = 0
+    for car_id in cars.keys():
+        costs = compute_car_costs(cars[car_id]['avlDate'], cars[car_id]['dueDate'], cars[car_id]['currentDelivery'], cars[car_id]['deliveryRef'])
+    return costs
 
 # find the earliest possible timeslots (and corresponding path) for a car
 def assign_timeslots(car, paths, segments):
@@ -85,7 +92,7 @@ def simple_lower_bound(car, paths, segments):
 # computation for the case, where all cars are guaranteed to arrive is commented out
 def simple_upper_bound(car, paths, segments):
     # determine latest possible arrival at the destination
-    eot = end_of_timeframe(segments)
+    latest_arrival = end_of_timeframe(segments)
     # latest_arrival = car['avlDate']
     # for p in car['paths']:
     #     last_transport = paths[p][-1]
@@ -94,7 +101,7 @@ def simple_upper_bound(car, paths, segments):
     #     if arrival > latest_arrival:
     #         latest_arrival = arrival
 
-    return compute_car_costs(car['avlDate'], car['dueDate'], eot, car['deliveryRef'])
+    return compute_car_costs(car['avlDate'], car['dueDate'], latest_arrival, car['deliveryRef'])
 
 # print all relevant routing information of the given car in a nice format
 def print_timetable(car, segments):
@@ -113,6 +120,41 @@ def print_timetable(car, segments):
         overtime = max(0, delivery_time - (2*car['deliveryRef']/24))
     print(f"total delivery time: {delivery_time} day(s), delay: {delay} day(s), time over 2x net delivery: {overtime} day(s)")
     print(f"=> cost: {car['inducedCosts']}")
+    return
+
+# print the routing information of all cars (maybe into a file later)
+def print_all_timetables(cars, segments):
+    for car in cars.keys():
+        print(f"------------------------------------------------------------------------------------------------\nCar {car}\n------------------------------------------------------------------------------------------------")
+        print_timetable(cars[car], segments)
+    return
+
+# compute utilization of specific transports -> return value??
+def compute_transport_usage(cars, segments):
+    used_capacity = {}
+    keys = [(s,t) for s in segments.keys() for t in segments[s]['timeslots'].keys()]
+    for key in keys:
+        assigned_cars = [id for id in cars.keys() if key in cars[id]['schedule']]
+        used_capacity[key] = len(assigned_cars)
+    return used_capacity
+
+# print the assignment of cars to transports
+def print_transport_usage(cars, segments):
+    assignments = {}
+    keys = [(s,t) for s in segments.keys() for t in segments[s]['timeslots'].keys()]
+    for key in keys:
+        assignments[key] = [id for id in cars.keys() if key in cars[id]['schedule']]
+    for s in segments.keys():
+        print("-----------------------------------------")
+        print(f"Segment {s}: {segments[s]['name']}")
+        print("-----------------------------------------")
+        for t in segments[s]['timeslots'].keys():
+            free_capacity = int(segments[s]['timeslots'][t])
+            used_capacity = len(assignments[(s,t)])
+            if used_capacity != 0: # skip empty transports to save space
+                print(f"{t}: {used_capacity}/{free_capacity+used_capacity} used | {assignments[(s,t)]}")
+                print(".................................")
+
     return
 
 # read the parsed data frames and
@@ -148,7 +190,7 @@ def construct_instance(dataframes):
     for i in segment_df.index:
         id = segment_df['ID(long)'][i]
         code = segment_df['Code'][i]
-        segment = {'duration':float(segment_df['DefaultLeadTimeHours'][i]), 'start':segment_df['OriginCode'][i] , 'end':segment_df['DestinationCode'][i]}
+        segment = {'duration':float(segment_df['DefaultLeadTimeHours'][i]), 'start':segment_df['OriginCode'][i] , 'end':segment_df['DestinationCode'][i], 'name':code}
         timeslots = {}
         departures = departures_df[departures_df['PathSegmentCode'] == code]
         for j in departures.index:
@@ -159,7 +201,6 @@ def construct_instance(dataframes):
         segments[id] = segment
 
     # extract cars
-    # TODO: compute values for bounds
     for i in car_df.index:
         id = car_df['ID(long)'][i]
         car = {'avlDate':handle_dates(car_df['AvailableDateOrigin'][i]), 
@@ -293,22 +334,19 @@ def random_greedy(dataframes):
         cars[car_id]['inducedCosts'] = car_cost
         costs += car_cost
     
-    print(f"random greedy costs: {costs}")
+   # print(f"random greedy costs: {costs}")
     
     return cars, paths, segments, costs
-
 
 # local search
 def local_search(dataframes):
     cars, paths, segments, currentCost = random_greedy(dataframes) # start with the solution of the random greedy assignment
-    
-    lower_bound = sum([cars[i]['costBound'] for i in cars.keys()])
 
     swaps_made = 0 # for analysis: count successful swapping operations
 
     swap_candidates = [c for c in cars.keys() if cars[c]['inducedCosts'] > cars[c]['costBound']] # cars which currently have costs higher than their lower bound
 
-    while swap_candidates != [] and currentCost > lower_bound:
+    while swap_candidates != []:
         i = swap_candidates.pop(0)
 
         # cars to potentially swap with (same start- and endpoint, earlier arrival, compatible starttimes)
@@ -344,7 +382,7 @@ def local_search(dataframes):
                     swap_candidates.append(p)
                 break
         
-    print(f"final costs: {currentCost}, swaps made: {swaps_made}")
+   # print(f"final costs: {currentCost}, swaps made: {swaps_made}")
     return cars, currentCost # maybe also segments..
 
 
@@ -365,6 +403,4 @@ print(total_bound)
 
 res = greedy(df)
 print(f"result greedy: {res[3]}")
-# for car in res[0].keys():
-#     print(f"------------------------------------------------------------------------------------------------\nCar {car}\n------------------------------------------------------------------------------------------------")
-#     print_timetable(res[0][car], s)
+print_transport_usage(res[0], res[2])
