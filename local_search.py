@@ -132,25 +132,24 @@ def print_all_timetables(cars, segments):
 # compute utilization of specific transports -> return value??
 def compute_transport_usage(cars, segments):
     used_capacity = {}
+    assignments = {}
     keys = [(s,t) for s in segments.keys() for t in segments[s]['timeslots'].keys()]
     for key in keys:
         assigned_cars = [id for id in cars.keys() if key in cars[id]['schedule']]
         used_capacity[key] = len(assigned_cars)
-    return used_capacity
+        assignments[key] = assigned_cars
+    return used_capacity, assignments
 
 # print the assignment of cars to transports
 def print_transport_usage(cars, segments):
-    assignments = {}
-    keys = [(s,t) for s in segments.keys() for t in segments[s]['timeslots'].keys()]
-    for key in keys:
-        assignments[key] = [id for id in cars.keys() if key in cars[id]['schedule']]
+    used_capacities, assignments = compute_transport_usage(cars, segments)
     for s in segments.keys():
         print("-----------------------------------------")
         print(f"Segment {s}: {segments[s]['name']}")
         print("-----------------------------------------")
         for t in segments[s]['timeslots'].keys():
             free_capacity = int(segments[s]['timeslots'][t])
-            used_capacity = len(assignments[(s,t)])
+            used_capacity = used_capacities[(s,t)]
             if used_capacity != 0: # skip empty transports to save space
                 print(f"{t}: {used_capacity}/{free_capacity+used_capacity} used | {assignments[(s,t)]}")
                 print(".................................")
