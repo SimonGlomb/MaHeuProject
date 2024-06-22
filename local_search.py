@@ -181,7 +181,7 @@ def construct_instance(dataframes):
         path_segments = pthseg_df[pthseg_df['PathID(long)'] == id].sort_values('SegmentSequenceNumber')
         for j in path_segments.index:
             code = path_segments['SegmentCode'][j]
-            sid = segment_df[segment_df['Code'] == code]['ID(long)'].iloc[0] # whats the correct value here?
+            sid = segment_df[segment_df['Code'] == code]['ID(long)'].iloc[0]
             path.append(sid)
         paths[id] = path
 
@@ -216,13 +216,9 @@ def construct_instance(dataframes):
             pths.append(filtered_paths['ID(long)'][j])
         car['paths'] = pths
 
-        # compute the net delivery time (hours) on the shortest connection from start to end
-        ref = -1
-        for p in car['paths']:
-            segment_times = [segments[s]['duration'] for s in paths[p]]
-            current = sum(segment_times)
-            if ref == -1 or current < ref:
-                ref = current
+        # compute the net transport time (hours)
+        earliest_arrival = assign_timeslots(car, paths, segments)[2]
+        ref = (earliest_arrival - car['avlDate']).total_seconds()/(60*60)
         car['deliveryRef'] = ref
 
         # lower bound for the costs
@@ -251,11 +247,11 @@ def greedy(dataframes):
             cars[id]['dueDate'] = eot + timedelta(hours=24)
 
     # greedy algorithm -> variants
-    # car_list = sorted([(id, cars[id]['avlDate'], cars[id]['dueDate']) for id in cars.keys()], key=lambda car: (car[2],car[1])) # sort by duedate 
+    car_list = sorted([(id, cars[id]['avlDate'], cars[id]['dueDate']) for id in cars.keys()], key=lambda car: (car[2],car[1])) # sort by duedate 
     # car_list = sorted([(id, cars[id]['avlDate'], cars[id]['dueDate']) for id in cars.keys()], key=lambda car: (car[1],car[2])) # sort by avldate 
     # car_list = sorted([(id, cars[id]['avlDate'], cars[id]['dueDate']) for id in cars.keys()], key=lambda car: (car[2]-car[1],car[2])) # sort by space (difference avl and due)
     # car_list = sorted([(id, simple_upper_bound(cars[id], paths, segments), cars[id]['dueDate']) for id in cars.keys()], key=lambda car: (car[1],car[2]), reverse=True) # sort descending by upper bound
-    car_list = sorted([(id, simple_upper_bound(cars[id], paths, segments)-simple_lower_bound(cars[id], paths, segments), cars[id]['dueDate']) for id in cars.keys()], key=lambda car: (car[1],car[2]), reverse=True) # sort descending by upper-lower bound
+    # car_list = sorted([(id, simple_upper_bound(cars[id], paths, segments)-simple_lower_bound(cars[id], paths, segments), cars[id]['dueDate']) for id in cars.keys()], key=lambda car: (car[1],car[2]), reverse=True) # sort descending by upper-lower bound
 
     # undo changes to not affect other methods
     for id in cars.keys():
