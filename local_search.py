@@ -376,7 +376,7 @@ def local_search(dataframes):
                 if new_costs_p > cars[p]['costBound'] and p not in swap_candidates:
                     swap_candidates.append(p)
                 break
-        
+ 
     print(f"final costs: {currentCost}, swaps made: {swaps_made}")
     return cars, currentCost # maybe also segments..
 
@@ -481,11 +481,14 @@ def advanced_local_search(dataframes):
                 old_cost = cars[i]['inducedCosts']
                 cars[i]['inducedCosts'] = compute_car_costs(cars[i]['avlDate'], cars[i]['dueDate'], cars[p]['currentDelivery'], cars[i]['deliveryRef'])
                 currentCost -= (old_cost - cars[i]['inducedCosts'])
+                
+                # update candidate list
+                if cars[i]['inducedCosts'] > cars[i]['costBound']:
+                    swap_candidates.append(i)
             
             # block used capacities:
             for s,t in cars[i]['schedule']:
                 segments[s]['timeslots'][t] -= 1
-
 
 
     print(f"final costs: {currentCost}, swaps made: {swaps_made}, patrials: {partials}, shifts: {shifts}")
