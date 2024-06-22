@@ -7,7 +7,7 @@ import random
 #################### teststuff #######################
 import parse_txt
 
-df=parse_txt.parse_file("data\inst001.txt")
+df=parse_txt.parse_file("data\inst003.txt")
 
 ######################################################
 
@@ -258,7 +258,7 @@ def greedy(dataframes):
         if cars[id]['dueDate'] == eot + timedelta(hours=24):
             cars[id]['dueDate'] = "-"
 
-    # assign timeslots with earliest arrival (maybe just earliest first departure or shortest net time?)
+    # assign timeslots with earliest arrival
     for i in range(len(car_list)):
         id = car_list[i][0]
         d, p, a = assign_timeslots(cars[id], paths, segments)
@@ -386,6 +386,7 @@ def advanced_local_search(dataframes):
 
     swaps_made = 0 # for analysis: count successful swapping operations
     partials = 0 # swaps that did not swap full paths
+    shifts = 0 # swaps to free paths
 
     swap_candidates = [c for c in cars.keys()] # all car ids
 
@@ -394,7 +395,7 @@ def advanced_local_search(dataframes):
 
         # cars to potentially swap with (same destination and earlier arrival)
         partners = [c for c in cars.keys() if cars[c]['destination'] == cars[i]['destination'] and cars[c]['currentDelivery'] < cars[i]['currentDelivery']]
-
+        swapped = False
         for p in partners:
             # go over possible cuts..
             path_segs = paths[cars[i]['assignedPath']]
@@ -450,10 +451,44 @@ def advanced_local_search(dataframes):
                                 swap_candidates.append(i)
                             if new_costs_p > cars[p]['costBound'] and p not in swap_candidates:
                                 swap_candidates.append(p)
+                            swapped = True
                             break
         # if no partner works, try shifting?
+        if not swapped:
+            # free capacities currently used:
+            for s,t in cars[i]['schedule']:
+                segments[s]['timeslots'][t] += 1
 
-    print(f"final costs: {currentCost}, swaps made: {swaps_made}, patrials: {partials}")
+            # check for an alternative free path
+            departures, path, arrival = assign_timeslots(cars[i], paths, segments)
+
+            if arrival < cars[i]['currentDelivery']:
+                # link car to chosen path, save corresponding delivery date
+                cars[i]['assignedPath'] = path
+                cars[i]['currentDelivery'] = arrival
+
+                # assign [(segID, time)] shaped schedule to car
+                schedule = []
+                path_segments = paths[path] # path segments the car is assigned to 
+
+                for seg in range(len(path_segments)):
+                    schedule.append((path_segments[seg], departures[seg]))
+                cars[i]['schedule'] = schedule
+
+                shifts += 1
+                swaps_made += 1
+
+                old_cost = cars[i]['inducedCosts']
+                cars[i]['inducedCosts'] = compute_car_costs(cars[i]['avlDate'], cars[i]['dueDate'], cars[p]['currentDelivery'], cars[i]['deliveryRef'])
+                currentCost -= (old_cost - cars[i]['inducedCosts'])
+            
+            # block used capacities:
+            for s,t in cars[i]['schedule']:
+                segments[s]['timeslots'][t] -= 1
+
+
+
+    print(f"final costs: {currentCost}, swaps made: {swaps_made}, patrials: {partials}, shifts: {shifts}")
     return cars, currentCost # maybe also segments..
 
 
