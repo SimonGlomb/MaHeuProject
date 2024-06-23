@@ -46,7 +46,7 @@ def compute_car_costs(avlDate, dueDate, deliveryDate, referenceTime):
 def compute_total_costs(cars):
     costs = 0
     for car_id in cars.keys():
-        costs = compute_car_costs(cars[car_id]['avlDate'], cars[car_id]['dueDate'], cars[car_id]['currentDelivery'], cars[car_id]['deliveryRef'])
+        costs += compute_car_costs(cars[car_id]['avlDate'], cars[car_id]['dueDate'], cars[car_id]['currentDelivery'], cars[car_id]['deliveryRef'])
     return costs
 
 # find the earliest possible timeslots (and corresponding path) for a car
@@ -301,37 +301,37 @@ def random_greedy(dataframes):
     for i in range(len(car_list)):
         id = car_list[i]
         d, p, a = assign_timeslots(cars[id], paths, segments)
+
         # link car to chosen path, save corresponding delivery date
         cars[id]['assignedPath'] = p
         cars[id]['currentDelivery'] = a
 
-        # assign [(segID, time)] shaped schedule to car
-        schedule = []
-        path = paths[p] # path segments the car is assigned to 
-
-        for s in range(len(path)):
-            schedule.append((path[s], d[s]))
-        cars[id]['schedule'] = schedule
-
-        # block used capacities in transport segments (if a path was assigned)
+        # if a path was assigned, construct schedule and block capacities
         if p != None:
+            # assign [(segID, time)] shaped schedule to car
+            schedule = []
+            path = paths[p] # path segments the car is assigned to 
+
+            for s in range(len(path)):
+                schedule.append((path[s], d[s]))
+            cars[id]['schedule'] = schedule
+
             for j in range(len(d)):
                 segments[paths[p][j]]['timeslots'][d[j]] -= 1
+        else:
+            cars[id]['schedule'] = []            
+       
 
     nd = 0 # for analysis: count non delivered cars
     for car_id in cars.keys():
             nd += 1
 
-    # detemine costs of the solution
-    costs = 0
+    # determine costs of the solution
     for car_id in cars.keys():
         car_cost = compute_car_costs(cars[car_id]['avlDate'], cars[car_id]['dueDate'], cars[car_id]['currentDelivery'], cars[car_id]['deliveryRef'])
         cars[car_id]['inducedCosts'] = car_cost
-        costs += car_cost
     
-   # print(f"random greedy costs: {costs}")
-    
-    return cars, paths, segments, costs
+    return cars, paths, segments
 
 # local search
 def local_search(dataframes):
@@ -382,8 +382,8 @@ def local_search(dataframes):
 
 # local search - 2nd draft
 def advanced_local_search(dataframes):
-    cars, paths, segments, currentCost = random_greedy(dataframes) # start with the solution of the random greedy assignment
-
+    cars, paths, segments = random_greedy(dataframes) # start with the solution of the random greedy assignment
+    currentCost = compute_total_costs(cars)
     swaps_made = 0 # for analysis: count successful swapping operations
     partials = 0 # swaps that did not swap full paths
     shifts = 0 # swaps to free paths
@@ -397,15 +397,20 @@ def advanced_local_search(dataframes):
         partners = [c for c in cars.keys() if cars[c]['destination'] == cars[i]['destination'] and cars[c]['currentDelivery'] < cars[i]['currentDelivery']]
         swapped = False
         for p in partners:
-            # go over possible cuts..
-            path_segs = paths[cars[i]['assignedPath']]
-            for x in range(len(path_segs)):
+            if cars[i]['assignedPath'] == None:
+                checkpoints = 1
+            else:
+                path_segs = paths[cars[i]['assignedPath']]
+                checkpoints = len(path_segs)
+            # go over possible cuts..   
+            for x in range(checkpoints):
                 if x == 0:
                     earliest_start_i = cars[i]['avlDate']
+                    start_location = cars[i]['origin']
                 else:
                     # arrival of the x-1-th transport + waiting time
                     earliest_start_i = (cars[i]['schedule'][x-1][1] + timedelta(hours=24+segments[path_segs[x-1]]['duration'])).replace(hour=0, minute=0, second=0, microsecond=0)
-                start_location = segments[path_segs[x]]['start']
+                    start_location = segments[path_segs[x]]['start']
 
                 # filter partners: their path contains the start location and the starting timeslots are compatible
                 if start_location in [segments[s]['start'] for s in paths[cars[p]['assignedPath']]]:
@@ -416,7 +421,7 @@ def advanced_local_search(dataframes):
                         # arrival of the x-1-th transport + waiting time
                         earliest_start_p = (cars[p]['schedule'][index-1][1] + timedelta(hours=24+segments[path_segs[x-1]]['duration'])).replace(hour=0, minute=0, second=0, microsecond=0)
 
-                    if cars[i]['schedule'][x][1] >= earliest_start_p and cars[p]['schedule'][index][1] >= earliest_start_i:
+                    if (cars[i]['assignedPath'] == None or cars[i]['schedule'][x][1] >= earliest_start_p)and cars[p]['schedule'][index][1] >= earliest_start_i:
 
                         # check quality of swap
                         new_costs_i = compute_car_costs(cars[i]['avlDate'], cars[i]['dueDate'], cars[p]['currentDelivery'], cars[i]['deliveryRef'])
@@ -437,8 +442,11 @@ def advanced_local_search(dataframes):
                             cars[p]['schedule'] = cars[p]['schedule'][:index] + temp[0][x:]
                             cars[p]['currentDelivery'] = temp[1]
                             cars[p]['inducedCosts'] = new_costs_p
-                            path_p = [path_index for path_index, path_segments in paths.items() if path_segments == [s for s,t in cars[p]['schedule']]][0]
-                            cars[p]['assignedPath'] = path_p
+                            path_p = [path_index for path_index, path_segments in paths.items() if path_segments == [s for s,t in cars[p]['schedule']]]
+                            if len(path_p) > 0:
+                                cars[p]['assignedPath'] = path_p[0]
+                            else:
+                                cars[p]['assignedPath'] = None
 
                             currentCost -= diff # adjust current cost
 
@@ -453,7 +461,7 @@ def advanced_local_search(dataframes):
                                 swap_candidates.append(p)
                             swapped = True
                             break
-        # if no partner works, try shifting?
+        # if no partner works, try adjusting route using free capacities
         if not swapped:
             # free capacities currently used:
             for s,t in cars[i]['schedule']:
@@ -479,7 +487,7 @@ def advanced_local_search(dataframes):
                 swaps_made += 1
 
                 old_cost = cars[i]['inducedCosts']
-                cars[i]['inducedCosts'] = compute_car_costs(cars[i]['avlDate'], cars[i]['dueDate'], cars[p]['currentDelivery'], cars[i]['deliveryRef'])
+                cars[i]['inducedCosts'] = compute_car_costs(cars[i]['avlDate'], cars[i]['dueDate'], cars[i]['currentDelivery'], cars[i]['deliveryRef'])
                 currentCost -= (old_cost - cars[i]['inducedCosts'])
                 
                 # update candidate list
@@ -511,5 +519,7 @@ print(total_bound)
 
 res = greedy(df)
 print(f"result greedy: {res[3]}")
-local_search(df)
-advanced_local_search(df)
+#local_search(df)
+cs, cc = advanced_local_search(df)
+print(f"sum over cars: {sum([cs[i]['inducedCosts'] for i in cs.keys()])}, compute function: {compute_total_costs(cs)}, return value: {cc}")
+
