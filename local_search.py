@@ -7,7 +7,7 @@ import random
 #################### teststuff #######################
 import parse_txt
 
-df=parse_txt.parse_file("data\inst003.txt")
+
 
 ######################################################
 
@@ -239,7 +239,6 @@ def greedy(dataframes):
 
     # greedy algorithm -> variants
     car_list = sorted([(id, cars[id]['avlDate'], cars[id]['dueDate']) for id in cars.keys()], key=lambda car: (car[2],car[1])) # sort by duedate 
-    # car_list = sorted([(id, cars[id]['avlDate'], cars[id]['dueDate']) for id in cars.keys()], key=lambda car: (car[1],car[2])) # sort by avldate 
     # car_list = sorted([(id, cars[id]['avlDate'], cars[id]['dueDate']) for id in cars.keys()], key=lambda car: (car[2]-car[1],car[2])) # sort by space (difference avl and due)
     # car_list = sorted([(id, simple_upper_bound(cars[id], paths, segments), cars[id]['dueDate']) for id in cars.keys()], key=lambda car: (car[1],car[2]), reverse=True) # sort descending by upper bound
     # car_list = sorted([(id, simple_upper_bound(cars[id], paths, segments)-simple_lower_bound(cars[id], paths, segments), cars[id]['dueDate']) for id in cars.keys()], key=lambda car: (car[1],car[2]), reverse=True) # sort descending by upper-lower bound
@@ -479,21 +478,23 @@ def advanced_local_search(dataframes):
 
 
 ###################### do stuff #######################
-c,p,s=construct_instance(df)
-eot = end_of_timeframe(s)
+instances = ["data\inst001.txt","data\inst002a.txt","data\inst002b.txt","data\inst002c.txt","data\inst003.txt"]
+for i in range(len(instances)):
+    print(f"Instance {i}")
+    df=parse_txt.parse_file(instances[i])
+    c,p,s=construct_instance(df)
+    eot = end_of_timeframe(s)
 
-total_bound = 0
-for car_id in c:
-    total_bound += simple_lower_bound(c[car_id],p,s)
-print(total_bound)
+    lower_bound = 0
+    for car_id in c:
+        lower_bound += simple_lower_bound(c[car_id],p,s)
 
-total_bound = 0
-for car_id in c:
-    total_bound += simple_upper_bound(c[car_id],p,s)
-print(total_bound)
+    upper_bound = 0
+    for car_id in c:
+        upper_bound += simple_upper_bound(c[car_id],p,s)
 
-res = greedy(df)
-print(f"result greedy: {compute_total_costs(res[0])}")
-print(f"result ls: {compute_total_costs(local_search(df))}")
-print(f"result a ls: {compute_total_costs(advanced_local_search(df))}")
+    print(f"lb: {lower_bound}")
+
+    print(f"result greedy: {compute_total_costs(greedy(df)[0])}")
+    print("======================================================================================")
 
