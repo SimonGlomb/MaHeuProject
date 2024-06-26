@@ -359,41 +359,39 @@ def local_search(dataframes):
     cars = random_greedy(dataframes)[0] # start with the solution of the random greedy assignment
 
     swaps_made = 0 # for analysis: count successful swapping operations
+    swapped = True
+ 
+    while swapped:
+        swapped = False
+        swap_candidates = [c for c in cars.keys() if cars[c]['inducedCosts'] > cars[c]['costBound']] # cars which currently have costs higher than their lower bound
 
-    swap_candidates = [c for c in cars.keys() if cars[c]['inducedCosts'] > cars[c]['costBound']] # cars which currently have costs higher than their lower bound
+        for i in swap_candidates:
+        # cars to potentially swap with (same start- and endpoint, compatible starttimes)
+            partners = [c for c in cars.keys() if cars[c]['origin'] == cars[i]['origin'] and cars[c]['destination'] == cars[i]['destination']
+                        and cars[c]['schedule'][0][1] >= cars[i]['avlDate'] and (cars[i]['assignedPath'] == None or cars[i]['schedule'][0][1] >= cars[c]['avlDate'])]
+        
+            for p in partners:
+                new_costs_i = compute_car_costs(cars[i]['avlDate'], cars[i]['dueDate'], cars[p]['currentDelivery'], cars[i]['deliveryRef'])
+                new_costs_p = compute_car_costs(cars[p]['avlDate'], cars[p]['dueDate'], cars[i]['currentDelivery'], cars[p]['deliveryRef'])
 
-    while swap_candidates != []:
-        i = swap_candidates.pop(0)
+                # difference: current costs - costs after swap
+                diff = cars[i]['inducedCosts'] + cars[p]['inducedCosts'] - (new_costs_i + new_costs_p)
+                if diff > 0: # if new costs are lower, swap schedules of i and p
+                    temp = (cars[i]['assignedPath'], cars[i]['schedule'], cars[i]['currentDelivery'])
+                    cars[i]['assignedPath'] = cars[p]['assignedPath']
+                    cars[i]['schedule'] = cars[p]['schedule']
+                    cars[i]['currentDelivery'] = cars[p]['currentDelivery']
+                    cars[i]['inducedCosts'] = new_costs_i
 
-        # cars to potentially swap with (same start- and endpoint, earlier arrival, compatible starttimes)
-        partners = [c for c in cars.keys() if cars[c]['origin'] == cars[i]['origin'] and cars[c]['destination'] == cars[i]['destination'] and cars[c]['currentDelivery'] < cars[i]['currentDelivery']
-                    and cars[c]['schedule'][0][1] >= cars[i]['avlDate'] and (cars[i]['assignedPath'] == None or cars[i]['schedule'][0][1] >= cars[c]['avlDate'])]
-    
-        for p in partners:
-            new_costs_i = compute_car_costs(cars[i]['avlDate'], cars[i]['dueDate'], cars[p]['currentDelivery'], cars[i]['deliveryRef'])
-            new_costs_p = compute_car_costs(cars[p]['avlDate'], cars[p]['dueDate'], cars[i]['currentDelivery'], cars[p]['deliveryRef'])
+                    cars[p]['assignedPath'] = temp[0]
+                    cars[p]['schedule'] = temp[1]
+                    cars[p]['currentDelivery'] = temp[2]
+                    cars[p]['inducedCosts'] = new_costs_p
 
-            # difference: current costs - costs after swap
-            diff = cars[i]['inducedCosts'] + cars[p]['inducedCosts'] - (new_costs_i + new_costs_p)
-            if diff > 0: # if new costs are lower, swap schedules of i and p
-                temp = (cars[i]['assignedPath'], cars[i]['schedule'], cars[i]['currentDelivery'])
-                cars[i]['assignedPath'] = cars[p]['assignedPath']
-                cars[i]['schedule'] = cars[p]['schedule']
-                cars[i]['currentDelivery'] = cars[p]['currentDelivery']
-                cars[i]['inducedCosts'] = new_costs_i
-
-                cars[p]['assignedPath'] = temp[0]
-                cars[p]['schedule'] = temp[1]
-                cars[p]['currentDelivery'] = temp[2]
-                cars[p]['inducedCosts'] = new_costs_p
-
-                swaps_made += 1
-
-                # update candidate list
-                if new_costs_i > cars[i]['costBound']:
-                    swap_candidates.append(i)
-                if new_costs_p > cars[p]['costBound'] and p not in swap_candidates:
-                    swap_candidates.append(p)
+                    swaps_made += 1
+                    swapped = True
+                    break
+            if swapped:
                 break
  
     print(f"swaps made: {swaps_made}")
@@ -484,7 +482,7 @@ def advanced_local_search(dataframes):
                     break
                 else: # try using free capacities to replace the last x+1 segments                
                     # free capacities of the last x+1 segments currently used:
-                    for s,t in cars[i]['schedule'][checkpoints-(x+1):]:#[x:]:
+                    for s,t in cars[i]['schedule'][checkpoints-(x+1):]:
                         segments[s]['timeslots'][t] += 1
                     if x == checkpoints-1:
                         earliest_start_i = cars[i]['avlDate']
@@ -502,7 +500,7 @@ def advanced_local_search(dataframes):
 
                         for seg in range(len(path_segments)):
                             schedule.append((path_segments[seg], departures[seg]))
-                        cars[i]['schedule'] = cars[i]['schedule'][:checkpoints-(x+1)]+ schedule#[:x] + schedule
+                        cars[i]['schedule'] = cars[i]['schedule'][:checkpoints-(x+1)] + schedule
                         # link car to chosen path, save corresponding delivery date
                         cars[i]['currentDelivery'] = arrival
                         path_i = [path_index for path_index, path_segments in paths.items() if path_segments == [s for s,t in cars[i]['schedule']]][0]
@@ -521,7 +519,7 @@ def advanced_local_search(dataframes):
 
                         swapped = True
                     # block/restore used capacities:
-                    for s,t in cars[i]['schedule'][checkpoints-(x+1):]:#[x:]:
+                    for s,t in cars[i]['schedule'][checkpoints-(x+1):]:
                         segments[s]['timeslots'][t] -= 1
                     if swapped:
                         break
@@ -549,6 +547,7 @@ for i in range(len(instances)):
     print(f"lb: {lower_bound}")
 
     print(f"result A-LS: {compute_total_costs(advanced_local_search(df))}")
+    print(f"result S-LS: {compute_total_costs(local_search(df))}")
     print(f"result greedy: {compute_total_costs(greedy(df)[0])}")
     print("======================================================================================")
 
