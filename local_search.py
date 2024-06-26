@@ -80,6 +80,46 @@ def assign_timeslots(car, paths, segments):
     
     return departures, path, earliest_arrival
 
+# find earliest route to a destination starting from an intermediate location
+def earliest_timeslots_from_loc(car, paths, segments, start_loc, start_time):
+    eot = end_of_timeframe(segments)
+    departures = []
+    earliest_arrival = None
+    path = None
+    index = None
+    for i in range(len(car['paths'])):
+        p = car['paths'][i]
+        current_timetable = []
+        earliest_start = start_time
+        # check if path p contains start_loc, and if so, at which position
+        stops = [segments[s]['start'] for s in paths[p]]
+        if start_loc in stops:
+            start_index = stops.index(start_loc)
+        else: # if p does not contain start_loc, skip it
+            break
+
+        for j in range(len(paths[p][start_index:])):
+            potential_times = [s for s in segments[paths[p][start_index + j]]['timeslots'].keys() if s >= earliest_start and segments[paths[p][start_index + j]]['timeslots'][s] > 0] # timeslots after the ealiest possible departure with open capacities
+            if len(potential_times) > 0:
+                departure = min(potential_times)
+            else: # path is blocked
+                break
+            current_timetable.append(departure)
+            if j != len(paths[p][start_index:])-1:
+                earliest_start = (departure + timedelta(hours=segments[paths[p][start_index + j]]['duration']+24)).replace(hour=0, minute=0, second=0, microsecond=0)
+            else: # last segment; determine arrival time
+                arrival = departure + timedelta(hours=segments[paths[p][start_index + j]]['duration'])
+                if earliest_arrival == None or arrival < earliest_arrival:
+                    earliest_arrival = arrival
+                    departures = current_timetable
+                    path = p
+                    index = start_index
+          
+    if departures == []: # all paths are blocked, pretend that car arrives at the end of timeframe
+        return departures, path, index, eot
+    
+    return departures, path, index, earliest_arrival
+
 # compute a very simple lower bound on the costs induced by the given car
 def simple_lower_bound(car, paths, segments):
     # determine earliest possible delivery date
@@ -366,21 +406,23 @@ def advanced_local_search(dataframes):
     swaps_made = 0 # for analysis: count successful swapping operations
     partials = 0 # swaps that did not swap full paths
     shifts = 0 # swaps to free paths
+    partial_shifts = 0
 
     swap_candidates = [c for c in cars.keys()] # all car ids
 
     while swap_candidates != []:
         i = swap_candidates.pop(0)
+        
+        if cars[i]['assignedPath'] == None:
+                checkpoints = 1
+        else:
+            path_segs = paths[cars[i]['assignedPath']]
+            checkpoints = len(path_segs)
 
         # cars to potentially swap with (same destination and earlier arrival)
         partners = [c for c in cars.keys() if cars[c]['destination'] == cars[i]['destination'] and cars[c]['currentDelivery'] < cars[i]['currentDelivery']]
         swapped = False
         for p in partners:
-            if cars[i]['assignedPath'] == None:
-                checkpoints = 1
-            else:
-                path_segs = paths[cars[i]['assignedPath']]
-                checkpoints = len(path_segs)
             # go over possible cuts..   
             for x in range(checkpoints):
                 if x == 0:
@@ -392,15 +434,16 @@ def advanced_local_search(dataframes):
                     start_location = segments[path_segs[x]]['start']
 
                 # filter partners: their path contains the start location and the starting timeslots are compatible
-                if start_location in [segments[s]['start'] for s in paths[cars[p]['assignedPath']]]:
-                    index = [segments[s]['start'] for s in paths[cars[p]['assignedPath']]].index(start_location)
-                    if x == 0:
+                stops = [segments[s]['start'] for s in paths[cars[p]['assignedPath']]]
+                if start_location in stops:
+                    index = stops.index(start_location)
+                    if index == 0:
                         earliest_start_p = cars[p]['avlDate']
                     else:
                         # arrival of the x-1-th transport + waiting time
-                        earliest_start_p = (cars[p]['schedule'][index-1][1] + timedelta(hours=24+segments[path_segs[x-1]]['duration'])).replace(hour=0, minute=0, second=0, microsecond=0)
+                        earliest_start_p = (cars[p]['schedule'][index-1][1] + timedelta(hours=24+segments[path_segs[index-1]]['duration'])).replace(hour=0, minute=0, second=0, microsecond=0)
 
-                    if (cars[i]['assignedPath'] == None or cars[i]['schedule'][x][1] >= earliest_start_p)and cars[p]['schedule'][index][1] >= earliest_start_i:
+                    if (cars[i]['assignedPath'] == None or cars[i]['schedule'][x][1] >= earliest_start_p) and cars[p]['schedule'][index][1] >= earliest_start_i:
 
                         # check quality of swap
                         new_costs_i = compute_car_costs(cars[i]['avlDate'], cars[i]['dueDate'], cars[p]['currentDelivery'], cars[i]['deliveryRef'])
@@ -416,7 +459,6 @@ def advanced_local_search(dataframes):
                             cars[i]['inducedCosts'] = new_costs_i
                             path_i = [path_index for path_index, path_segments in paths.items() if path_segments == [s for s,t in cars[i]['schedule']]][0]
                             cars[i]['assignedPath'] = path_i
-
 
                             cars[p]['schedule'] = cars[p]['schedule'][:index] + temp[0][x:]
                             cars[p]['currentDelivery'] = temp[1]
@@ -438,42 +480,53 @@ def advanced_local_search(dataframes):
                                 swap_candidates.append(p)
                             swapped = True
                             break
-        # if no partner works, try adjusting route using free capacities
-        if not swapped:
-            # free capacities currently used:
-            for s,t in cars[i]['schedule']:
-                segments[s]['timeslots'][t] += 1
+                if swapped: 
+                    break
+                else: # try using free capacities to replace the last x+1 segments                
+                    # free capacities of the last x+1 segments currently used:
+                    for s,t in cars[i]['schedule'][checkpoints-(x+1):]:#[x:]:
+                        segments[s]['timeslots'][t] += 1
+                    if x == checkpoints-1:
+                        earliest_start_i = cars[i]['avlDate']
+                        start_location = cars[i]['origin']
+                    else:
+                        # arrival of the x-1-th transport + waiting time
+                        earliest_start_i = (cars[i]['schedule'][checkpoints-(x+2)][1] + timedelta(hours=24+segments[path_segs[checkpoints-(x+2)]]['duration'])).replace(hour=0, minute=0, second=0, microsecond=0)
+                        start_location = segments[path_segs[checkpoints-(x+1)]]['start']
 
-            # check for an alternative free path
-            departures, path, arrival = assign_timeslots(cars[i], paths, segments)
+                    departures, path, index, arrival = earliest_timeslots_from_loc(cars[i], paths, segments, start_location, earliest_start_i)
+                    if arrival < cars[i]['currentDelivery']:
+                        # update schedule
+                        schedule = []
+                        path_segments = paths[path][index:] # new path segments
 
-            if arrival < cars[i]['currentDelivery']:
-                # link car to chosen path, save corresponding delivery date
-                cars[i]['assignedPath'] = path
-                cars[i]['currentDelivery'] = arrival
+                        for seg in range(len(path_segments)):
+                            schedule.append((path_segments[seg], departures[seg]))
+                        cars[i]['schedule'] = cars[i]['schedule'][:checkpoints-(x+1)]+ schedule#[:x] + schedule
+                        # link car to chosen path, save corresponding delivery date
+                        cars[i]['currentDelivery'] = arrival
+                        path_i = [path_index for path_index, path_segments in paths.items() if path_segments == [s for s,t in cars[i]['schedule']]][0]
+                        cars[i]['assignedPath'] = path_i
 
-                # assign [(segID, time)] shaped schedule to car
-                schedule = []
-                path_segments = paths[path] # path segments the car is assigned to 
+                        shifts += 1
+                        swaps_made += 1
+                        if x+1 < checkpoints:
+                            partial_shifts += 1
 
-                for seg in range(len(path_segments)):
-                    schedule.append((path_segments[seg], departures[seg]))
-                cars[i]['schedule'] = schedule
+                        cars[i]['inducedCosts'] = compute_car_costs(cars[i]['avlDate'], cars[i]['dueDate'], cars[i]['currentDelivery'], cars[i]['deliveryRef'])
+                        
+                        # update candidate list
+                        if cars[i]['inducedCosts'] > cars[i]['costBound']:
+                            swap_candidates.append(i)
 
-                shifts += 1
-                swaps_made += 1
+                        swapped = True
+                    # block/restore used capacities:
+                    for s,t in cars[i]['schedule'][checkpoints-(x+1):]:#[x:]:
+                        segments[s]['timeslots'][t] -= 1
+                    if swapped:
+                        break
 
-                cars[i]['inducedCosts'] = compute_car_costs(cars[i]['avlDate'], cars[i]['dueDate'], cars[i]['currentDelivery'], cars[i]['deliveryRef'])
-                
-                # update candidate list
-                if cars[i]['inducedCosts'] > cars[i]['costBound']:
-                    swap_candidates.append(i)
-            
-            # block used capacities:
-            for s,t in cars[i]['schedule']:
-                segments[s]['timeslots'][t] -= 1
-
-    print(f"swaps made: {swaps_made}, patrials: {partials}, shifts: {shifts}")
+    print(f"swaps made: {swaps_made}, partials: {partials}, shifts: {shifts}, partial shifts: {partial_shifts}")
     return cars
 
 
@@ -495,6 +548,7 @@ for i in range(len(instances)):
 
     print(f"lb: {lower_bound}")
 
+    print(f"result A-LS: {compute_total_costs(advanced_local_search(df))}")
     print(f"result greedy: {compute_total_costs(greedy(df)[0])}")
     print("======================================================================================")
 
