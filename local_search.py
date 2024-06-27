@@ -188,6 +188,37 @@ def print_transport_usage(cars, segments):
 
     return
 
+def validate_assignments(cars, segments):
+    valid = True
+    for c in cars.keys():
+        if cars[c]['assignedPath'] == None: # no path is bad, but no misstake
+            continue
+        if segments[cars[c]['schedule'][0][0]]['start'] != cars[c]['origin']: # start is correct
+            valid = False
+            print_timetable(cars[c], segments) # maybe store in a list or file instead
+            continue
+        if cars[c]['schedule'][0][1] < cars[c]['avlDate']: # starttime is ok
+            valid = False
+            print_timetable(cars[c], segments) # maybe store in a list or file instead
+            continue
+        if segments[cars[c]['schedule'][-1][0]]['end'] != cars[c]['destination']: # end is correct
+            valid = False
+            print_timetable(cars[c], segments) # maybe store in a list or file instead
+            continue
+        for i in range(len(cars[c]['schedule'][1:])): 
+            s,t = cars[c]['schedule'][i+1] # current segment
+            q,r = cars[c]['schedule'][i] # previous segment
+            if segments[s]['start'] != segments[q]['end']: # path is really a path
+                valid = False
+                print_timetable(cars[c], segments) # maybe store in a list or file instead
+                break
+            if t < (r + timedelta(hours=segments[q]['duration']+24)).replace(hour=0, minute=0, second=0, microsecond=0): # path respects timing (transporttimes and waiting times)
+                valid = False
+                print_timetable(cars[c], segments) # maybe store in a list or file instead
+                break
+    if valid:
+        print("all assingments ok")
+    return valid
 # read the parsed data frames and
 # transform relevant information into dictionaries for more comfortable access
 # format: dictionary of dictionaries/lists
@@ -557,7 +588,8 @@ def advanced_local_search(dataframes):
 #     print(f"result S-LS: {compute_total_costs(local_search(df))}")
 #     print(f"result greedy: {compute_total_costs(greedy(df)[0])}")
 #     print("======================================================================================")
+
 df=parse_txt.parse_file("data\inst003.txt")
 res = advanced_local_search(df)
-print_all_timetables(res[0], res[1])
-
+validate_assignments(res[0], res[1])
+#print_all_timetables(res[0], res[1])
