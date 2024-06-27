@@ -337,7 +337,7 @@ def greedy(cars, paths, segments, eot):
     # assign timeslots with earliest arrival
     for i in range(len(car_list)):
         id = car_list[i][0]
-        d, p, a = assign_timeslots(cars[id], paths, segments)
+        d, p, a = assign_timeslots(cars[id], paths, segments, eot)
         # link car to chosen path, save corresponding delivery date
         cars[id]['assignedPath'] = p
         cars[id]['currentDelivery'] = a
@@ -591,13 +591,21 @@ def advanced_local_search(cars, paths, segments, eot):
 
 
 ###################### do stuff #######################
+import sys
+from monja_evaluation import print_all_timetables
 
 df=parse_txt.parse_file("data\inst003.txt")
+
 a,b,c,d = construct_instance(df)
-for i in range(3):
-   # a,b,c,d = construct_instance(df)
-    res = advanced_local_search(a,b,c,d)
-    print(compute_total_costs(res[0]))
-    validate_assignments(res[0], res[1])
-    print('---------------------------')
+res = advanced_local_search(a,b,c,d)
+print(compute_total_costs(res[0]))
+validate_assignments(res[0], res[1])
+print("--------------------")
+
+# original_stdout = sys.stdout 
+# with open('results\demo.txt', 'w') as f:
+#     sys.stdout = f
+#     print_all_timetables(res[0], res[1])
+#     # Reset the standard output
+#     sys.stdout = original_stdout
 
