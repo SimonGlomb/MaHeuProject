@@ -344,10 +344,10 @@ def greedy(cars, paths, segments, eot):
 
         # construct a [(segID, time)]-shaped schedule and assign it to car
         schedule = []
-        path = paths[p] # path segments the car is assigned to 
-
-        for s in range(len(path)):
-            schedule.append((path[s], d[s]))
+        if p!= None:
+            path = paths[p] # path segments the car is assigned to 
+            for s in range(len(path)):
+                schedule.append((path[s], d[s]))
         cars[id]['schedule'] = schedule
 
         # block used capacities in transport segments (if a path was assigned)
@@ -592,15 +592,21 @@ def advanced_local_search(cars, paths, segments, eot):
 
 ###################### do stuff #######################
 import sys
+import monja_utility
 from monja_evaluation import print_all_timetables
+from monja_algorithms.greedy import greedy
+instances = ["1","2a","2b","2c","3","4","5a","5b","6a","6b","6c","6d","6e","6f","6g",]
 
-df=parse_txt.parse_file("data\inst003.txt")
-
-a,b,c,d = construct_instance(df)
-res = advanced_local_search(a,b,c,d)
-print(compute_total_costs(res[0]))
-validate_assignments(res[0], res[1])
-print("--------------------")
+for i in range(len(instances)):
+    df=parse_txt.parse_file(f"data\inst00{instances[i]}.txt")
+    a,b,c,d = construct_instance(df)
+    print(instances[i])
+    res = local_search(a,b,c,d)
+    print(compute_total_costs(res[0]))
+    lbs = [res[0][i]['costBound'] for i in res[0].keys()]
+    print(f"lb: {sum(lbs)}")
+    validate_assignments(res[0], res[1])
+    print("--------------------")
 
 # original_stdout = sys.stdout 
 # with open('results\demo.txt', 'w') as f:
