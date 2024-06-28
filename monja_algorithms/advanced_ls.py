@@ -1,7 +1,7 @@
 # advanced local search approach: swapping only partial paths is allowed, swapping with free segments is also possible
 # uses random greedy for the start solution
 
-import random_greedy
+from monja_algorithms.random_greedy import random_greedy
 from datetime import timedelta
 from monja_evaluation import compute_car_costs
 from monja_utility import earliest_timeslots_from_loc
