@@ -25,17 +25,17 @@ def greedy(cars, paths, segments, eot):
     # assign timeslots with earliest arrival
     for i in range(len(car_list)):
         id = car_list[i][0]
-        d, p, a = assign_timeslots(cars[id], paths, segments)
+        d, p, a = assign_timeslots(cars[id], paths, segments, eot)
         # link car to chosen path, save corresponding delivery date
         cars[id]['assignedPath'] = p
         cars[id]['currentDelivery'] = a
 
         # construct a [(segID, time)]-shaped schedule and assign it to car
         schedule = []
-        path = paths[p] # path segments the car is assigned to 
-
-        for s in range(len(path)):
-            schedule.append((path[s], d[s]))
+        if p != None:
+            path = paths[p] # path segments the car is assigned to 
+            for s in range(len(path)):
+                schedule.append((path[s], d[s]))
         cars[id]['schedule'] = schedule
 
         # block used capacities in transport segments (if a path was assigned)
