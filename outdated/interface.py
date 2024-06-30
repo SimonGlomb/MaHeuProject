@@ -7,7 +7,7 @@ from pprint import pprint
 import parse_txt
 from optimization_functions import greedy_algorithm
 import evaluation
-from utility import all_cars_have_path_without_gaps_from_origin_to_destination
+from outdated.utility import all_cars_have_path_without_gaps_from_origin_to_destination
 
 
 def main():

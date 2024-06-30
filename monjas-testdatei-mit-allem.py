@@ -405,9 +405,9 @@ def local_search(cars, paths, segments, eot):
 
     swaps_made = 0 # for analysis: count successful swapping operations
     swapped = True # track if a solution from the current neighborhood has been selected
- 
     while swapped:
         swapped = False
+        print(f"{sum([cars[key]['inducedCosts'] for key in cars.keys()])}")
         # cars which currently have a path and costs higher than their lower bound
         swap_candidates = [c for c in cars.keys() if cars[c]['inducedCosts'] > cars[c]['costBound'] and cars[c]['assignedPath'] != None]
 
@@ -455,6 +455,7 @@ def advanced_local_search(cars, paths, segments, eot):
     swapped = True # check if a solution from the neighborhood has been selected
     while swapped:
         swapped = False
+        print(f"{sum([cars[key]['inducedCosts'] for key in cars.keys()])}")
         # cars with costs over lower bound
         swap_candidates = [c for c in cars.keys() if cars[c]['inducedCosts'] > cars[c]['costBound']]
         for i in swap_candidates:
@@ -595,18 +596,28 @@ import sys
 import monja_utility
 from monja_evaluation import print_all_timetables
 from monja_algorithms.greedy import greedy
-instances = ["1","2a","2b","2c","3","4","5a","5b","6a","6b","6c","6d","6e","6f","6g",]
-
-for i in range(len(instances)):
-    df=parse_txt.parse_file(f"data\inst00{instances[i]}.txt")
-    a,b,c,d = construct_instance(df)
-    print(instances[i])
-    res = local_search(a,b,c,d)
-    print(compute_total_costs(res[0]))
-    lbs = [res[0][i]['costBound'] for i in res[0].keys()]
-    print(f"lb: {sum(lbs)}")
-    validate_assignments(res[0], res[1])
-    print("--------------------")
+from monja_algorithms.random_greedy import random_greedy
+#from monja_algorithms.simple_ls import local_search
+# instances = ["1","2a","2b","2c","3","4","5a","5b","6a","6b","6c","6d","6e","6f","6g",]
+instances = ["6b","6c","6d","6e","6f","6g",]
+# for i in range(len(instances)):
+#     df=parse_txt.parse_file(f"data\inst00{instances[i]}.txt")
+#     a,b,c,d = construct_instance(df)
+#     print(instances[i])
+#     lbs = [a[j]['costBound'] for j in a.keys()]
+#     print(f"lb: {sum(lbs)}")
+#     res = local_search(a,b,c,d)
+#     print(f"{len([res[0][k] for k in res[0].keys() if res[0][k]['assignedPath'] == None])} car(s) have no path")
+#     print(compute_total_costs(res[0]))
+#     validate_assignments(res[0], res[1])
+#     print("--------------------")
+df = parse_txt.parse_file("data\inst006g.txt")
+a,b,c,d = construct_instance(df)
+lbs = [a[j]['costBound'] for j in a.keys()]
+print(sum(lbs))
+res = advanced_local_search(a,b,c,d)
+print(sum(lbs))
+print(f"{len([res[0][k] for k in res[0].keys() if res[0][k]['assignedPath'] == None])} car(s) have no path")
 
 # original_stdout = sys.stdout 
 # with open('results\demo.txt', 'w') as f:
