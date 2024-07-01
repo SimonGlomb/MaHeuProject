@@ -2,7 +2,7 @@
 # uses random greedy for the start solution
 
 from datetime import timedelta
-from monja_evaluation import compute_car_costs
+from monja_evaluation import compute_car_costs, compute_total_costs
 from monja_utility import earliest_timeslots_from_loc, random_greedy, random_solution
 import time
 
@@ -15,7 +15,7 @@ def advanced_local_search(cars, paths, segments, eot):
     # cars, segments = random_solution(cars, paths, segments, eot)
     solution_time = time.time()
     times.append(solution_time-start_time)
-    costs.append(cars)
+    costs.append(compute_total_costs(cars))
 
     swapped = True # check if a solution from the neighborhood has been selected
     while swapped:
@@ -102,7 +102,7 @@ def advanced_local_search(cars, paths, segments, eot):
                 if swapped:
                     solution_time = time.time()
                     times.append(solution_time-start_time)
-                    costs.append(cars)
+                    costs.append(compute_total_costs(cars))
                     break
 
                 else: # try using free capacities to replace the last x+1 segments of the path            
@@ -146,7 +146,7 @@ def advanced_local_search(cars, paths, segments, eot):
             if swapped:
                 solution_time = time.time()
                 times.append(solution_time-start_time)
-                costs.append(cars)
+                costs.append(compute_total_costs(cars))
                 break
-    costs = map(compute_car_costs, costs)
+
     return cars, segments, (times, costs)
