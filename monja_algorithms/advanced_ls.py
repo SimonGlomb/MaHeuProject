@@ -1,14 +1,14 @@
 # advanced local search approach: swapping only partial paths is allowed, swapping with free segments is also possible
 # uses random greedy for the start solution
 
-from monja_algorithms.random_greedy import random_greedy
 from datetime import timedelta
 from monja_evaluation import compute_car_costs
-from monja_utility import earliest_timeslots_from_loc
+from monja_utility import earliest_timeslots_from_loc, random_greedy, random_solution
 
 
 def advanced_local_search(cars, paths, segments, eot):
-    cars, segments = random_greedy(cars, paths, segments, eot) # start with the solution of the random greedy assignment
+   # cars, segments = random_greedy(cars, paths, segments, eot) # start with the solution of the random greedy assignment
+    cars, segments = random_solution(cars, paths, segments, eot)
 
     swaps_made = 0 # for analysis: count successful swapping operations
     partials = 0 # swaps that did not swap full paths
@@ -103,53 +103,52 @@ def advanced_local_search(cars, paths, segments, eot):
                             break
                 if swapped: 
                     break
+                else: # try using free capacities to replace the last x+1 segments of the path            
+                    # free capacities of the last x+1 segments currently used:
+                    for s,t in cars[i]['schedule'][checkpoints-(x+1):]:
+                        segments[s]['timeslots'][t] += 1
+
+                    if x == checkpoints-1: # if we swap the whole path..
+                        earliest_start_i = cars[i]['avlDate']
+                        start_location = cars[i]['origin']
+                    else: # determine start location and earliest start time of replacement path
+                        # arrival of the (x+2)nd-last transport + waiting time
+                        earliest_start_i = (cars[i]['schedule'][checkpoints-(x+2)][1] + timedelta(hours=24+segments[path_segs_i[checkpoints-(x+2)]]['duration'])).replace(hour=0, minute=0, second=0, microsecond=0)
+                        start_location = segments[path_segs_i[checkpoints-(x+1)]]['start']
+
+                    # determine replacement path with earliest arrival
+                    departures, path, index, arrival = earliest_timeslots_from_loc(cars[i], paths, segments, start_location, earliest_start_i, eot)
+                    if arrival < cars[i]['currentDelivery']: # swap if new path arrives earlier
+                        # update schedule
+                        schedule = []
+                        path_segments = paths[path][index:] # new path segments
+
+                        # construct schedule for new path segments and replace the old ones
+                        for seg in range(len(path_segments)): 
+                            schedule.append((path_segments[seg], departures[seg]))
+                        cars[i]['schedule'] = cars[i]['schedule'][:checkpoints-(x+1)] + schedule
+
+                        # link car to chosen path, save corresponding delivery date
+                        cars[i]['currentDelivery'] = arrival
+                        path_i = [path_index for path_index, path_segments in paths.items() if path_segments == [s for s,t in cars[i]['schedule']]][0]
+                        cars[i]['assignedPath'] = path_i
+
+                        shifts += 1
+                        swaps_made += 1
+                        if x+1 < checkpoints:
+                            partial_shifts += 1
+
+                        cars[i]['inducedCosts'] = compute_car_costs(cars[i]['avlDate'], cars[i]['dueDate'], cars[i]['currentDelivery'], cars[i]['deliveryRef'])
+                        swapped = True
+
+                    # block/restore used capacities:
+                    for s,t in cars[i]['schedule'][checkpoints-(x+1):]:
+                        segments[s]['timeslots'][t] -= 1
+                    if swapped:
+                        break
             if swapped:
                 break
-            else: # try using free capacities to replace the last x+1 segments of the path            
-                # free capacities of the last x+1 segments currently used:
-                for s,t in cars[i]['schedule'][checkpoints-(x+1):]:
-                    segments[s]['timeslots'][t] += 1
 
-                if x == checkpoints-1: # if we swap the whole path..
-                    earliest_start_i = cars[i]['avlDate']
-                    start_location = cars[i]['origin']
-                else: # determine start location and earliest start time of replacement path
-                    # arrival of the (x+2)nd-last transport + waiting time
-                    earliest_start_i = (cars[i]['schedule'][checkpoints-(x+2)][1] + timedelta(hours=24+segments[path_segs_i[checkpoints-(x+2)]]['duration'])).replace(hour=0, minute=0, second=0, microsecond=0)
-                    start_location = segments[path_segs_i[checkpoints-(x+1)]]['start']
-
-                # determine replacement path with earliest arrival
-                departures, path, index, arrival = earliest_timeslots_from_loc(cars[i], paths, segments, start_location, earliest_start_i, eot)
-                if arrival < cars[i]['currentDelivery']: # swap if new path arrives earlier
-                    # update schedule
-                    schedule = []
-                    path_segments = paths[path][index:] # new path segments
-
-                    # construct schedule for new path segments and replace the old ones
-                    for seg in range(len(path_segments)): 
-                        schedule.append((path_segments[seg], departures[seg]))
-                    cars[i]['schedule'] = cars[i]['schedule'][:checkpoints-(x+1)] + schedule
-
-                    # link car to chosen path, save corresponding delivery date
-                    cars[i]['currentDelivery'] = arrival
-                    path_i = [path_index for path_index, path_segments in paths.items() if path_segments == [s for s,t in cars[i]['schedule']]][0]
-                    cars[i]['assignedPath'] = path_i
-
-                    shifts += 1
-                    swaps_made += 1
-                    if x+1 < checkpoints:
-                        partial_shifts += 1
-
-                    cars[i]['inducedCosts'] = compute_car_costs(cars[i]['avlDate'], cars[i]['dueDate'], cars[i]['currentDelivery'], cars[i]['deliveryRef'])
-                    swapped = True
-
-                # block/restore used capacities:
-                for s,t in cars[i]['schedule'][checkpoints-(x+1):]:
-                    segments[s]['timeslots'][t] -= 1
-                if swapped:
-                    break
 
     print(f"swaps made: {swaps_made}, partials: {partials}, shifts: {shifts}, partial shifts: {partial_shifts}")
     return cars, segments
-
-# TODO: in general call use random.seed(0) in the beginning (just once). will allow to loop stuff and everything but reproducible
