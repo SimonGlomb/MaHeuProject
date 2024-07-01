@@ -1,12 +1,19 @@
 # simple local search approach: try to swap the paths of two cars with the same start and end location
 
 from monja_evaluation import compute_car_costs
-from monja_algorithms.random_greedy import random_greedy
+from monja_utility import random_greedy
+import time
 
 def local_search(cars, paths, segments, eot):
+    # track development of solution quality over time
+    times = []
+    costs = []
+    start_time = time.time()
     cars, segments = random_greedy(cars, paths, segments, eot) # start with the solution of the random greedy assignment
+    solution_time = time.time()
+    times.append(solution_time-start_time)
+    costs.append(cars)
 
-    swaps_made = 0 # for analysis: count successful swapping operations
     swapped = True # track if a solution from the current neighborhood has been selected
  
     while swapped:
@@ -37,13 +44,13 @@ def local_search(cars, paths, segments, eot):
                     cars[p]['currentDelivery'] = temp[2]
                     cars[p]['inducedCosts'] = new_costs_p
 
-                    swaps_made += 1
                     swapped = True
                     break
             if swapped:
+                solution_time = time.time()
+                times.append(solution_time-start_time)
+                costs.append(cars)
                 break
- 
-    print(f"swaps made: {swaps_made}")
-    return cars, segments
 
-# TODO: in general call use random.seed(0) in the beginning (just once). will allow to loop stuff and everything but reproducible
+    costs = map(compute_car_costs, costs)
+    return cars, segments, (times, costs)
