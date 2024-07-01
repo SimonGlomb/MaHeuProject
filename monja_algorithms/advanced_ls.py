@@ -4,16 +4,18 @@
 from datetime import timedelta
 from monja_evaluation import compute_car_costs
 from monja_utility import earliest_timeslots_from_loc, random_greedy, random_solution
-
+import time
 
 def advanced_local_search(cars, paths, segments, eot):
-   # cars, segments = random_greedy(cars, paths, segments, eot) # start with the solution of the random greedy assignment
-    cars, segments = random_solution(cars, paths, segments, eot)
-
-    swaps_made = 0 # for analysis: count successful swapping operations
-    partials = 0 # swaps that did not swap full paths
-    shifts = 0 # swaps to free paths
-    partial_shifts = 0
+    # track development of solution over time
+    times = []
+    costs = []
+    start_time = time.time()
+    cars, segments = random_greedy(cars, paths, segments, eot) # start with the solution of the random greedy assignment
+    # cars, segments = random_solution(cars, paths, segments, eot)
+    solution_time = time.time()
+    times.append(solution_time-start_time)
+    costs.append(cars)
 
     swapped = True # check if a solution from the neighborhood has been selected
     while swapped:
@@ -95,14 +97,14 @@ def advanced_local_search(cars, paths, segments, eot):
                             else:
                                 cars[p]['assignedPath'] = None
 
-                            swaps_made += 1
-                            if x > 0:
-                                partials += 1
-
                             swapped = True
                             break
-                if swapped: 
+                if swapped:
+                    solution_time = time.time()
+                    times.append(solution_time-start_time)
+                    costs.append(cars)
                     break
+
                 else: # try using free capacities to replace the last x+1 segments of the path            
                     # free capacities of the last x+1 segments currently used:
                     for s,t in cars[i]['schedule'][checkpoints-(x+1):]:
@@ -133,11 +135,6 @@ def advanced_local_search(cars, paths, segments, eot):
                         path_i = [path_index for path_index, path_segments in paths.items() if path_segments == [s for s,t in cars[i]['schedule']]][0]
                         cars[i]['assignedPath'] = path_i
 
-                        shifts += 1
-                        swaps_made += 1
-                        if x+1 < checkpoints:
-                            partial_shifts += 1
-
                         cars[i]['inducedCosts'] = compute_car_costs(cars[i]['avlDate'], cars[i]['dueDate'], cars[i]['currentDelivery'], cars[i]['deliveryRef'])
                         swapped = True
 
@@ -147,8 +144,9 @@ def advanced_local_search(cars, paths, segments, eot):
                     if swapped:
                         break
             if swapped:
+                solution_time = time.time()
+                times.append(solution_time-start_time)
+                costs.append(cars)
                 break
-
-
-    print(f"swaps made: {swaps_made}, partials: {partials}, shifts: {shifts}, partial shifts: {partial_shifts}")
-    return cars, segments
+    costs = map(compute_car_costs, costs)
+    return cars, segments, (times, costs)
