@@ -1,0 +1,2070 @@
+------------------------------------------------------------------------------------------------
+Car 1
+------------------------------------------------------------------------------------------------
+origin: GER01PLANT, available at 2024-03-12 00:00:00
+(2): GER01PLANT -> GER02TERM, departure: 2024-03-12 00:00:00, arrival: 2024-03-14 00:00:00
+(4): GER02TERM -> CZE01DEAL, departure: 2024-03-15 00:00:00, arrival: 2024-03-17 00:00:00
+destination: CZE01DEAL, due at: -, net delivery time (reference): 5.0 day(s)
+total delivery time: 5.0 day(s), delay: 0 day(s), time over 2x net delivery: 0 day(s)
+=> cost: None
+------------------------------------------------------------------------------------------------
+Car 2
+------------------------------------------------------------------------------------------------
+origin: GER01PLANT, available at 2024-03-12 00:00:00
+(2): GER01PLANT -> GER02TERM, departure: 2024-03-12 00:00:00, arrival: 2024-03-14 00:00:00
+(4): GER02TERM -> CZE01DEAL, departure: 2024-03-15 00:00:00, arrival: 2024-03-17 00:00:00
+destination: CZE01DEAL, due at: -, net delivery time (reference): 5.0 day(s)
+total delivery time: 5.0 day(s), delay: 0 day(s), time over 2x net delivery: 0 day(s)
+=> cost: None
+------------------------------------------------------------------------------------------------
+Car 3
+------------------------------------------------------------------------------------------------
+origin: GER01PLANT, available at 2024-03-12 00:00:00
+(2): GER01PLANT -> GER02TERM, departure: 2024-03-12 00:00:00, arrival: 2024-03-14 00:00:00
+(4): GER02TERM -> CZE01DEAL, departure: 2024-03-15 00:00:00, arrival: 2024-03-17 00:00:00
+destination: CZE01DEAL, due at: 2024-03-18 00:00:00, net delivery time (reference): 5.0 day(s)
+total delivery time: 5.0 day(s), delay: -1.0 day(s), time over 2x net delivery: 0 day(s)
+=> cost: None
+------------------------------------------------------------------------------------------------
+Car 4
+------------------------------------------------------------------------------------------------
+origin: GER01PLANT, available at 2024-03-12 00:00:00
+(2): GER01PLANT -> GER02TERM, departure: 2024-03-12 00:00:00, arrival: 2024-03-14 00:00:00
+(4): GER02TERM -> CZE01DEAL, departure: 2024-03-15 00:00:00, arrival: 2024-03-17 00:00:00
+destination: CZE01DEAL, due at: -, net delivery time (reference): 5.0 day(s)
+total delivery time: 5.0 day(s), delay: 0 day(s), time over 2x net delivery: 0 day(s)
+=> cost: None
+------------------------------------------------------------------------------------------------
+Car 5
+------------------------------------------------------------------------------------------------
+origin: GER01PLANT, available at 2024-03-12 00:00:00
+(2): GER01PLANT -> GER02TERM, departure: 2024-03-12 00:00:00, arrival: 2024-03-14 00:00:00
+(4): GER02TERM -> CZE01DEAL, departure: 2024-03-15 00:00:00, arrival: 2024-03-17 00:00:00
+destination: CZE01DEAL, due at: 2024-03-18 00:00:00, net delivery time (reference): 5.0 day(s)
+total delivery time: 5.0 day(s), delay: -1.0 day(s), time over 2x net delivery: 0 day(s)
+=> cost: None
+------------------------------------------------------------------------------------------------
+Car 6
+------------------------------------------------------------------------------------------------
+origin: GER01PLANT, available at 2024-03-13 00:00:00
+(2): GER01PLANT -> GER02TERM, departure: 2024-03-13 00:00:00, arrival: 2024-03-15 00:00:00
+(4): GER02TERM -> CZE01DEAL, departure: 2024-03-16 00:00:00, arrival: 2024-03-18 00:00:00
+destination: CZE01DEAL, due at: 2024-03-17 00:00:00, net delivery time (reference): 5.0 day(s)
+total delivery time: 5.0 day(s), delay: 1.0 day(s), time over 2x net delivery: 0 day(s)
+=> cost: None
+------------------------------------------------------------------------------------------------
+Car 7
+------------------------------------------------------------------------------------------------
+origin: GER01PLANT, available at 2024-03-13 00:00:00
+(3): GER01PLANT -> GER02TERM, departure: 2024-03-14 00:00:00, arrival: 2024-03-17 00:00:00
+(4): GER02TERM -> CZE01DEAL, departure: 2024-03-20 00:00:00, arrival: 2024-03-22 00:00:00
+destination: CZE01DEAL, due at: -, net delivery time (reference): 5.0 day(s)
+total delivery time: 9.0 day(s), delay: 0 day(s), time over 2x net delivery: 0 day(s)
+=> cost: None
+------------------------------------------------------------------------------------------------
+Car 8
+------------------------------------------------------------------------------------------------
+origin: GER01PLANT, available at 2024-03-13 00:00:00
+(2): GER01PLANT -> GER02TERM, departure: 2024-03-13 00:00:00, arrival: 2024-03-15 00:00:00
+(4): GER02TERM -> CZE01DEAL, departure: 2024-03-16 00:00:00, arrival: 2024-03-18 00:00:00
+destination: CZE01DEAL, due at: 2024-03-19 00:00:00, net delivery time (reference): 5.0 day(s)
+total delivery time: 5.0 day(s), delay: -1.0 day(s), time over 2x net delivery: 0 day(s)
+=> cost: None
+------------------------------------------------------------------------------------------------
+Car 9
+------------------------------------------------------------------------------------------------
+origin: GER01PLANT, available at 2024-03-13 00:00:00
+(2): GER01PLANT -> GER02TERM, departure: 2024-03-13 00:00:00, arrival: 2024-03-15 00:00:00
+(4): GER02TERM -> CZE01DEAL, departure: 2024-03-16 00:00:00, arrival: 2024-03-18 00:00:00
+destination: CZE01DEAL, due at: 2024-03-18 00:00:00, net delivery time (reference): 5.0 day(s)
+total delivery time: 5.0 day(s), delay: 0.0 day(s), time over 2x net delivery: 0 day(s)
+=> cost: None
+------------------------------------------------------------------------------------------------
+Car 10
+------------------------------------------------------------------------------------------------
+origin: GER01PLANT, available at 2024-03-13 00:00:00
+(3): GER01PLANT -> GER02TERM, departure: 2024-03-14 00:00:00, arrival: 2024-03-17 00:00:00
+(4): GER02TERM -> CZE01DEAL, departure: 2024-03-20 00:00:00, arrival: 2024-03-22 00:00:00
+destination: CZE01DEAL, due at: -, net delivery time (reference): 5.0 day(s)
+total delivery time: 9.0 day(s), delay: 0 day(s), time over 2x net delivery: 0 day(s)
+=> cost: None
+------------------------------------------------------------------------------------------------
+Car 11
+------------------------------------------------------------------------------------------------
+origin: GER01PLANT, available at 2024-03-14 00:00:00
+(3): GER01PLANT -> GER02TERM, departure: 2024-03-14 00:00:00, arrival: 2024-03-17 00:00:00
+(4): GER02TERM -> CZE01DEAL, departure: 2024-03-20 00:00:00, arrival: 2024-03-22 00:00:00
+destination: CZE01DEAL, due at: -, net delivery time (reference): 7.0 day(s)
+total delivery time: 8.0 day(s), delay: 0 day(s), time over 2x net delivery: 0 day(s)
+=> cost: None
+------------------------------------------------------------------------------------------------
+Car 12
+------------------------------------------------------------------------------------------------
+origin: GER01PLANT, available at 2024-03-14 00:00:00
+(3): GER01PLANT -> GER02TERM, departure: 2024-03-14 00:00:00, arrival: 2024-03-17 00:00:00
+(4): GER02TERM -> CZE01DEAL, departure: 2024-03-21 00:00:00, arrival: 2024-03-23 00:00:00
+destination: CZE01DEAL, due at: -, net delivery time (reference): 7.0 day(s)
+total delivery time: 9.0 day(s), delay: 0 day(s), time over 2x net delivery: 0 day(s)
+=> cost: None
+------------------------------------------------------------------------------------------------
+Car 13
+------------------------------------------------------------------------------------------------
+origin: GER01PLANT, available at 2024-03-14 00:00:00
+(2): GER01PLANT -> GER02TERM, departure: 2024-03-16 00:00:00, arrival: 2024-03-18 00:00:00
+(4): GER02TERM -> CZE01DEAL, departure: 2024-03-19 00:00:00, arrival: 2024-03-21 00:00:00
+destination: CZE01DEAL, due at: 2024-03-20 00:00:00, net delivery time (reference): 7.0 day(s)
+total delivery time: 7.0 day(s), delay: 1.0 day(s), time over 2x net delivery: 0 day(s)
+=> cost: None
+------------------------------------------------------------------------------------------------
+Car 14
+------------------------------------------------------------------------------------------------
+origin: GER01PLANT, available at 2024-03-14 00:00:00
+(2): GER01PLANT -> GER02TERM, departure: 2024-03-15 00:00:00, arrival: 2024-03-17 00:00:00
+(4): GER02TERM -> CZE01DEAL, departure: 2024-03-19 00:00:00, arrival: 2024-03-21 00:00:00
+destination: CZE01DEAL, due at: 2024-03-19 00:00:00, net delivery time (reference): 7.0 day(s)
+total delivery time: 7.0 day(s), delay: 2.0 day(s), time over 2x net delivery: 0 day(s)
+=> cost: None
+------------------------------------------------------------------------------------------------
+Car 15
+------------------------------------------------------------------------------------------------
+origin: GER01PLANT, available at 2024-03-14 00:00:00
+(2): GER01PLANT -> GER02TERM, departure: 2024-03-16 00:00:00, arrival: 2024-03-18 00:00:00
+(4): GER02TERM -> CZE01DEAL, departure: 2024-03-19 00:00:00, arrival: 2024-03-21 00:00:00
+destination: CZE01DEAL, due at: 2024-03-20 00:00:00, net delivery time (reference): 7.0 day(s)
+total delivery time: 7.0 day(s), delay: 1.0 day(s), time over 2x net delivery: 0 day(s)
+=> cost: None
+------------------------------------------------------------------------------------------------
+Car 16
+------------------------------------------------------------------------------------------------
+origin: GER01PLANT, available at 2024-03-14 00:00:00
+(2): GER01PLANT -> GER02TERM, departure: 2024-03-16 00:00:00, arrival: 2024-03-18 00:00:00
+(4): GER02TERM -> CZE01DEAL, departure: 2024-03-20 00:00:00, arrival: 2024-03-22 00:00:00
+destination: CZE01DEAL, due at: 2024-03-20 00:00:00, net delivery time (reference): 7.0 day(s)
+total delivery time: 8.0 day(s), delay: 2.0 day(s), time over 2x net delivery: 0 day(s)
+=> cost: None
+------------------------------------------------------------------------------------------------
+Car 17
+------------------------------------------------------------------------------------------------
+origin: GER01PLANT, available at 2024-03-14 00:00:00
+(3): GER01PLANT -> GER02TERM, departure: 2024-03-14 00:00:00, arrival: 2024-03-17 00:00:00
+(4): GER02TERM -> CZE01DEAL, departure: 2024-03-21 00:00:00, arrival: 2024-03-23 00:00:00
+destination: CZE01DEAL, due at: -, net delivery time (reference): 7.0 day(s)
+total delivery time: 9.0 day(s), delay: 0 day(s), time over 2x net delivery: 0 day(s)
+=> cost: None
+------------------------------------------------------------------------------------------------
+Car 18
+------------------------------------------------------------------------------------------------
+origin: GER01PLANT, available at 2024-03-14 00:00:00
+(2): GER01PLANT -> GER02TERM, departure: 2024-03-15 00:00:00, arrival: 2024-03-17 00:00:00
+(4): GER02TERM -> CZE01DEAL, departure: 2024-03-19 00:00:00, arrival: 2024-03-21 00:00:00
+destination: CZE01DEAL, due at: 2024-03-19 00:00:00, net delivery time (reference): 7.0 day(s)
+total delivery time: 7.0 day(s), delay: 2.0 day(s), time over 2x net delivery: 0 day(s)
+=> cost: None
+------------------------------------------------------------------------------------------------
+Car 19
+------------------------------------------------------------------------------------------------
+origin: GER01PLANT, available at 2024-03-14 00:00:00
+(2): GER01PLANT -> GER02TERM, departure: 2024-03-16 00:00:00, arrival: 2024-03-18 00:00:00
+(4): GER02TERM -> CZE01DEAL, departure: 2024-03-20 00:00:00, arrival: 2024-03-22 00:00:00
+destination: CZE01DEAL, due at: 2024-03-20 00:00:00, net delivery time (reference): 7.0 day(s)
+total delivery time: 8.0 day(s), delay: 2.0 day(s), time over 2x net delivery: 0 day(s)
+=> cost: None
+------------------------------------------------------------------------------------------------
+Car 20
+------------------------------------------------------------------------------------------------
+origin: GER01PLANT, available at 2024-03-14 00:00:00
+(3): GER01PLANT -> GER02TERM, departure: 2024-03-14 00:00:00, arrival: 2024-03-17 00:00:00
+(4): GER02TERM -> CZE01DEAL, departure: 2024-03-21 00:00:00, arrival: 2024-03-23 00:00:00
+destination: CZE01DEAL, due at: -, net delivery time (reference): 7.0 day(s)
+total delivery time: 9.0 day(s), delay: 0 day(s), time over 2x net delivery: 0 day(s)
+=> cost: None
+------------------------------------------------------------------------------------------------
+Car 21
+------------------------------------------------------------------------------------------------
+origin: GER01PLANT, available at 2024-03-15 00:00:00
+(2): GER01PLANT -> GER02TERM, departure: 2024-03-19 00:00:00, arrival: 2024-03-21 00:00:00
+(4): GER02TERM -> CZE01DEAL, departure: 2024-03-22 00:00:00, arrival: 2024-03-24 00:00:00
+destination: CZE01DEAL, due at: 2024-03-21 00:00:00, net delivery time (reference): 6.0 day(s)
+total delivery time: 9.0 day(s), delay: 3.0 day(s), time over 2x net delivery: 0 day(s)
+=> cost: None
+------------------------------------------------------------------------------------------------
+Car 22
+------------------------------------------------------------------------------------------------
+origin: GER01PLANT, available at 2024-03-15 00:00:00
+(2): GER01PLANT -> GER02TERM, departure: 2024-03-19 00:00:00, arrival: 2024-03-21 00:00:00
+(4): GER02TERM -> CZE01DEAL, departure: 2024-03-22 00:00:00, arrival: 2024-03-24 00:00:00
+destination: CZE01DEAL, due at: 2024-03-21 00:00:00, net delivery time (reference): 6.0 day(s)
+total delivery time: 9.0 day(s), delay: 3.0 day(s), time over 2x net delivery: 0 day(s)
+=> cost: None
+------------------------------------------------------------------------------------------------
+Car 23
+------------------------------------------------------------------------------------------------
+origin: GER01PLANT, available at 2024-03-15 00:00:00
+(2): GER01PLANT -> GER02TERM, departure: 2024-03-16 00:00:00, arrival: 2024-03-18 00:00:00
+(4): GER02TERM -> CZE01DEAL, departure: 2024-03-19 00:00:00, arrival: 2024-03-21 00:00:00
+destination: CZE01DEAL, due at: 2024-03-19 00:00:00, net delivery time (reference): 6.0 day(s)
+total delivery time: 6.0 day(s), delay: 2.0 day(s), time over 2x net delivery: 0 day(s)
+=> cost: None
+------------------------------------------------------------------------------------------------
+Car 24
+------------------------------------------------------------------------------------------------
+origin: GER01PLANT, available at 2024-03-15 00:00:00
+(2): GER01PLANT -> GER02TERM, departure: 2024-03-19 00:00:00, arrival: 2024-03-21 00:00:00
+(4): GER02TERM -> CZE01DEAL, departure: 2024-03-22 00:00:00, arrival: 2024-03-24 00:00:00
+destination: CZE01DEAL, due at: 2024-03-20 00:00:00, net delivery time (reference): 6.0 day(s)
+total delivery time: 9.0 day(s), delay: 4.0 day(s), time over 2x net delivery: 0 day(s)
+=> cost: None
+------------------------------------------------------------------------------------------------
+Car 25
+------------------------------------------------------------------------------------------------
+origin: GER01PLANT, available at 2024-03-15 00:00:00
+(2): GER01PLANT -> GER02TERM, departure: 2024-03-20 00:00:00, arrival: 2024-03-22 00:00:00
+(4): GER02TERM -> CZE01DEAL, departure: 2024-03-23 00:00:00, arrival: 2024-03-25 00:00:00
+destination: CZE01DEAL, due at: -, net delivery time (reference): 6.0 day(s)
+total delivery time: 10.0 day(s), delay: 0 day(s), time over 2x net delivery: 0 day(s)
+=> cost: None
+------------------------------------------------------------------------------------------------
+Car 26
+------------------------------------------------------------------------------------------------
+origin: GER01PLANT, available at 2024-03-16 00:00:00
+(2): GER01PLANT -> GER02TERM, departure: 2024-03-22 00:00:00, arrival: 2024-03-24 00:00:00
+(4): GER02TERM -> CZE01DEAL, departure: 2024-03-26 00:00:00, arrival: 2024-03-28 00:00:00
+destination: CZE01DEAL, due at: -, net delivery time (reference): 5.0 day(s)
+total delivery time: 12.0 day(s), delay: 0 day(s), time over 2x net delivery: 0 day(s)
+=> cost: None
+------------------------------------------------------------------------------------------------
+Car 27
+------------------------------------------------------------------------------------------------
+origin: GER01PLANT, available at 2024-03-16 00:00:00
+(2): GER01PLANT -> GER02TERM, departure: 2024-03-23 00:00:00, arrival: 2024-03-25 00:00:00
+(4): GER02TERM -> CZE01DEAL, departure: 2024-03-26 00:00:00, arrival: 2024-03-28 00:00:00
+destination: CZE01DEAL, due at: -, net delivery time (reference): 5.0 day(s)
+total delivery time: 12.0 day(s), delay: 0 day(s), time over 2x net delivery: 0 day(s)
+=> cost: None
+------------------------------------------------------------------------------------------------
+Car 28
+------------------------------------------------------------------------------------------------
+origin: GER01PLANT, available at 2024-03-16 00:00:00
+(2): GER01PLANT -> GER02TERM, departure: 2024-03-20 00:00:00, arrival: 2024-03-22 00:00:00
+(4): GER02TERM -> CZE01DEAL, departure: 2024-03-23 00:00:00, arrival: 2024-03-25 00:00:00
+destination: CZE01DEAL, due at: 2024-03-22 00:00:00, net delivery time (reference): 5.0 day(s)
+total delivery time: 9.0 day(s), delay: 3.0 day(s), time over 2x net delivery: 0 day(s)
+=> cost: None
+------------------------------------------------------------------------------------------------
+Car 29
+------------------------------------------------------------------------------------------------
+origin: GER01PLANT, available at 2024-03-16 00:00:00
+(2): GER01PLANT -> GER02TERM, departure: 2024-03-23 00:00:00, arrival: 2024-03-25 00:00:00
+(4): GER02TERM -> CZE01DEAL, departure: 2024-03-26 00:00:00, arrival: 2024-03-28 00:00:00
+destination: CZE01DEAL, due at: -, net delivery time (reference): 5.0 day(s)
+total delivery time: 12.0 day(s), delay: 0 day(s), time over 2x net delivery: 0 day(s)
+=> cost: None
+------------------------------------------------------------------------------------------------
+Car 30
+------------------------------------------------------------------------------------------------
+origin: GER01PLANT, available at 2024-03-16 00:00:00
+(2): GER01PLANT -> GER02TERM, departure: 2024-03-23 00:00:00, arrival: 2024-03-25 00:00:00
+(4): GER02TERM -> CZE01DEAL, departure: 2024-03-26 00:00:00, arrival: 2024-03-28 00:00:00
+destination: CZE01DEAL, due at: -, net delivery time (reference): 5.0 day(s)
+total delivery time: 12.0 day(s), delay: 0 day(s), time over 2x net delivery: 0 day(s)
+=> cost: None
+------------------------------------------------------------------------------------------------
+Car 31
+------------------------------------------------------------------------------------------------
+origin: GER01PLANT, available at 2024-03-12 00:00:00
+(2): GER01PLANT -> GER02TERM, departure: 2024-03-12 00:00:00, arrival: 2024-03-14 00:00:00
+(4): GER02TERM -> CZE01DEAL, departure: 2024-03-15 00:00:00, arrival: 2024-03-17 00:00:00
+destination: CZE01DEAL, due at: -, net delivery time (reference): 5.0 day(s)
+total delivery time: 5.0 day(s), delay: 0 day(s), time over 2x net delivery: 0 day(s)
+=> cost: None
+------------------------------------------------------------------------------------------------
+Car 32
+------------------------------------------------------------------------------------------------
+origin: GER01PLANT, available at 2024-03-12 00:00:00
+(2): GER01PLANT -> GER02TERM, departure: 2024-03-12 00:00:00, arrival: 2024-03-14 00:00:00
+(4): GER02TERM -> CZE01DEAL, departure: 2024-03-15 00:00:00, arrival: 2024-03-17 00:00:00
+destination: CZE01DEAL, due at: 2024-03-17 00:00:00, net delivery time (reference): 5.0 day(s)
+total delivery time: 5.0 day(s), delay: 0.0 day(s), time over 2x net delivery: 0 day(s)
+=> cost: None
+------------------------------------------------------------------------------------------------
+Car 33
+------------------------------------------------------------------------------------------------
+origin: GER01PLANT, available at 2024-03-12 00:00:00
+(2): GER01PLANT -> GER02TERM, departure: 2024-03-12 00:00:00, arrival: 2024-03-14 00:00:00
+(4): GER02TERM -> CZE01DEAL, departure: 2024-03-15 00:00:00, arrival: 2024-03-17 00:00:00
+destination: CZE01DEAL, due at: 2024-03-17 00:00:00, net delivery time (reference): 5.0 day(s)
+total delivery time: 5.0 day(s), delay: 0.0 day(s), time over 2x net delivery: 0 day(s)
+=> cost: None
+------------------------------------------------------------------------------------------------
+Car 34
+------------------------------------------------------------------------------------------------
+origin: GER01PLANT, available at 2024-03-12 00:00:00
+(2): GER01PLANT -> GER02TERM, departure: 2024-03-12 00:00:00, arrival: 2024-03-14 00:00:00
+(4): GER02TERM -> CZE01DEAL, departure: 2024-03-15 00:00:00, arrival: 2024-03-17 00:00:00
+destination: CZE01DEAL, due at: 2024-03-18 00:00:00, net delivery time (reference): 5.0 day(s)
+total delivery time: 5.0 day(s), delay: -1.0 day(s), time over 2x net delivery: 0 day(s)
+=> cost: None
+------------------------------------------------------------------------------------------------
+Car 35
+------------------------------------------------------------------------------------------------
+origin: GER01PLANT, available at 2024-03-12 00:00:00
+(2): GER01PLANT -> GER02TERM, departure: 2024-03-12 00:00:00, arrival: 2024-03-14 00:00:00
+(4): GER02TERM -> CZE01DEAL, departure: 2024-03-15 00:00:00, arrival: 2024-03-17 00:00:00
+destination: CZE01DEAL, due at: -, net delivery time (reference): 5.0 day(s)
+total delivery time: 5.0 day(s), delay: 0 day(s), time over 2x net delivery: 0 day(s)
+=> cost: None
+------------------------------------------------------------------------------------------------
+Car 36
+------------------------------------------------------------------------------------------------
+origin: GER01PLANT, available at 2024-03-13 00:00:00
+(3): GER01PLANT -> GER02TERM, departure: 2024-03-14 00:00:00, arrival: 2024-03-17 00:00:00
+(4): GER02TERM -> CZE01DEAL, departure: 2024-03-20 00:00:00, arrival: 2024-03-22 00:00:00
+destination: CZE01DEAL, due at: -, net delivery time (reference): 5.0 day(s)
+total delivery time: 9.0 day(s), delay: 0 day(s), time over 2x net delivery: 0 day(s)
+=> cost: None
+------------------------------------------------------------------------------------------------
+Car 37
+------------------------------------------------------------------------------------------------
+origin: GER01PLANT, available at 2024-03-13 00:00:00
+(3): GER01PLANT -> GER02TERM, departure: 2024-03-14 00:00:00, arrival: 2024-03-17 00:00:00
+(4): GER02TERM -> CZE01DEAL, departure: 2024-03-20 00:00:00, arrival: 2024-03-22 00:00:00
+destination: CZE01DEAL, due at: -, net delivery time (reference): 5.0 day(s)
+total delivery time: 9.0 day(s), delay: 0 day(s), time over 2x net delivery: 0 day(s)
+=> cost: None
+------------------------------------------------------------------------------------------------
+Car 38
+------------------------------------------------------------------------------------------------
+origin: GER01PLANT, available at 2024-03-13 00:00:00
+(2): GER01PLANT -> GER02TERM, departure: 2024-03-13 00:00:00, arrival: 2024-03-15 00:00:00
+(4): GER02TERM -> CZE01DEAL, departure: 2024-03-16 00:00:00, arrival: 2024-03-18 00:00:00
+destination: CZE01DEAL, due at: 2024-03-19 00:00:00, net delivery time (reference): 5.0 day(s)
+total delivery time: 5.0 day(s), delay: -1.0 day(s), time over 2x net delivery: 0 day(s)
+=> cost: None
+------------------------------------------------------------------------------------------------
+Car 39
+------------------------------------------------------------------------------------------------
+origin: GER01PLANT, available at 2024-03-13 00:00:00
+(2): GER01PLANT -> GER02TERM, departure: 2024-03-13 00:00:00, arrival: 2024-03-15 00:00:00
+(4): GER02TERM -> CZE01DEAL, departure: 2024-03-16 00:00:00, arrival: 2024-03-18 00:00:00
+destination: CZE01DEAL, due at: 2024-03-18 00:00:00, net delivery time (reference): 5.0 day(s)
+total delivery time: 5.0 day(s), delay: 0.0 day(s), time over 2x net delivery: 0 day(s)
+=> cost: None
+------------------------------------------------------------------------------------------------
+Car 40
+------------------------------------------------------------------------------------------------
+origin: GER01PLANT, available at 2024-03-13 00:00:00
+(3): GER01PLANT -> GER02TERM, departure: 2024-03-14 00:00:00, arrival: 2024-03-17 00:00:00
+(4): GER02TERM -> CZE01DEAL, departure: 2024-03-20 00:00:00, arrival: 2024-03-22 00:00:00
+destination: CZE01DEAL, due at: -, net delivery time (reference): 5.0 day(s)
+total delivery time: 9.0 day(s), delay: 0 day(s), time over 2x net delivery: 0 day(s)
+=> cost: None
+------------------------------------------------------------------------------------------------
+Car 41
+------------------------------------------------------------------------------------------------
+origin: GER01PLANT, available at 2024-03-14 00:00:00
+(2): GER01PLANT -> GER02TERM, departure: 2024-03-15 00:00:00, arrival: 2024-03-17 00:00:00
+(4): GER02TERM -> CZE01DEAL, departure: 2024-03-19 00:00:00, arrival: 2024-03-21 00:00:00
+destination: CZE01DEAL, due at: 2024-03-19 00:00:00, net delivery time (reference): 7.0 day(s)
+total delivery time: 7.0 day(s), delay: 2.0 day(s), time over 2x net delivery: 0 day(s)
+=> cost: None
+------------------------------------------------------------------------------------------------
+Car 42
+------------------------------------------------------------------------------------------------
+origin: GER01PLANT, available at 2024-03-14 00:00:00
+(3): GER01PLANT -> GER02TERM, departure: 2024-03-14 00:00:00, arrival: 2024-03-17 00:00:00
+(4): GER02TERM -> CZE01DEAL, departure: 2024-03-21 00:00:00, arrival: 2024-03-23 00:00:00
+destination: CZE01DEAL, due at: -, net delivery time (reference): 7.0 day(s)
+total delivery time: 9.0 day(s), delay: 0 day(s), time over 2x net delivery: 0 day(s)
+=> cost: None
+------------------------------------------------------------------------------------------------
+Car 43
+------------------------------------------------------------------------------------------------
+origin: GER01PLANT, available at 2024-03-14 00:00:00
+(3): GER01PLANT -> GER02TERM, departure: 2024-03-14 00:00:00, arrival: 2024-03-17 00:00:00
+(4): GER02TERM -> CZE01DEAL, departure: 2024-03-21 00:00:00, arrival: 2024-03-23 00:00:00
+destination: CZE01DEAL, due at: -, net delivery time (reference): 7.0 day(s)
+total delivery time: 9.0 day(s), delay: 0 day(s), time over 2x net delivery: 0 day(s)
+=> cost: None
+------------------------------------------------------------------------------------------------
+Car 44
+------------------------------------------------------------------------------------------------
+origin: GER01PLANT, available at 2024-03-14 00:00:00
+(2): GER01PLANT -> GER02TERM, departure: 2024-03-15 00:00:00, arrival: 2024-03-17 00:00:00
+(4): GER02TERM -> CZE01DEAL, departure: 2024-03-19 00:00:00, arrival: 2024-03-21 00:00:00
+destination: CZE01DEAL, due at: 2024-03-19 00:00:00, net delivery time (reference): 7.0 day(s)
+total delivery time: 7.0 day(s), delay: 2.0 day(s), time over 2x net delivery: 0 day(s)
+=> cost: None
+------------------------------------------------------------------------------------------------
+Car 45
+------------------------------------------------------------------------------------------------
+origin: GER01PLANT, available at 2024-03-14 00:00:00
+(2): GER01PLANT -> GER02TERM, departure: 2024-03-15 00:00:00, arrival: 2024-03-17 00:00:00
+(4): GER02TERM -> CZE01DEAL, departure: 2024-03-19 00:00:00, arrival: 2024-03-21 00:00:00
+destination: CZE01DEAL, due at: 2024-03-19 00:00:00, net delivery time (reference): 7.0 day(s)
+total delivery time: 7.0 day(s), delay: 2.0 day(s), time over 2x net delivery: 0 day(s)
+=> cost: None
+------------------------------------------------------------------------------------------------
+Car 46
+------------------------------------------------------------------------------------------------
+origin: GER01PLANT, available at 2024-03-14 00:00:00
+(2): GER01PLANT -> GER02TERM, departure: 2024-03-16 00:00:00, arrival: 2024-03-18 00:00:00
+(4): GER02TERM -> CZE01DEAL, departure: 2024-03-20 00:00:00, arrival: 2024-03-22 00:00:00
+destination: CZE01DEAL, due at: 2024-03-20 00:00:00, net delivery time (reference): 7.0 day(s)
+total delivery time: 8.0 day(s), delay: 2.0 day(s), time over 2x net delivery: 0 day(s)
+=> cost: None
+------------------------------------------------------------------------------------------------
+Car 47
+------------------------------------------------------------------------------------------------
+origin: GER01PLANT, available at 2024-03-14 00:00:00
+(3): GER01PLANT -> GER02TERM, departure: 2024-03-14 00:00:00, arrival: 2024-03-17 00:00:00
+(4): GER02TERM -> CZE01DEAL, departure: 2024-03-21 00:00:00, arrival: 2024-03-23 00:00:00
+destination: CZE01DEAL, due at: -, net delivery time (reference): 7.0 day(s)
+total delivery time: 9.0 day(s), delay: 0 day(s), time over 2x net delivery: 0 day(s)
+=> cost: None
+------------------------------------------------------------------------------------------------
+Car 48
+------------------------------------------------------------------------------------------------
+origin: GER01PLANT, available at 2024-03-14 00:00:00
+(2): GER01PLANT -> GER02TERM, departure: 2024-03-16 00:00:00, arrival: 2024-03-18 00:00:00
+(4): GER02TERM -> CZE01DEAL, departure: 2024-03-20 00:00:00, arrival: 2024-03-22 00:00:00
+destination: CZE01DEAL, due at: 2024-03-20 00:00:00, net delivery time (reference): 7.0 day(s)
+total delivery time: 8.0 day(s), delay: 2.0 day(s), time over 2x net delivery: 0 day(s)
+=> cost: None
+------------------------------------------------------------------------------------------------
+Car 49
+------------------------------------------------------------------------------------------------
+origin: GER01PLANT, available at 2024-03-14 00:00:00
+(2): GER01PLANT -> GER02TERM, departure: 2024-03-15 00:00:00, arrival: 2024-03-17 00:00:00
+(4): GER02TERM -> CZE01DEAL, departure: 2024-03-19 00:00:00, arrival: 2024-03-21 00:00:00
+destination: CZE01DEAL, due at: 2024-03-18 00:00:00, net delivery time (reference): 7.0 day(s)
+total delivery time: 7.0 day(s), delay: 3.0 day(s), time over 2x net delivery: 0 day(s)
+=> cost: None
+------------------------------------------------------------------------------------------------
+Car 50
+------------------------------------------------------------------------------------------------
+origin: GER01PLANT, available at 2024-03-14 00:00:00
+(2): GER01PLANT -> GER02TERM, departure: 2024-03-15 00:00:00, arrival: 2024-03-17 00:00:00
+(4): GER02TERM -> CZE01DEAL, departure: 2024-03-19 00:00:00, arrival: 2024-03-21 00:00:00
+destination: CZE01DEAL, due at: 2024-03-18 00:00:00, net delivery time (reference): 7.0 day(s)
+total delivery time: 7.0 day(s), delay: 3.0 day(s), time over 2x net delivery: 0 day(s)
+=> cost: None
+------------------------------------------------------------------------------------------------
+Car 51
+------------------------------------------------------------------------------------------------
+origin: GER01PLANT, available at 2024-03-15 00:00:00
+(2): GER01PLANT -> GER02TERM, departure: 2024-03-22 00:00:00, arrival: 2024-03-24 00:00:00
+(4): GER02TERM -> CZE01DEAL, departure: 2024-03-26 00:00:00, arrival: 2024-03-28 00:00:00
+destination: CZE01DEAL, due at: -, net delivery time (reference): 6.0 day(s)
+total delivery time: 13.0 day(s), delay: 0 day(s), time over 2x net delivery: 0 day(s)
+=> cost: None
+------------------------------------------------------------------------------------------------
+Car 52
+------------------------------------------------------------------------------------------------
+origin: GER01PLANT, available at 2024-03-15 00:00:00
+(2): GER01PLANT -> GER02TERM, departure: 2024-03-22 00:00:00, arrival: 2024-03-24 00:00:00
+(4): GER02TERM -> CZE01DEAL, departure: 2024-03-26 00:00:00, arrival: 2024-03-28 00:00:00
+destination: CZE01DEAL, due at: -, net delivery time (reference): 6.0 day(s)
+total delivery time: 13.0 day(s), delay: 0 day(s), time over 2x net delivery: 0 day(s)
+=> cost: None
+------------------------------------------------------------------------------------------------
+Car 53
+------------------------------------------------------------------------------------------------
+origin: GER01PLANT, available at 2024-03-15 00:00:00
+(2): GER01PLANT -> GER02TERM, departure: 2024-03-22 00:00:00, arrival: 2024-03-24 00:00:00
+(4): GER02TERM -> CZE01DEAL, departure: 2024-03-26 00:00:00, arrival: 2024-03-28 00:00:00
+destination: CZE01DEAL, due at: -, net delivery time (reference): 6.0 day(s)
+total delivery time: 13.0 day(s), delay: 0 day(s), time over 2x net delivery: 0 day(s)
+=> cost: None
+------------------------------------------------------------------------------------------------
+Car 54
+------------------------------------------------------------------------------------------------
+origin: GER01PLANT, available at 2024-03-15 00:00:00
+(2): GER01PLANT -> GER02TERM, departure: 2024-03-22 00:00:00, arrival: 2024-03-24 00:00:00
+(4): GER02TERM -> CZE01DEAL, departure: 2024-03-26 00:00:00, arrival: 2024-03-28 00:00:00
+destination: CZE01DEAL, due at: -, net delivery time (reference): 6.0 day(s)
+total delivery time: 13.0 day(s), delay: 0 day(s), time over 2x net delivery: 0 day(s)
+=> cost: None
+------------------------------------------------------------------------------------------------
+Car 55
+------------------------------------------------------------------------------------------------
+origin: GER01PLANT, available at 2024-03-15 00:00:00
+(2): GER01PLANT -> GER02TERM, departure: 2024-03-22 00:00:00, arrival: 2024-03-24 00:00:00
+(4): GER02TERM -> CZE01DEAL, departure: 2024-03-26 00:00:00, arrival: 2024-03-28 00:00:00
+destination: CZE01DEAL, due at: -, net delivery time (reference): 6.0 day(s)
+total delivery time: 13.0 day(s), delay: 0 day(s), time over 2x net delivery: 0 day(s)
+=> cost: None
+------------------------------------------------------------------------------------------------
+Car 56
+------------------------------------------------------------------------------------------------
+origin: GER01PLANT, available at 2024-03-16 00:00:00
+(2): GER01PLANT -> GER02TERM, departure: 2024-03-19 00:00:00, arrival: 2024-03-21 00:00:00
+(4): GER02TERM -> CZE01DEAL, departure: 2024-03-22 00:00:00, arrival: 2024-03-24 00:00:00
+destination: CZE01DEAL, due at: 2024-03-20 00:00:00, net delivery time (reference): 5.0 day(s)
+total delivery time: 8.0 day(s), delay: 4.0 day(s), time over 2x net delivery: 0 day(s)
+=> cost: None
+------------------------------------------------------------------------------------------------
+Car 57
+------------------------------------------------------------------------------------------------
+origin: GER01PLANT, available at 2024-03-16 00:00:00
+(2): GER01PLANT -> GER02TERM, departure: 2024-03-20 00:00:00, arrival: 2024-03-22 00:00:00
+(4): GER02TERM -> CZE01DEAL, departure: 2024-03-23 00:00:00, arrival: 2024-03-25 00:00:00
+destination: CZE01DEAL, due at: 2024-03-21 00:00:00, net delivery time (reference): 5.0 day(s)
+total delivery time: 9.0 day(s), delay: 4.0 day(s), time over 2x net delivery: 0 day(s)
+=> cost: None
+------------------------------------------------------------------------------------------------
+Car 58
+------------------------------------------------------------------------------------------------
+origin: GER01PLANT, available at 2024-03-16 00:00:00
+(2): GER01PLANT -> GER02TERM, departure: 2024-03-19 00:00:00, arrival: 2024-03-21 00:00:00
+(4): GER02TERM -> CZE01DEAL, departure: 2024-03-22 00:00:00, arrival: 2024-03-24 00:00:00
+destination: CZE01DEAL, due at: 2024-03-20 00:00:00, net delivery time (reference): 5.0 day(s)
+total delivery time: 8.0 day(s), delay: 4.0 day(s), time over 2x net delivery: 0 day(s)
+=> cost: None
+------------------------------------------------------------------------------------------------
+Car 59
+------------------------------------------------------------------------------------------------
+origin: GER01PLANT, available at 2024-03-16 00:00:00
+(2): GER01PLANT -> GER02TERM, departure: 2024-03-19 00:00:00, arrival: 2024-03-21 00:00:00
+(4): GER02TERM -> CZE01DEAL, departure: 2024-03-22 00:00:00, arrival: 2024-03-24 00:00:00
+destination: CZE01DEAL, due at: 2024-03-20 00:00:00, net delivery time (reference): 5.0 day(s)
+total delivery time: 8.0 day(s), delay: 4.0 day(s), time over 2x net delivery: 0 day(s)
+=> cost: None
+------------------------------------------------------------------------------------------------
+Car 60
+------------------------------------------------------------------------------------------------
+origin: GER01PLANT, available at 2024-03-16 00:00:00
+(2): GER01PLANT -> GER02TERM, departure: 2024-03-19 00:00:00, arrival: 2024-03-21 00:00:00
+(4): GER02TERM -> CZE01DEAL, departure: 2024-03-22 00:00:00, arrival: 2024-03-24 00:00:00
+destination: CZE01DEAL, due at: 2024-03-20 00:00:00, net delivery time (reference): 5.0 day(s)
+total delivery time: 8.0 day(s), delay: 4.0 day(s), time over 2x net delivery: 0 day(s)
+=> cost: None
+------------------------------------------------------------------------------------------------
+Car 61
+------------------------------------------------------------------------------------------------
+origin: GER01PLANT, available at 2024-03-12 00:00:00
+(2): GER01PLANT -> GER02TERM, departure: 2024-03-12 00:00:00, arrival: 2024-03-14 00:00:00
+(5): GER02TERM -> AUT01DEAL, departure: 2024-03-15 00:00:00, arrival: 2024-03-16 00:00:00
+destination: AUT01DEAL, due at: 2024-03-18 00:00:00, net delivery time (reference): 4.0 day(s)
+total delivery time: 4.0 day(s), delay: -2.0 day(s), time over 2x net delivery: 0 day(s)
+=> cost: None
+------------------------------------------------------------------------------------------------
+Car 62
+------------------------------------------------------------------------------------------------
+origin: GER01PLANT, available at 2024-03-12 00:00:00
+(2): GER01PLANT -> GER02TERM, departure: 2024-03-12 00:00:00, arrival: 2024-03-14 00:00:00
+(5): GER02TERM -> AUT01DEAL, departure: 2024-03-15 00:00:00, arrival: 2024-03-16 00:00:00
+destination: AUT01DEAL, due at: 2024-03-16 00:00:00, net delivery time (reference): 4.0 day(s)
+total delivery time: 4.0 day(s), delay: 0.0 day(s), time over 2x net delivery: 0 day(s)
+=> cost: None
+------------------------------------------------------------------------------------------------
+Car 63
+------------------------------------------------------------------------------------------------
+origin: GER01PLANT, available at 2024-03-12 00:00:00
+(2): GER01PLANT -> GER02TERM, departure: 2024-03-12 00:00:00, arrival: 2024-03-14 00:00:00
+(5): GER02TERM -> AUT01DEAL, departure: 2024-03-15 00:00:00, arrival: 2024-03-16 00:00:00
+destination: AUT01DEAL, due at: -, net delivery time (reference): 4.0 day(s)
+total delivery time: 4.0 day(s), delay: 0 day(s), time over 2x net delivery: 0 day(s)
+=> cost: None
+------------------------------------------------------------------------------------------------
+Car 64
+------------------------------------------------------------------------------------------------
+origin: GER01PLANT, available at 2024-03-12 00:00:00
+(2): GER01PLANT -> GER02TERM, departure: 2024-03-12 00:00:00, arrival: 2024-03-14 00:00:00
+(5): GER02TERM -> AUT01DEAL, departure: 2024-03-15 00:00:00, arrival: 2024-03-16 00:00:00
+destination: AUT01DEAL, due at: -, net delivery time (reference): 4.0 day(s)
+total delivery time: 4.0 day(s), delay: 0 day(s), time over 2x net delivery: 0 day(s)
+=> cost: None
+------------------------------------------------------------------------------------------------
+Car 65
+------------------------------------------------------------------------------------------------
+origin: GER01PLANT, available at 2024-03-12 00:00:00
+(2): GER01PLANT -> GER02TERM, departure: 2024-03-12 00:00:00, arrival: 2024-03-14 00:00:00
+(5): GER02TERM -> AUT01DEAL, departure: 2024-03-15 00:00:00, arrival: 2024-03-16 00:00:00
+destination: AUT01DEAL, due at: -, net delivery time (reference): 4.0 day(s)
+total delivery time: 4.0 day(s), delay: 0 day(s), time over 2x net delivery: 0 day(s)
+=> cost: None
+------------------------------------------------------------------------------------------------
+Car 66
+------------------------------------------------------------------------------------------------
+origin: GER01PLANT, available at 2024-03-13 00:00:00
+(2): GER01PLANT -> GER02TERM, departure: 2024-03-13 00:00:00, arrival: 2024-03-15 00:00:00
+(5): GER02TERM -> AUT01DEAL, departure: 2024-03-16 00:00:00, arrival: 2024-03-17 00:00:00
+destination: AUT01DEAL, due at: 2024-03-17 00:00:00, net delivery time (reference): 4.0 day(s)
+total delivery time: 4.0 day(s), delay: 0.0 day(s), time over 2x net delivery: 0 day(s)
+=> cost: None
+------------------------------------------------------------------------------------------------
+Car 67
+------------------------------------------------------------------------------------------------
+origin: GER01PLANT, available at 2024-03-13 00:00:00
+(3): GER01PLANT -> GER02TERM, departure: 2024-03-14 00:00:00, arrival: 2024-03-17 00:00:00
+(5): GER02TERM -> AUT01DEAL, departure: 2024-03-20 00:00:00, arrival: 2024-03-21 00:00:00
+destination: AUT01DEAL, due at: -, net delivery time (reference): 4.0 day(s)
+total delivery time: 8.0 day(s), delay: 0 day(s), time over 2x net delivery: 0 day(s)
+=> cost: None
+------------------------------------------------------------------------------------------------
+Car 68
+------------------------------------------------------------------------------------------------
+origin: GER01PLANT, available at 2024-03-13 00:00:00
+(2): GER01PLANT -> GER02TERM, departure: 2024-03-13 00:00:00, arrival: 2024-03-15 00:00:00
+(5): GER02TERM -> AUT01DEAL, departure: 2024-03-16 00:00:00, arrival: 2024-03-17 00:00:00
+destination: AUT01DEAL, due at: 2024-03-17 00:00:00, net delivery time (reference): 4.0 day(s)
+total delivery time: 4.0 day(s), delay: 0.0 day(s), time over 2x net delivery: 0 day(s)
+=> cost: None
+------------------------------------------------------------------------------------------------
+Car 69
+------------------------------------------------------------------------------------------------
+origin: GER01PLANT, available at 2024-03-13 00:00:00
+(3): GER01PLANT -> GER02TERM, departure: 2024-03-14 00:00:00, arrival: 2024-03-17 00:00:00
+(5): GER02TERM -> AUT01DEAL, departure: 2024-03-20 00:00:00, arrival: 2024-03-21 00:00:00
+destination: AUT01DEAL, due at: -, net delivery time (reference): 4.0 day(s)
+total delivery time: 8.0 day(s), delay: 0 day(s), time over 2x net delivery: 0 day(s)
+=> cost: None
+------------------------------------------------------------------------------------------------
+Car 70
+------------------------------------------------------------------------------------------------
+origin: GER01PLANT, available at 2024-03-13 00:00:00
+(2): GER01PLANT -> GER02TERM, departure: 2024-03-13 00:00:00, arrival: 2024-03-15 00:00:00
+(5): GER02TERM -> AUT01DEAL, departure: 2024-03-16 00:00:00, arrival: 2024-03-17 00:00:00
+destination: AUT01DEAL, due at: 2024-03-17 00:00:00, net delivery time (reference): 4.0 day(s)
+total delivery time: 4.0 day(s), delay: 0.0 day(s), time over 2x net delivery: 0 day(s)
+=> cost: None
+------------------------------------------------------------------------------------------------
+Car 71
+------------------------------------------------------------------------------------------------
+origin: GER01PLANT, available at 2024-03-14 00:00:00
+(2): GER01PLANT -> GER02TERM, departure: 2024-03-15 00:00:00, arrival: 2024-03-17 00:00:00
+(5): GER02TERM -> AUT01DEAL, departure: 2024-03-19 00:00:00, arrival: 2024-03-20 00:00:00
+destination: AUT01DEAL, due at: 2024-03-19 00:00:00, net delivery time (reference): 6.0 day(s)
+total delivery time: 6.0 day(s), delay: 1.0 day(s), time over 2x net delivery: 0 day(s)
+=> cost: None
+------------------------------------------------------------------------------------------------
+Car 72
+------------------------------------------------------------------------------------------------
+origin: GER01PLANT, available at 2024-03-14 00:00:00
+(3): GER01PLANT -> GER02TERM, departure: 2024-03-14 00:00:00, arrival: 2024-03-17 00:00:00
+(5): GER02TERM -> AUT01DEAL, departure: 2024-03-20 00:00:00, arrival: 2024-03-21 00:00:00
+destination: AUT01DEAL, due at: -, net delivery time (reference): 6.0 day(s)
+total delivery time: 7.0 day(s), delay: 0 day(s), time over 2x net delivery: 0 day(s)
+=> cost: None
+------------------------------------------------------------------------------------------------
+Car 73
+------------------------------------------------------------------------------------------------
+origin: GER01PLANT, available at 2024-03-14 00:00:00
+(2): GER01PLANT -> GER02TERM, departure: 2024-03-15 00:00:00, arrival: 2024-03-17 00:00:00
+(5): GER02TERM -> AUT01DEAL, departure: 2024-03-19 00:00:00, arrival: 2024-03-20 00:00:00
+destination: AUT01DEAL, due at: 2024-03-19 00:00:00, net delivery time (reference): 6.0 day(s)
+total delivery time: 6.0 day(s), delay: 1.0 day(s), time over 2x net delivery: 0 day(s)
+=> cost: None
+------------------------------------------------------------------------------------------------
+Car 74
+------------------------------------------------------------------------------------------------
+origin: GER01PLANT, available at 2024-03-14 00:00:00
+(3): GER01PLANT -> GER02TERM, departure: 2024-03-14 00:00:00, arrival: 2024-03-17 00:00:00
+(5): GER02TERM -> AUT01DEAL, departure: 2024-03-20 00:00:00, arrival: 2024-03-21 00:00:00
+destination: AUT01DEAL, due at: -, net delivery time (reference): 6.0 day(s)
+total delivery time: 7.0 day(s), delay: 0 day(s), time over 2x net delivery: 0 day(s)
+=> cost: None
+------------------------------------------------------------------------------------------------
+Car 75
+------------------------------------------------------------------------------------------------
+origin: GER01PLANT, available at 2024-03-14 00:00:00
+(3): GER01PLANT -> GER02TERM, departure: 2024-03-14 00:00:00, arrival: 2024-03-17 00:00:00
+(5): GER02TERM -> AUT01DEAL, departure: 2024-03-20 00:00:00, arrival: 2024-03-21 00:00:00
+destination: AUT01DEAL, due at: -, net delivery time (reference): 6.0 day(s)
+total delivery time: 7.0 day(s), delay: 0 day(s), time over 2x net delivery: 0 day(s)
+=> cost: None
+------------------------------------------------------------------------------------------------
+Car 76
+------------------------------------------------------------------------------------------------
+origin: GER01PLANT, available at 2024-03-15 00:00:00
+(2): GER01PLANT -> GER02TERM, departure: 2024-03-16 00:00:00, arrival: 2024-03-18 00:00:00
+(5): GER02TERM -> AUT01DEAL, departure: 2024-03-19 00:00:00, arrival: 2024-03-20 00:00:00
+destination: AUT01DEAL, due at: 2024-03-19 00:00:00, net delivery time (reference): 5.0 day(s)
+total delivery time: 5.0 day(s), delay: 1.0 day(s), time over 2x net delivery: 0 day(s)
+=> cost: None
+------------------------------------------------------------------------------------------------
+Car 77
+------------------------------------------------------------------------------------------------
+origin: GER01PLANT, available at 2024-03-15 00:00:00
+(2): GER01PLANT -> GER02TERM, departure: 2024-03-16 00:00:00, arrival: 2024-03-18 00:00:00
+(5): GER02TERM -> AUT01DEAL, departure: 2024-03-19 00:00:00, arrival: 2024-03-20 00:00:00
+destination: AUT01DEAL, due at: 2024-03-19 00:00:00, net delivery time (reference): 5.0 day(s)
+total delivery time: 5.0 day(s), delay: 1.0 day(s), time over 2x net delivery: 0 day(s)
+=> cost: None
+------------------------------------------------------------------------------------------------
+Car 78
+------------------------------------------------------------------------------------------------
+origin: GER01PLANT, available at 2024-03-15 00:00:00
+(2): GER01PLANT -> GER02TERM, departure: 2024-03-16 00:00:00, arrival: 2024-03-18 00:00:00
+(5): GER02TERM -> AUT01DEAL, departure: 2024-03-19 00:00:00, arrival: 2024-03-20 00:00:00
+destination: AUT01DEAL, due at: 2024-03-19 00:00:00, net delivery time (reference): 5.0 day(s)
+total delivery time: 5.0 day(s), delay: 1.0 day(s), time over 2x net delivery: 0 day(s)
+=> cost: None
+------------------------------------------------------------------------------------------------
+Car 79
+------------------------------------------------------------------------------------------------
+origin: GER01PLANT, available at 2024-03-15 00:00:00
+(2): GER01PLANT -> GER02TERM, departure: 2024-03-19 00:00:00, arrival: 2024-03-21 00:00:00
+(5): GER02TERM -> AUT01DEAL, departure: 2024-03-22 00:00:00, arrival: 2024-03-23 00:00:00
+destination: AUT01DEAL, due at: 2024-03-21 00:00:00, net delivery time (reference): 5.0 day(s)
+total delivery time: 8.0 day(s), delay: 2.0 day(s), time over 2x net delivery: 0 day(s)
+=> cost: None
+------------------------------------------------------------------------------------------------
+Car 80
+------------------------------------------------------------------------------------------------
+origin: GER01PLANT, available at 2024-03-15 00:00:00
+(2): GER01PLANT -> GER02TERM, departure: 2024-03-22 00:00:00, arrival: 2024-03-24 00:00:00
+(5): GER02TERM -> AUT01DEAL, departure: 2024-03-26 00:00:00, arrival: 2024-03-27 00:00:00
+destination: AUT01DEAL, due at: -, net delivery time (reference): 5.0 day(s)
+total delivery time: 12.0 day(s), delay: 0 day(s), time over 2x net delivery: 0 day(s)
+=> cost: None
+------------------------------------------------------------------------------------------------
+Car 81
+------------------------------------------------------------------------------------------------
+origin: GER01PLANT, available at 2024-03-15 00:00:00
+(2): GER01PLANT -> GER02TERM, departure: 2024-03-22 00:00:00, arrival: 2024-03-24 00:00:00
+(5): GER02TERM -> AUT01DEAL, departure: 2024-03-26 00:00:00, arrival: 2024-03-27 00:00:00
+destination: AUT01DEAL, due at: -, net delivery time (reference): 5.0 day(s)
+total delivery time: 12.0 day(s), delay: 0 day(s), time over 2x net delivery: 0 day(s)
+=> cost: None
+------------------------------------------------------------------------------------------------
+Car 82
+------------------------------------------------------------------------------------------------
+origin: GER01PLANT, available at 2024-03-15 00:00:00
+(2): GER01PLANT -> GER02TERM, departure: 2024-03-19 00:00:00, arrival: 2024-03-21 00:00:00
+(5): GER02TERM -> AUT01DEAL, departure: 2024-03-22 00:00:00, arrival: 2024-03-23 00:00:00
+destination: AUT01DEAL, due at: 2024-03-20 00:00:00, net delivery time (reference): 5.0 day(s)
+total delivery time: 8.0 day(s), delay: 3.0 day(s), time over 2x net delivery: 0 day(s)
+=> cost: None
+------------------------------------------------------------------------------------------------
+Car 83
+------------------------------------------------------------------------------------------------
+origin: GER01PLANT, available at 2024-03-15 00:00:00
+(2): GER01PLANT -> GER02TERM, departure: 2024-03-22 00:00:00, arrival: 2024-03-24 00:00:00
+(5): GER02TERM -> AUT01DEAL, departure: 2024-03-26 00:00:00, arrival: 2024-03-27 00:00:00
+destination: AUT01DEAL, due at: -, net delivery time (reference): 5.0 day(s)
+total delivery time: 12.0 day(s), delay: 0 day(s), time over 2x net delivery: 0 day(s)
+=> cost: None
+------------------------------------------------------------------------------------------------
+Car 84
+------------------------------------------------------------------------------------------------
+origin: GER01PLANT, available at 2024-03-15 00:00:00
+(2): GER01PLANT -> GER02TERM, departure: 2024-03-16 00:00:00, arrival: 2024-03-18 00:00:00
+(5): GER02TERM -> AUT01DEAL, departure: 2024-03-19 00:00:00, arrival: 2024-03-20 00:00:00
+destination: AUT01DEAL, due at: 2024-03-19 00:00:00, net delivery time (reference): 5.0 day(s)
+total delivery time: 5.0 day(s), delay: 1.0 day(s), time over 2x net delivery: 0 day(s)
+=> cost: None
+------------------------------------------------------------------------------------------------
+Car 85
+------------------------------------------------------------------------------------------------
+origin: GER01PLANT, available at 2024-03-15 00:00:00
+(2): GER01PLANT -> GER02TERM, departure: 2024-03-19 00:00:00, arrival: 2024-03-21 00:00:00
+(5): GER02TERM -> AUT01DEAL, departure: 2024-03-22 00:00:00, arrival: 2024-03-23 00:00:00
+destination: AUT01DEAL, due at: 2024-03-21 00:00:00, net delivery time (reference): 5.0 day(s)
+total delivery time: 8.0 day(s), delay: 2.0 day(s), time over 2x net delivery: 0 day(s)
+=> cost: None
+------------------------------------------------------------------------------------------------
+Car 86
+------------------------------------------------------------------------------------------------
+origin: GER01PLANT, available at 2024-03-16 00:00:00
+(2): GER01PLANT -> GER02TERM, departure: 2024-03-23 00:00:00, arrival: 2024-03-25 00:00:00
+(5): GER02TERM -> AUT01DEAL, departure: 2024-03-26 00:00:00, arrival: 2024-03-27 00:00:00
+destination: AUT01DEAL, due at: -, net delivery time (reference): 4.0 day(s)
+total delivery time: 11.0 day(s), delay: 0 day(s), time over 2x net delivery: 0 day(s)
+=> cost: None
+------------------------------------------------------------------------------------------------
+Car 87
+------------------------------------------------------------------------------------------------
+origin: GER01PLANT, available at 2024-03-16 00:00:00
+(2): GER01PLANT -> GER02TERM, departure: 2024-03-20 00:00:00, arrival: 2024-03-22 00:00:00
+(5): GER02TERM -> AUT01DEAL, departure: 2024-03-23 00:00:00, arrival: 2024-03-24 00:00:00
+destination: AUT01DEAL, due at: 2024-03-21 00:00:00, net delivery time (reference): 4.0 day(s)
+total delivery time: 8.0 day(s), delay: 3.0 day(s), time over 2x net delivery: 0 day(s)
+=> cost: None
+------------------------------------------------------------------------------------------------
+Car 88
+------------------------------------------------------------------------------------------------
+origin: GER01PLANT, available at 2024-03-16 00:00:00
+(2): GER01PLANT -> GER02TERM, departure: 2024-03-23 00:00:00, arrival: 2024-03-25 00:00:00
+(5): GER02TERM -> AUT01DEAL, departure: 2024-03-26 00:00:00, arrival: 2024-03-27 00:00:00
+destination: AUT01DEAL, due at: -, net delivery time (reference): 4.0 day(s)
+total delivery time: 11.0 day(s), delay: 0 day(s), time over 2x net delivery: 0 day(s)
+=> cost: None
+------------------------------------------------------------------------------------------------
+Car 89
+------------------------------------------------------------------------------------------------
+origin: GER01PLANT, available at 2024-03-16 00:00:00
+(2): GER01PLANT -> GER02TERM, departure: 2024-03-23 00:00:00, arrival: 2024-03-25 00:00:00
+(5): GER02TERM -> AUT01DEAL, departure: 2024-03-26 00:00:00, arrival: 2024-03-27 00:00:00
+destination: AUT01DEAL, due at: -, net delivery time (reference): 4.0 day(s)
+total delivery time: 11.0 day(s), delay: 0 day(s), time over 2x net delivery: 0 day(s)
+=> cost: None
+------------------------------------------------------------------------------------------------
+Car 90
+------------------------------------------------------------------------------------------------
+origin: GER01PLANT, available at 2024-03-16 00:00:00
+(2): GER01PLANT -> GER02TERM, departure: 2024-03-20 00:00:00, arrival: 2024-03-22 00:00:00
+(5): GER02TERM -> AUT01DEAL, departure: 2024-03-23 00:00:00, arrival: 2024-03-24 00:00:00
+destination: AUT01DEAL, due at: 2024-03-21 00:00:00, net delivery time (reference): 4.0 day(s)
+total delivery time: 8.0 day(s), delay: 3.0 day(s), time over 2x net delivery: 0 day(s)
+=> cost: None
+------------------------------------------------------------------------------------------------
+Car 91
+------------------------------------------------------------------------------------------------
+origin: GER01PLANT, available at 2024-03-12 00:00:00
+(2): GER01PLANT -> GER02TERM, departure: 2024-03-12 00:00:00, arrival: 2024-03-14 00:00:00
+(5): GER02TERM -> AUT01DEAL, departure: 2024-03-15 00:00:00, arrival: 2024-03-16 00:00:00
+destination: AUT01DEAL, due at: 2024-03-17 00:00:00, net delivery time (reference): 4.0 day(s)
+total delivery time: 4.0 day(s), delay: -1.0 day(s), time over 2x net delivery: 0 day(s)
+=> cost: None
+------------------------------------------------------------------------------------------------
+Car 92
+------------------------------------------------------------------------------------------------
+origin: GER01PLANT, available at 2024-03-12 00:00:00
+(2): GER01PLANT -> GER02TERM, departure: 2024-03-12 00:00:00, arrival: 2024-03-14 00:00:00
+(5): GER02TERM -> AUT01DEAL, departure: 2024-03-15 00:00:00, arrival: 2024-03-16 00:00:00
+destination: AUT01DEAL, due at: 2024-03-18 00:00:00, net delivery time (reference): 4.0 day(s)
+total delivery time: 4.0 day(s), delay: -2.0 day(s), time over 2x net delivery: 0 day(s)
+=> cost: None
+------------------------------------------------------------------------------------------------
+Car 93
+------------------------------------------------------------------------------------------------
+origin: GER01PLANT, available at 2024-03-12 00:00:00
+(3): GER01PLANT -> GER02TERM, departure: 2024-03-14 00:00:00, arrival: 2024-03-17 00:00:00
+(5): GER02TERM -> AUT01DEAL, departure: 2024-03-20 00:00:00, arrival: 2024-03-21 00:00:00
+destination: AUT01DEAL, due at: -, net delivery time (reference): 4.0 day(s)
+total delivery time: 9.0 day(s), delay: 0 day(s), time over 2x net delivery: 0 day(s)
+=> cost: None
+------------------------------------------------------------------------------------------------
+Car 94
+------------------------------------------------------------------------------------------------
+origin: GER01PLANT, available at 2024-03-12 00:00:00
+(2): GER01PLANT -> GER02TERM, departure: 2024-03-12 00:00:00, arrival: 2024-03-14 00:00:00
+(5): GER02TERM -> AUT01DEAL, departure: 2024-03-15 00:00:00, arrival: 2024-03-16 00:00:00
+destination: AUT01DEAL, due at: 2024-03-17 00:00:00, net delivery time (reference): 4.0 day(s)
+total delivery time: 4.0 day(s), delay: -1.0 day(s), time over 2x net delivery: 0 day(s)
+=> cost: None
+------------------------------------------------------------------------------------------------
+Car 95
+------------------------------------------------------------------------------------------------
+origin: GER01PLANT, available at 2024-03-12 00:00:00
+(2): GER01PLANT -> GER02TERM, departure: 2024-03-12 00:00:00, arrival: 2024-03-14 00:00:00
+(5): GER02TERM -> AUT01DEAL, departure: 2024-03-15 00:00:00, arrival: 2024-03-16 00:00:00
+destination: AUT01DEAL, due at: 2024-03-18 00:00:00, net delivery time (reference): 4.0 day(s)
+total delivery time: 4.0 day(s), delay: -2.0 day(s), time over 2x net delivery: 0 day(s)
+=> cost: None
+------------------------------------------------------------------------------------------------
+Car 96
+------------------------------------------------------------------------------------------------
+origin: GER01PLANT, available at 2024-03-13 00:00:00
+(2): GER01PLANT -> GER02TERM, departure: 2024-03-13 00:00:00, arrival: 2024-03-15 00:00:00
+(5): GER02TERM -> AUT01DEAL, departure: 2024-03-16 00:00:00, arrival: 2024-03-17 00:00:00
+destination: AUT01DEAL, due at: 2024-03-19 00:00:00, net delivery time (reference): 4.0 day(s)
+total delivery time: 4.0 day(s), delay: -2.0 day(s), time over 2x net delivery: 0 day(s)
+=> cost: None
+------------------------------------------------------------------------------------------------
+Car 97
+------------------------------------------------------------------------------------------------
+origin: GER01PLANT, available at 2024-03-13 00:00:00
+(3): GER01PLANT -> GER02TERM, departure: 2024-03-14 00:00:00, arrival: 2024-03-17 00:00:00
+(5): GER02TERM -> AUT01DEAL, departure: 2024-03-20 00:00:00, arrival: 2024-03-21 00:00:00
+destination: AUT01DEAL, due at: -, net delivery time (reference): 4.0 day(s)
+total delivery time: 8.0 day(s), delay: 0 day(s), time over 2x net delivery: 0 day(s)
+=> cost: None
+------------------------------------------------------------------------------------------------
+Car 98
+------------------------------------------------------------------------------------------------
+origin: GER01PLANT, available at 2024-03-13 00:00:00
+(2): GER01PLANT -> GER02TERM, departure: 2024-03-15 00:00:00, arrival: 2024-03-17 00:00:00
+(5): GER02TERM -> AUT01DEAL, departure: 2024-03-19 00:00:00, arrival: 2024-03-20 00:00:00
+destination: AUT01DEAL, due at: 2024-03-19 00:00:00, net delivery time (reference): 4.0 day(s)
+total delivery time: 7.0 day(s), delay: 1.0 day(s), time over 2x net delivery: 0 day(s)
+=> cost: None
+------------------------------------------------------------------------------------------------
+Car 99
+------------------------------------------------------------------------------------------------
+origin: GER01PLANT, available at 2024-03-13 00:00:00
+(2): GER01PLANT -> GER02TERM, departure: 2024-03-15 00:00:00, arrival: 2024-03-17 00:00:00
+(5): GER02TERM -> AUT01DEAL, departure: 2024-03-19 00:00:00, arrival: 2024-03-20 00:00:00
+destination: AUT01DEAL, due at: 2024-03-19 00:00:00, net delivery time (reference): 4.0 day(s)
+total delivery time: 7.0 day(s), delay: 1.0 day(s), time over 2x net delivery: 0 day(s)
+=> cost: None
+------------------------------------------------------------------------------------------------
+Car 100
+------------------------------------------------------------------------------------------------
+origin: GER01PLANT, available at 2024-03-13 00:00:00
+(3): GER01PLANT -> GER02TERM, departure: 2024-03-14 00:00:00, arrival: 2024-03-17 00:00:00
+(5): GER02TERM -> AUT01DEAL, departure: 2024-03-20 00:00:00, arrival: 2024-03-21 00:00:00
+destination: AUT01DEAL, due at: -, net delivery time (reference): 4.0 day(s)
+total delivery time: 8.0 day(s), delay: 0 day(s), time over 2x net delivery: 0 day(s)
+=> cost: None
+------------------------------------------------------------------------------------------------
+Car 101
+------------------------------------------------------------------------------------------------
+origin: GER01PLANT, available at 2024-03-14 00:00:00
+(2): GER01PLANT -> GER02TERM, departure: 2024-03-16 00:00:00, arrival: 2024-03-18 00:00:00
+(5): GER02TERM -> AUT01DEAL, departure: 2024-03-20 00:00:00, arrival: 2024-03-21 00:00:00
+destination: AUT01DEAL, due at: 2024-03-20 00:00:00, net delivery time (reference): 6.0 day(s)
+total delivery time: 7.0 day(s), delay: 1.0 day(s), time over 2x net delivery: 0 day(s)
+=> cost: None
+------------------------------------------------------------------------------------------------
+Car 102
+------------------------------------------------------------------------------------------------
+origin: GER01PLANT, available at 2024-03-14 00:00:00
+(2): GER01PLANT -> GER02TERM, departure: 2024-03-15 00:00:00, arrival: 2024-03-17 00:00:00
+(5): GER02TERM -> AUT01DEAL, departure: 2024-03-19 00:00:00, arrival: 2024-03-20 00:00:00
+destination: AUT01DEAL, due at: 2024-03-18 00:00:00, net delivery time (reference): 6.0 day(s)
+total delivery time: 6.0 day(s), delay: 2.0 day(s), time over 2x net delivery: 0 day(s)
+=> cost: None
+------------------------------------------------------------------------------------------------
+Car 103
+------------------------------------------------------------------------------------------------
+origin: GER01PLANT, available at 2024-03-14 00:00:00
+(2): GER01PLANT -> GER02TERM, departure: 2024-03-15 00:00:00, arrival: 2024-03-17 00:00:00
+(5): GER02TERM -> AUT01DEAL, departure: 2024-03-19 00:00:00, arrival: 2024-03-20 00:00:00
+destination: AUT01DEAL, due at: 2024-03-18 00:00:00, net delivery time (reference): 6.0 day(s)
+total delivery time: 6.0 day(s), delay: 2.0 day(s), time over 2x net delivery: 0 day(s)
+=> cost: None
+------------------------------------------------------------------------------------------------
+Car 104
+------------------------------------------------------------------------------------------------
+origin: GER01PLANT, available at 2024-03-14 00:00:00
+(3): GER01PLANT -> GER02TERM, departure: 2024-03-14 00:00:00, arrival: 2024-03-17 00:00:00
+(5): GER02TERM -> AUT01DEAL, departure: 2024-03-20 00:00:00, arrival: 2024-03-21 00:00:00
+destination: AUT01DEAL, due at: -, net delivery time (reference): 6.0 day(s)
+total delivery time: 7.0 day(s), delay: 0 day(s), time over 2x net delivery: 0 day(s)
+=> cost: None
+------------------------------------------------------------------------------------------------
+Car 105
+------------------------------------------------------------------------------------------------
+origin: GER01PLANT, available at 2024-03-14 00:00:00
+(3): GER01PLANT -> GER02TERM, departure: 2024-03-14 00:00:00, arrival: 2024-03-17 00:00:00
+(5): GER02TERM -> AUT01DEAL, departure: 2024-03-21 00:00:00, arrival: 2024-03-22 00:00:00
+destination: AUT01DEAL, due at: -, net delivery time (reference): 6.0 day(s)
+total delivery time: 8.0 day(s), delay: 0 day(s), time over 2x net delivery: 0 day(s)
+=> cost: None
+------------------------------------------------------------------------------------------------
+Car 106
+------------------------------------------------------------------------------------------------
+origin: GER01PLANT, available at 2024-03-15 00:00:00
+(2): GER01PLANT -> GER02TERM, departure: 2024-03-19 00:00:00, arrival: 2024-03-21 00:00:00
+(5): GER02TERM -> AUT01DEAL, departure: 2024-03-22 00:00:00, arrival: 2024-03-23 00:00:00
+destination: AUT01DEAL, due at: 2024-03-21 00:00:00, net delivery time (reference): 5.0 day(s)
+total delivery time: 8.0 day(s), delay: 2.0 day(s), time over 2x net delivery: 0 day(s)
+=> cost: None
+------------------------------------------------------------------------------------------------
+Car 107
+------------------------------------------------------------------------------------------------
+origin: GER01PLANT, available at 2024-03-15 00:00:00
+(2): GER01PLANT -> GER02TERM, departure: 2024-03-19 00:00:00, arrival: 2024-03-21 00:00:00
+(5): GER02TERM -> AUT01DEAL, departure: 2024-03-22 00:00:00, arrival: 2024-03-23 00:00:00
+destination: AUT01DEAL, due at: 2024-03-20 00:00:00, net delivery time (reference): 5.0 day(s)
+total delivery time: 8.0 day(s), delay: 3.0 day(s), time over 2x net delivery: 0 day(s)
+=> cost: None
+------------------------------------------------------------------------------------------------
+Car 108
+------------------------------------------------------------------------------------------------
+origin: GER01PLANT, available at 2024-03-15 00:00:00
+(2): GER01PLANT -> GER02TERM, departure: 2024-03-19 00:00:00, arrival: 2024-03-21 00:00:00
+(5): GER02TERM -> AUT01DEAL, departure: 2024-03-22 00:00:00, arrival: 2024-03-23 00:00:00
+destination: AUT01DEAL, due at: 2024-03-20 00:00:00, net delivery time (reference): 5.0 day(s)
+total delivery time: 8.0 day(s), delay: 3.0 day(s), time over 2x net delivery: 0 day(s)
+=> cost: None
+------------------------------------------------------------------------------------------------
+Car 109
+------------------------------------------------------------------------------------------------
+origin: GER01PLANT, available at 2024-03-15 00:00:00
+(2): GER01PLANT -> GER02TERM, departure: 2024-03-19 00:00:00, arrival: 2024-03-21 00:00:00
+(5): GER02TERM -> AUT01DEAL, departure: 2024-03-22 00:00:00, arrival: 2024-03-23 00:00:00
+destination: AUT01DEAL, due at: 2024-03-20 00:00:00, net delivery time (reference): 5.0 day(s)
+total delivery time: 8.0 day(s), delay: 3.0 day(s), time over 2x net delivery: 0 day(s)
+=> cost: None
+------------------------------------------------------------------------------------------------
+Car 110
+------------------------------------------------------------------------------------------------
+origin: GER01PLANT, available at 2024-03-15 00:00:00
+(2): GER01PLANT -> GER02TERM, departure: 2024-03-22 00:00:00, arrival: 2024-03-24 00:00:00
+(5): GER02TERM -> AUT01DEAL, departure: 2024-03-26 00:00:00, arrival: 2024-03-27 00:00:00
+destination: AUT01DEAL, due at: -, net delivery time (reference): 5.0 day(s)
+total delivery time: 12.0 day(s), delay: 0 day(s), time over 2x net delivery: 0 day(s)
+=> cost: None
+------------------------------------------------------------------------------------------------
+Car 111
+------------------------------------------------------------------------------------------------
+origin: GER01PLANT, available at 2024-03-15 00:00:00
+(2): GER01PLANT -> GER02TERM, departure: 2024-03-22 00:00:00, arrival: 2024-03-24 00:00:00
+(5): GER02TERM -> AUT01DEAL, departure: 2024-03-26 00:00:00, arrival: 2024-03-27 00:00:00
+destination: AUT01DEAL, due at: -, net delivery time (reference): 5.0 day(s)
+total delivery time: 12.0 day(s), delay: 0 day(s), time over 2x net delivery: 0 day(s)
+=> cost: None
+------------------------------------------------------------------------------------------------
+Car 112
+------------------------------------------------------------------------------------------------
+origin: GER01PLANT, available at 2024-03-15 00:00:00
+(2): GER01PLANT -> GER02TERM, departure: 2024-03-19 00:00:00, arrival: 2024-03-21 00:00:00
+(5): GER02TERM -> AUT01DEAL, departure: 2024-03-22 00:00:00, arrival: 2024-03-23 00:00:00
+destination: AUT01DEAL, due at: 2024-03-20 00:00:00, net delivery time (reference): 5.0 day(s)
+total delivery time: 8.0 day(s), delay: 3.0 day(s), time over 2x net delivery: 0 day(s)
+=> cost: None
+------------------------------------------------------------------------------------------------
+Car 113
+------------------------------------------------------------------------------------------------
+origin: GER01PLANT, available at 2024-03-15 00:00:00
+(2): GER01PLANT -> GER02TERM, departure: 2024-03-19 00:00:00, arrival: 2024-03-21 00:00:00
+(5): GER02TERM -> AUT01DEAL, departure: 2024-03-22 00:00:00, arrival: 2024-03-23 00:00:00
+destination: AUT01DEAL, due at: 2024-03-20 00:00:00, net delivery time (reference): 5.0 day(s)
+total delivery time: 8.0 day(s), delay: 3.0 day(s), time over 2x net delivery: 0 day(s)
+=> cost: None
+------------------------------------------------------------------------------------------------
+Car 114
+------------------------------------------------------------------------------------------------
+origin: GER01PLANT, available at 2024-03-15 00:00:00
+(2): GER01PLANT -> GER02TERM, departure: 2024-03-19 00:00:00, arrival: 2024-03-21 00:00:00
+(5): GER02TERM -> AUT01DEAL, departure: 2024-03-22 00:00:00, arrival: 2024-03-23 00:00:00
+destination: AUT01DEAL, due at: 2024-03-20 00:00:00, net delivery time (reference): 5.0 day(s)
+total delivery time: 8.0 day(s), delay: 3.0 day(s), time over 2x net delivery: 0 day(s)
+=> cost: None
+------------------------------------------------------------------------------------------------
+Car 115
+------------------------------------------------------------------------------------------------
+origin: GER01PLANT, available at 2024-03-15 00:00:00
+(2): GER01PLANT -> GER02TERM, departure: 2024-03-22 00:00:00, arrival: 2024-03-24 00:00:00
+(5): GER02TERM -> AUT01DEAL, departure: 2024-03-26 00:00:00, arrival: 2024-03-27 00:00:00
+destination: AUT01DEAL, due at: -, net delivery time (reference): 5.0 day(s)
+total delivery time: 12.0 day(s), delay: 0 day(s), time over 2x net delivery: 0 day(s)
+=> cost: None
+------------------------------------------------------------------------------------------------
+Car 116
+------------------------------------------------------------------------------------------------
+origin: GER01PLANT, available at 2024-03-16 00:00:00
+(2): GER01PLANT -> GER02TERM, departure: 2024-03-20 00:00:00, arrival: 2024-03-22 00:00:00
+(5): GER02TERM -> AUT01DEAL, departure: 2024-03-23 00:00:00, arrival: 2024-03-24 00:00:00
+destination: AUT01DEAL, due at: 2024-03-21 00:00:00, net delivery time (reference): 4.0 day(s)
+total delivery time: 8.0 day(s), delay: 3.0 day(s), time over 2x net delivery: 0 day(s)
+=> cost: None
+------------------------------------------------------------------------------------------------
+Car 117
+------------------------------------------------------------------------------------------------
+origin: GER01PLANT, available at 2024-03-16 00:00:00
+(2): GER01PLANT -> GER02TERM, departure: 2024-03-23 00:00:00, arrival: 2024-03-25 00:00:00
+(5): GER02TERM -> AUT01DEAL, departure: 2024-03-26 00:00:00, arrival: 2024-03-27 00:00:00
+destination: AUT01DEAL, due at: -, net delivery time (reference): 4.0 day(s)
+total delivery time: 11.0 day(s), delay: 0 day(s), time over 2x net delivery: 0 day(s)
+=> cost: None
+------------------------------------------------------------------------------------------------
+Car 118
+------------------------------------------------------------------------------------------------
+origin: GER01PLANT, available at 2024-03-16 00:00:00
+(2): GER01PLANT -> GER02TERM, departure: 2024-03-23 00:00:00, arrival: 2024-03-25 00:00:00
+(5): GER02TERM -> AUT01DEAL, departure: 2024-03-27 00:00:00, arrival: 2024-03-28 00:00:00
+destination: AUT01DEAL, due at: -, net delivery time (reference): 4.0 day(s)
+total delivery time: 12.0 day(s), delay: 0 day(s), time over 2x net delivery: 0 day(s)
+=> cost: None
+------------------------------------------------------------------------------------------------
+Car 119
+------------------------------------------------------------------------------------------------
+origin: GER01PLANT, available at 2024-03-16 00:00:00
+(2): GER01PLANT -> GER02TERM, departure: 2024-03-23 00:00:00, arrival: 2024-03-25 00:00:00
+(5): GER02TERM -> AUT01DEAL, departure: 2024-03-27 00:00:00, arrival: 2024-03-28 00:00:00
+destination: AUT01DEAL, due at: -, net delivery time (reference): 4.0 day(s)
+total delivery time: 12.0 day(s), delay: 0 day(s), time over 2x net delivery: 0 day(s)
+=> cost: None
+------------------------------------------------------------------------------------------------
+Car 120
+------------------------------------------------------------------------------------------------
+origin: GER01PLANT, available at 2024-03-16 00:00:00
+(2): GER01PLANT -> GER02TERM, departure: 2024-03-23 00:00:00, arrival: 2024-03-25 00:00:00
+(5): GER02TERM -> AUT01DEAL, departure: 2024-03-27 00:00:00, arrival: 2024-03-28 00:00:00
+destination: AUT01DEAL, due at: -, net delivery time (reference): 4.0 day(s)
+total delivery time: 12.0 day(s), delay: 0 day(s), time over 2x net delivery: 0 day(s)
+=> cost: None
+------------------------------------------------------------------------------------------------
+Car 121
+------------------------------------------------------------------------------------------------
+origin: GER01PLANT, available at 2024-03-12 00:00:00
+(2): GER01PLANT -> GER02TERM, departure: 2024-03-12 00:00:00, arrival: 2024-03-14 00:00:00
+(6): GER02TERM -> ITA01DEAL, departure: 2024-03-15 00:00:00, arrival: 2024-03-16 00:00:00
+destination: ITA01DEAL, due at: 2024-03-18 00:00:00, net delivery time (reference): 4.0 day(s)
+total delivery time: 4.0 day(s), delay: -2.0 day(s), time over 2x net delivery: 0 day(s)
+=> cost: None
+------------------------------------------------------------------------------------------------
+Car 122
+------------------------------------------------------------------------------------------------
+origin: GER01PLANT, available at 2024-03-12 00:00:00
+(2): GER01PLANT -> GER02TERM, departure: 2024-03-12 00:00:00, arrival: 2024-03-14 00:00:00
+(6): GER02TERM -> ITA01DEAL, departure: 2024-03-15 00:00:00, arrival: 2024-03-16 00:00:00
+destination: ITA01DEAL, due at: 2024-03-16 00:00:00, net delivery time (reference): 4.0 day(s)
+total delivery time: 4.0 day(s), delay: 0.0 day(s), time over 2x net delivery: 0 day(s)
+=> cost: None
+------------------------------------------------------------------------------------------------
+Car 123
+------------------------------------------------------------------------------------------------
+origin: GER01PLANT, available at 2024-03-12 00:00:00
+(3): GER01PLANT -> GER02TERM, departure: 2024-03-14 00:00:00, arrival: 2024-03-17 00:00:00
+(6): GER02TERM -> ITA01DEAL, departure: 2024-03-19 00:00:00, arrival: 2024-03-20 00:00:00
+destination: ITA01DEAL, due at: -, net delivery time (reference): 4.0 day(s)
+total delivery time: 8.0 day(s), delay: 0 day(s), time over 2x net delivery: 0 day(s)
+=> cost: None
+------------------------------------------------------------------------------------------------
+Car 124
+------------------------------------------------------------------------------------------------
+origin: GER01PLANT, available at 2024-03-12 00:00:00
+(3): GER01PLANT -> GER02TERM, departure: 2024-03-14 00:00:00, arrival: 2024-03-17 00:00:00
+(6): GER02TERM -> ITA01DEAL, departure: 2024-03-19 00:00:00, arrival: 2024-03-20 00:00:00
+destination: ITA01DEAL, due at: -, net delivery time (reference): 4.0 day(s)
+total delivery time: 8.0 day(s), delay: 0 day(s), time over 2x net delivery: 0 day(s)
+=> cost: None
+------------------------------------------------------------------------------------------------
+Car 125
+------------------------------------------------------------------------------------------------
+origin: GER01PLANT, available at 2024-03-12 00:00:00
+(2): GER01PLANT -> GER02TERM, departure: 2024-03-12 00:00:00, arrival: 2024-03-14 00:00:00
+(6): GER02TERM -> ITA01DEAL, departure: 2024-03-15 00:00:00, arrival: 2024-03-16 00:00:00
+destination: ITA01DEAL, due at: 2024-03-17 00:00:00, net delivery time (reference): 4.0 day(s)
+total delivery time: 4.0 day(s), delay: -1.0 day(s), time over 2x net delivery: 0 day(s)
+=> cost: None
+------------------------------------------------------------------------------------------------
+Car 126
+------------------------------------------------------------------------------------------------
+origin: GER01PLANT, available at 2024-03-13 00:00:00
+(2): GER01PLANT -> GER02TERM, departure: 2024-03-15 00:00:00, arrival: 2024-03-17 00:00:00
+(6): GER02TERM -> ITA01DEAL, departure: 2024-03-19 00:00:00, arrival: 2024-03-20 00:00:00
+destination: ITA01DEAL, due at: 2024-03-19 00:00:00, net delivery time (reference): 4.0 day(s)
+total delivery time: 7.0 day(s), delay: 1.0 day(s), time over 2x net delivery: 0 day(s)
+=> cost: None
+------------------------------------------------------------------------------------------------
+Car 127
+------------------------------------------------------------------------------------------------
+origin: GER01PLANT, available at 2024-03-13 00:00:00
+(2): GER01PLANT -> GER02TERM, departure: 2024-03-13 00:00:00, arrival: 2024-03-15 00:00:00
+(6): GER02TERM -> ITA01DEAL, departure: 2024-03-16 00:00:00, arrival: 2024-03-17 00:00:00
+destination: ITA01DEAL, due at: 2024-03-17 00:00:00, net delivery time (reference): 4.0 day(s)
+total delivery time: 4.0 day(s), delay: 0.0 day(s), time over 2x net delivery: 0 day(s)
+=> cost: None
+------------------------------------------------------------------------------------------------
+Car 128
+------------------------------------------------------------------------------------------------
+origin: GER01PLANT, available at 2024-03-13 00:00:00
+(2): GER01PLANT -> GER02TERM, departure: 2024-03-13 00:00:00, arrival: 2024-03-15 00:00:00
+(6): GER02TERM -> ITA01DEAL, departure: 2024-03-16 00:00:00, arrival: 2024-03-17 00:00:00
+destination: ITA01DEAL, due at: 2024-03-18 00:00:00, net delivery time (reference): 4.0 day(s)
+total delivery time: 4.0 day(s), delay: -1.0 day(s), time over 2x net delivery: 0 day(s)
+=> cost: None
+------------------------------------------------------------------------------------------------
+Car 129
+------------------------------------------------------------------------------------------------
+origin: GER01PLANT, available at 2024-03-13 00:00:00
+(2): GER01PLANT -> GER02TERM, departure: 2024-03-13 00:00:00, arrival: 2024-03-15 00:00:00
+(6): GER02TERM -> ITA01DEAL, departure: 2024-03-16 00:00:00, arrival: 2024-03-17 00:00:00
+destination: ITA01DEAL, due at: 2024-03-17 00:00:00, net delivery time (reference): 4.0 day(s)
+total delivery time: 4.0 day(s), delay: 0.0 day(s), time over 2x net delivery: 0 day(s)
+=> cost: None
+------------------------------------------------------------------------------------------------
+Car 130
+------------------------------------------------------------------------------------------------
+origin: GER01PLANT, available at 2024-03-13 00:00:00
+(2): GER01PLANT -> GER02TERM, departure: 2024-03-13 00:00:00, arrival: 2024-03-15 00:00:00
+(6): GER02TERM -> ITA01DEAL, departure: 2024-03-16 00:00:00, arrival: 2024-03-17 00:00:00
+destination: ITA01DEAL, due at: 2024-03-17 00:00:00, net delivery time (reference): 4.0 day(s)
+total delivery time: 4.0 day(s), delay: 0.0 day(s), time over 2x net delivery: 0 day(s)
+=> cost: None
+------------------------------------------------------------------------------------------------
+Car 131
+------------------------------------------------------------------------------------------------
+origin: GER01PLANT, available at 2024-03-14 00:00:00
+(2): GER01PLANT -> GER02TERM, departure: 2024-03-16 00:00:00, arrival: 2024-03-18 00:00:00
+(6): GER02TERM -> ITA01DEAL, departure: 2024-03-19 00:00:00, arrival: 2024-03-20 00:00:00
+destination: ITA01DEAL, due at: 2024-03-20 00:00:00, net delivery time (reference): 6.0 day(s)
+total delivery time: 6.0 day(s), delay: 0.0 day(s), time over 2x net delivery: 0 day(s)
+=> cost: None
+------------------------------------------------------------------------------------------------
+Car 132
+------------------------------------------------------------------------------------------------
+origin: GER01PLANT, available at 2024-03-14 00:00:00
+(2): GER01PLANT -> GER02TERM, departure: 2024-03-16 00:00:00, arrival: 2024-03-18 00:00:00
+(6): GER02TERM -> ITA01DEAL, departure: 2024-03-19 00:00:00, arrival: 2024-03-20 00:00:00
+destination: ITA01DEAL, due at: 2024-03-20 00:00:00, net delivery time (reference): 6.0 day(s)
+total delivery time: 6.0 day(s), delay: 0.0 day(s), time over 2x net delivery: 0 day(s)
+=> cost: None
+------------------------------------------------------------------------------------------------
+Car 133
+------------------------------------------------------------------------------------------------
+origin: GER01PLANT, available at 2024-03-14 00:00:00
+(3): GER01PLANT -> GER02TERM, departure: 2024-03-14 00:00:00, arrival: 2024-03-17 00:00:00
+(6): GER02TERM -> ITA01DEAL, departure: 2024-03-20 00:00:00, arrival: 2024-03-21 00:00:00
+destination: ITA01DEAL, due at: -, net delivery time (reference): 6.0 day(s)
+total delivery time: 7.0 day(s), delay: 0 day(s), time over 2x net delivery: 0 day(s)
+=> cost: None
+------------------------------------------------------------------------------------------------
+Car 134
+------------------------------------------------------------------------------------------------
+origin: GER01PLANT, available at 2024-03-14 00:00:00
+(3): GER01PLANT -> GER02TERM, departure: 2024-03-14 00:00:00, arrival: 2024-03-17 00:00:00
+(6): GER02TERM -> ITA01DEAL, departure: 2024-03-20 00:00:00, arrival: 2024-03-21 00:00:00
+destination: ITA01DEAL, due at: -, net delivery time (reference): 6.0 day(s)
+total delivery time: 7.0 day(s), delay: 0 day(s), time over 2x net delivery: 0 day(s)
+=> cost: None
+------------------------------------------------------------------------------------------------
+Car 135
+------------------------------------------------------------------------------------------------
+origin: GER01PLANT, available at 2024-03-14 00:00:00
+(3): GER01PLANT -> GER02TERM, departure: 2024-03-14 00:00:00, arrival: 2024-03-17 00:00:00
+(6): GER02TERM -> ITA01DEAL, departure: 2024-03-20 00:00:00, arrival: 2024-03-21 00:00:00
+destination: ITA01DEAL, due at: -, net delivery time (reference): 6.0 day(s)
+total delivery time: 7.0 day(s), delay: 0 day(s), time over 2x net delivery: 0 day(s)
+=> cost: None
+------------------------------------------------------------------------------------------------
+Car 136
+------------------------------------------------------------------------------------------------
+origin: GER01PLANT, available at 2024-03-15 00:00:00
+(2): GER01PLANT -> GER02TERM, departure: 2024-03-22 00:00:00, arrival: 2024-03-24 00:00:00
+(6): GER02TERM -> ITA01DEAL, departure: 2024-03-26 00:00:00, arrival: 2024-03-27 00:00:00
+destination: ITA01DEAL, due at: -, net delivery time (reference): 5.0 day(s)
+total delivery time: 12.0 day(s), delay: 0 day(s), time over 2x net delivery: 0 day(s)
+=> cost: None
+------------------------------------------------------------------------------------------------
+Car 137
+------------------------------------------------------------------------------------------------
+origin: GER01PLANT, available at 2024-03-15 00:00:00
+(2): GER01PLANT -> GER02TERM, departure: 2024-03-22 00:00:00, arrival: 2024-03-24 00:00:00
+(6): GER02TERM -> ITA01DEAL, departure: 2024-03-26 00:00:00, arrival: 2024-03-27 00:00:00
+destination: ITA01DEAL, due at: -, net delivery time (reference): 5.0 day(s)
+total delivery time: 12.0 day(s), delay: 0 day(s), time over 2x net delivery: 0 day(s)
+=> cost: None
+------------------------------------------------------------------------------------------------
+Car 138
+------------------------------------------------------------------------------------------------
+origin: GER01PLANT, available at 2024-03-15 00:00:00
+(2): GER01PLANT -> GER02TERM, departure: 2024-03-22 00:00:00, arrival: 2024-03-24 00:00:00
+(6): GER02TERM -> ITA01DEAL, departure: 2024-03-26 00:00:00, arrival: 2024-03-27 00:00:00
+destination: ITA01DEAL, due at: -, net delivery time (reference): 5.0 day(s)
+total delivery time: 12.0 day(s), delay: 0 day(s), time over 2x net delivery: 0 day(s)
+=> cost: None
+------------------------------------------------------------------------------------------------
+Car 139
+------------------------------------------------------------------------------------------------
+origin: GER01PLANT, available at 2024-03-15 00:00:00
+(2): GER01PLANT -> GER02TERM, departure: 2024-03-16 00:00:00, arrival: 2024-03-18 00:00:00
+(6): GER02TERM -> ITA01DEAL, departure: 2024-03-19 00:00:00, arrival: 2024-03-20 00:00:00
+destination: ITA01DEAL, due at: 2024-03-19 00:00:00, net delivery time (reference): 5.0 day(s)
+total delivery time: 5.0 day(s), delay: 1.0 day(s), time over 2x net delivery: 0 day(s)
+=> cost: None
+------------------------------------------------------------------------------------------------
+Car 140
+------------------------------------------------------------------------------------------------
+origin: GER01PLANT, available at 2024-03-15 00:00:00
+(2): GER01PLANT -> GER02TERM, departure: 2024-03-19 00:00:00, arrival: 2024-03-21 00:00:00
+(6): GER02TERM -> ITA01DEAL, departure: 2024-03-22 00:00:00, arrival: 2024-03-23 00:00:00
+destination: ITA01DEAL, due at: 2024-03-20 00:00:00, net delivery time (reference): 5.0 day(s)
+total delivery time: 8.0 day(s), delay: 3.0 day(s), time over 2x net delivery: 0 day(s)
+=> cost: None
+------------------------------------------------------------------------------------------------
+Car 141
+------------------------------------------------------------------------------------------------
+origin: GER01PLANT, available at 2024-03-16 00:00:00
+(2): GER01PLANT -> GER02TERM, departure: 2024-03-20 00:00:00, arrival: 2024-03-22 00:00:00
+(6): GER02TERM -> ITA01DEAL, departure: 2024-03-23 00:00:00, arrival: 2024-03-24 00:00:00
+destination: ITA01DEAL, due at: 2024-03-21 00:00:00, net delivery time (reference): 4.0 day(s)
+total delivery time: 8.0 day(s), delay: 3.0 day(s), time over 2x net delivery: 0 day(s)
+=> cost: None
+------------------------------------------------------------------------------------------------
+Car 142
+------------------------------------------------------------------------------------------------
+origin: GER01PLANT, available at 2024-03-16 00:00:00
+(2): GER01PLANT -> GER02TERM, departure: 2024-03-20 00:00:00, arrival: 2024-03-22 00:00:00
+(6): GER02TERM -> ITA01DEAL, departure: 2024-03-23 00:00:00, arrival: 2024-03-24 00:00:00
+destination: ITA01DEAL, due at: 2024-03-21 00:00:00, net delivery time (reference): 4.0 day(s)
+total delivery time: 8.0 day(s), delay: 3.0 day(s), time over 2x net delivery: 0 day(s)
+=> cost: None
+------------------------------------------------------------------------------------------------
+Car 143
+------------------------------------------------------------------------------------------------
+origin: GER01PLANT, available at 2024-03-16 00:00:00
+(2): GER01PLANT -> GER02TERM, departure: 2024-03-20 00:00:00, arrival: 2024-03-22 00:00:00
+(6): GER02TERM -> ITA01DEAL, departure: 2024-03-23 00:00:00, arrival: 2024-03-24 00:00:00
+destination: ITA01DEAL, due at: 2024-03-22 00:00:00, net delivery time (reference): 4.0 day(s)
+total delivery time: 8.0 day(s), delay: 2.0 day(s), time over 2x net delivery: 0 day(s)
+=> cost: None
+------------------------------------------------------------------------------------------------
+Car 144
+------------------------------------------------------------------------------------------------
+origin: GER01PLANT, available at 2024-03-16 00:00:00
+(2): GER01PLANT -> GER02TERM, departure: 2024-03-20 00:00:00, arrival: 2024-03-22 00:00:00
+(6): GER02TERM -> ITA01DEAL, departure: 2024-03-23 00:00:00, arrival: 2024-03-24 00:00:00
+destination: ITA01DEAL, due at: 2024-03-21 00:00:00, net delivery time (reference): 4.0 day(s)
+total delivery time: 8.0 day(s), delay: 3.0 day(s), time over 2x net delivery: 0 day(s)
+=> cost: None
+------------------------------------------------------------------------------------------------
+Car 145
+------------------------------------------------------------------------------------------------
+origin: GER01PLANT, available at 2024-03-16 00:00:00
+(2): GER01PLANT -> GER02TERM, departure: 2024-03-20 00:00:00, arrival: 2024-03-22 00:00:00
+(6): GER02TERM -> ITA01DEAL, departure: 2024-03-23 00:00:00, arrival: 2024-03-24 00:00:00
+destination: ITA01DEAL, due at: 2024-03-21 00:00:00, net delivery time (reference): 4.0 day(s)
+total delivery time: 8.0 day(s), delay: 3.0 day(s), time over 2x net delivery: 0 day(s)
+=> cost: None
+------------------------------------------------------------------------------------------------
+Car 146
+------------------------------------------------------------------------------------------------
+origin: GER01PLANT, available at 2024-03-12 00:00:00
+(3): GER01PLANT -> GER02TERM, departure: 2024-03-14 00:00:00, arrival: 2024-03-17 00:00:00
+(6): GER02TERM -> ITA01DEAL, departure: 2024-03-20 00:00:00, arrival: 2024-03-21 00:00:00
+destination: ITA01DEAL, due at: -, net delivery time (reference): 4.0 day(s)
+total delivery time: 9.0 day(s), delay: 0 day(s), time over 2x net delivery: 0 day(s)
+=> cost: None
+------------------------------------------------------------------------------------------------
+Car 147
+------------------------------------------------------------------------------------------------
+origin: GER01PLANT, available at 2024-03-12 00:00:00
+(2): GER01PLANT -> GER02TERM, departure: 2024-03-12 00:00:00, arrival: 2024-03-14 00:00:00
+(6): GER02TERM -> ITA01DEAL, departure: 2024-03-15 00:00:00, arrival: 2024-03-16 00:00:00
+destination: ITA01DEAL, due at: 2024-03-17 00:00:00, net delivery time (reference): 4.0 day(s)
+total delivery time: 4.0 day(s), delay: -1.0 day(s), time over 2x net delivery: 0 day(s)
+=> cost: None
+------------------------------------------------------------------------------------------------
+Car 148
+------------------------------------------------------------------------------------------------
+origin: GER01PLANT, available at 2024-03-12 00:00:00
+(2): GER01PLANT -> GER02TERM, departure: 2024-03-12 00:00:00, arrival: 2024-03-14 00:00:00
+(6): GER02TERM -> ITA01DEAL, departure: 2024-03-15 00:00:00, arrival: 2024-03-16 00:00:00
+destination: ITA01DEAL, due at: 2024-03-16 00:00:00, net delivery time (reference): 4.0 day(s)
+total delivery time: 4.0 day(s), delay: 0.0 day(s), time over 2x net delivery: 0 day(s)
+=> cost: None
+------------------------------------------------------------------------------------------------
+Car 149
+------------------------------------------------------------------------------------------------
+origin: GER01PLANT, available at 2024-03-12 00:00:00
+(3): GER01PLANT -> GER02TERM, departure: 2024-03-14 00:00:00, arrival: 2024-03-17 00:00:00
+(6): GER02TERM -> ITA01DEAL, departure: 2024-03-20 00:00:00, arrival: 2024-03-21 00:00:00
+destination: ITA01DEAL, due at: -, net delivery time (reference): 4.0 day(s)
+total delivery time: 9.0 day(s), delay: 0 day(s), time over 2x net delivery: 0 day(s)
+=> cost: None
+------------------------------------------------------------------------------------------------
+Car 150
+------------------------------------------------------------------------------------------------
+origin: GER01PLANT, available at 2024-03-12 00:00:00
+(2): GER01PLANT -> GER02TERM, departure: 2024-03-12 00:00:00, arrival: 2024-03-14 00:00:00
+(6): GER02TERM -> ITA01DEAL, departure: 2024-03-15 00:00:00, arrival: 2024-03-16 00:00:00
+destination: ITA01DEAL, due at: 2024-03-16 00:00:00, net delivery time (reference): 4.0 day(s)
+total delivery time: 4.0 day(s), delay: 0.0 day(s), time over 2x net delivery: 0 day(s)
+=> cost: None
+------------------------------------------------------------------------------------------------
+Car 151
+------------------------------------------------------------------------------------------------
+origin: GER01PLANT, available at 2024-03-13 00:00:00
+(3): GER01PLANT -> GER02TERM, departure: 2024-03-14 00:00:00, arrival: 2024-03-17 00:00:00
+(6): GER02TERM -> ITA01DEAL, departure: 2024-03-20 00:00:00, arrival: 2024-03-21 00:00:00
+destination: ITA01DEAL, due at: -, net delivery time (reference): 4.0 day(s)
+total delivery time: 8.0 day(s), delay: 0 day(s), time over 2x net delivery: 0 day(s)
+=> cost: None
+------------------------------------------------------------------------------------------------
+Car 152
+------------------------------------------------------------------------------------------------
+origin: GER01PLANT, available at 2024-03-13 00:00:00
+(2): GER01PLANT -> GER02TERM, departure: 2024-03-13 00:00:00, arrival: 2024-03-15 00:00:00
+(6): GER02TERM -> ITA01DEAL, departure: 2024-03-16 00:00:00, arrival: 2024-03-17 00:00:00
+destination: ITA01DEAL, due at: 2024-03-17 00:00:00, net delivery time (reference): 4.0 day(s)
+total delivery time: 4.0 day(s), delay: 0.0 day(s), time over 2x net delivery: 0 day(s)
+=> cost: None
+------------------------------------------------------------------------------------------------
+Car 153
+------------------------------------------------------------------------------------------------
+origin: GER01PLANT, available at 2024-03-13 00:00:00
+(3): GER01PLANT -> GER02TERM, departure: 2024-03-14 00:00:00, arrival: 2024-03-17 00:00:00
+(6): GER02TERM -> ITA01DEAL, departure: 2024-03-20 00:00:00, arrival: 2024-03-21 00:00:00
+destination: ITA01DEAL, due at: -, net delivery time (reference): 4.0 day(s)
+total delivery time: 8.0 day(s), delay: 0 day(s), time over 2x net delivery: 0 day(s)
+=> cost: None
+------------------------------------------------------------------------------------------------
+Car 154
+------------------------------------------------------------------------------------------------
+origin: GER01PLANT, available at 2024-03-13 00:00:00
+(2): GER01PLANT -> GER02TERM, departure: 2024-03-15 00:00:00, arrival: 2024-03-17 00:00:00
+(6): GER02TERM -> ITA01DEAL, departure: 2024-03-19 00:00:00, arrival: 2024-03-20 00:00:00
+destination: ITA01DEAL, due at: 2024-03-19 00:00:00, net delivery time (reference): 4.0 day(s)
+total delivery time: 7.0 day(s), delay: 1.0 day(s), time over 2x net delivery: 0 day(s)
+=> cost: None
+------------------------------------------------------------------------------------------------
+Car 155
+------------------------------------------------------------------------------------------------
+origin: GER01PLANT, available at 2024-03-13 00:00:00
+(3): GER01PLANT -> GER02TERM, departure: 2024-03-14 00:00:00, arrival: 2024-03-17 00:00:00
+(6): GER02TERM -> ITA01DEAL, departure: 2024-03-20 00:00:00, arrival: 2024-03-21 00:00:00
+destination: ITA01DEAL, due at: -, net delivery time (reference): 4.0 day(s)
+total delivery time: 8.0 day(s), delay: 0 day(s), time over 2x net delivery: 0 day(s)
+=> cost: None
+------------------------------------------------------------------------------------------------
+Car 156
+------------------------------------------------------------------------------------------------
+origin: GER01PLANT, available at 2024-03-14 00:00:00
+(3): GER01PLANT -> GER02TERM, departure: 2024-03-14 00:00:00, arrival: 2024-03-17 00:00:00
+(6): GER02TERM -> ITA01DEAL, departure: 2024-03-20 00:00:00, arrival: 2024-03-21 00:00:00
+destination: ITA01DEAL, due at: -, net delivery time (reference): 6.0 day(s)
+total delivery time: 7.0 day(s), delay: 0 day(s), time over 2x net delivery: 0 day(s)
+=> cost: None
+------------------------------------------------------------------------------------------------
+Car 157
+------------------------------------------------------------------------------------------------
+origin: GER01PLANT, available at 2024-03-14 00:00:00
+(3): GER01PLANT -> GER02TERM, departure: 2024-03-14 00:00:00, arrival: 2024-03-17 00:00:00
+(6): GER02TERM -> ITA01DEAL, departure: 2024-03-20 00:00:00, arrival: 2024-03-21 00:00:00
+destination: ITA01DEAL, due at: -, net delivery time (reference): 6.0 day(s)
+total delivery time: 7.0 day(s), delay: 0 day(s), time over 2x net delivery: 0 day(s)
+=> cost: None
+------------------------------------------------------------------------------------------------
+Car 158
+------------------------------------------------------------------------------------------------
+origin: GER01PLANT, available at 2024-03-14 00:00:00
+(3): GER01PLANT -> GER02TERM, departure: 2024-03-14 00:00:00, arrival: 2024-03-17 00:00:00
+(6): GER02TERM -> ITA01DEAL, departure: 2024-03-19 00:00:00, arrival: 2024-03-20 00:00:00
+destination: ITA01DEAL, due at: 2024-03-20 00:00:00, net delivery time (reference): 6.0 day(s)
+total delivery time: 6.0 day(s), delay: 0.0 day(s), time over 2x net delivery: 0 day(s)
+=> cost: None
+------------------------------------------------------------------------------------------------
+Car 159
+------------------------------------------------------------------------------------------------
+origin: GER01PLANT, available at 2024-03-14 00:00:00
+(3): GER01PLANT -> GER02TERM, departure: 2024-03-14 00:00:00, arrival: 2024-03-17 00:00:00
+(6): GER02TERM -> ITA01DEAL, departure: 2024-03-19 00:00:00, arrival: 2024-03-20 00:00:00
+destination: ITA01DEAL, due at: 2024-03-20 00:00:00, net delivery time (reference): 6.0 day(s)
+total delivery time: 6.0 day(s), delay: 0.0 day(s), time over 2x net delivery: 0 day(s)
+=> cost: None
+------------------------------------------------------------------------------------------------
+Car 160
+------------------------------------------------------------------------------------------------
+origin: GER01PLANT, available at 2024-03-14 00:00:00
+(2): GER01PLANT -> GER02TERM, departure: 2024-03-15 00:00:00, arrival: 2024-03-17 00:00:00
+(6): GER02TERM -> ITA01DEAL, departure: 2024-03-19 00:00:00, arrival: 2024-03-20 00:00:00
+destination: ITA01DEAL, due at: 2024-03-18 00:00:00, net delivery time (reference): 6.0 day(s)
+total delivery time: 6.0 day(s), delay: 2.0 day(s), time over 2x net delivery: 0 day(s)
+=> cost: None
+------------------------------------------------------------------------------------------------
+Car 161
+------------------------------------------------------------------------------------------------
+origin: GER01PLANT, available at 2024-03-15 00:00:00
+(2): GER01PLANT -> GER02TERM, departure: 2024-03-19 00:00:00, arrival: 2024-03-21 00:00:00
+(6): GER02TERM -> ITA01DEAL, departure: 2024-03-22 00:00:00, arrival: 2024-03-23 00:00:00
+destination: ITA01DEAL, due at: 2024-03-21 00:00:00, net delivery time (reference): 5.0 day(s)
+total delivery time: 8.0 day(s), delay: 2.0 day(s), time over 2x net delivery: 0 day(s)
+=> cost: None
+------------------------------------------------------------------------------------------------
+Car 162
+------------------------------------------------------------------------------------------------
+origin: GER01PLANT, available at 2024-03-15 00:00:00
+(2): GER01PLANT -> GER02TERM, departure: 2024-03-22 00:00:00, arrival: 2024-03-24 00:00:00
+(6): GER02TERM -> ITA01DEAL, departure: 2024-03-26 00:00:00, arrival: 2024-03-27 00:00:00
+destination: ITA01DEAL, due at: -, net delivery time (reference): 5.0 day(s)
+total delivery time: 12.0 day(s), delay: 0 day(s), time over 2x net delivery: 0 day(s)
+=> cost: None
+------------------------------------------------------------------------------------------------
+Car 163
+------------------------------------------------------------------------------------------------
+origin: GER01PLANT, available at 2024-03-15 00:00:00
+(2): GER01PLANT -> GER02TERM, departure: 2024-03-19 00:00:00, arrival: 2024-03-21 00:00:00
+(6): GER02TERM -> ITA01DEAL, departure: 2024-03-22 00:00:00, arrival: 2024-03-23 00:00:00
+destination: ITA01DEAL, due at: 2024-03-20 00:00:00, net delivery time (reference): 5.0 day(s)
+total delivery time: 8.0 day(s), delay: 3.0 day(s), time over 2x net delivery: 0 day(s)
+=> cost: None
+------------------------------------------------------------------------------------------------
+Car 164
+------------------------------------------------------------------------------------------------
+origin: GER01PLANT, available at 2024-03-15 00:00:00
+(2): GER01PLANT -> GER02TERM, departure: 2024-03-19 00:00:00, arrival: 2024-03-21 00:00:00
+(6): GER02TERM -> ITA01DEAL, departure: 2024-03-22 00:00:00, arrival: 2024-03-23 00:00:00
+destination: ITA01DEAL, due at: 2024-03-20 00:00:00, net delivery time (reference): 5.0 day(s)
+total delivery time: 8.0 day(s), delay: 3.0 day(s), time over 2x net delivery: 0 day(s)
+=> cost: None
+------------------------------------------------------------------------------------------------
+Car 165
+------------------------------------------------------------------------------------------------
+origin: GER01PLANT, available at 2024-03-15 00:00:00
+(2): GER01PLANT -> GER02TERM, departure: 2024-03-22 00:00:00, arrival: 2024-03-24 00:00:00
+(6): GER02TERM -> ITA01DEAL, departure: 2024-03-26 00:00:00, arrival: 2024-03-27 00:00:00
+destination: ITA01DEAL, due at: -, net delivery time (reference): 5.0 day(s)
+total delivery time: 12.0 day(s), delay: 0 day(s), time over 2x net delivery: 0 day(s)
+=> cost: None
+------------------------------------------------------------------------------------------------
+Car 166
+------------------------------------------------------------------------------------------------
+origin: GER01PLANT, available at 2024-03-16 00:00:00
+(2): GER01PLANT -> GER02TERM, departure: 2024-03-23 00:00:00, arrival: 2024-03-25 00:00:00
+(6): GER02TERM -> ITA01DEAL, departure: 2024-03-26 00:00:00, arrival: 2024-03-27 00:00:00
+destination: ITA01DEAL, due at: -, net delivery time (reference): 4.0 day(s)
+total delivery time: 11.0 day(s), delay: 0 day(s), time over 2x net delivery: 0 day(s)
+=> cost: None
+------------------------------------------------------------------------------------------------
+Car 167
+------------------------------------------------------------------------------------------------
+origin: GER01PLANT, available at 2024-03-16 00:00:00
+(2): GER01PLANT -> GER02TERM, departure: 2024-03-23 00:00:00, arrival: 2024-03-25 00:00:00
+(6): GER02TERM -> ITA01DEAL, departure: 2024-03-26 00:00:00, arrival: 2024-03-27 00:00:00
+destination: ITA01DEAL, due at: -, net delivery time (reference): 4.0 day(s)
+total delivery time: 11.0 day(s), delay: 0 day(s), time over 2x net delivery: 0 day(s)
+=> cost: None
+------------------------------------------------------------------------------------------------
+Car 168
+------------------------------------------------------------------------------------------------
+origin: GER01PLANT, available at 2024-03-16 00:00:00
+(2): GER01PLANT -> GER02TERM, departure: 2024-03-23 00:00:00, arrival: 2024-03-25 00:00:00
+(6): GER02TERM -> ITA01DEAL, departure: 2024-03-26 00:00:00, arrival: 2024-03-27 00:00:00
+destination: ITA01DEAL, due at: -, net delivery time (reference): 4.0 day(s)
+total delivery time: 11.0 day(s), delay: 0 day(s), time over 2x net delivery: 0 day(s)
+=> cost: None
+------------------------------------------------------------------------------------------------
+Car 169
+------------------------------------------------------------------------------------------------
+origin: GER01PLANT, available at 2024-03-16 00:00:00
+(2): GER01PLANT -> GER02TERM, departure: 2024-03-19 00:00:00, arrival: 2024-03-21 00:00:00
+(6): GER02TERM -> ITA01DEAL, departure: 2024-03-22 00:00:00, arrival: 2024-03-23 00:00:00
+destination: ITA01DEAL, due at: 2024-03-20 00:00:00, net delivery time (reference): 4.0 day(s)
+total delivery time: 7.0 day(s), delay: 3.0 day(s), time over 2x net delivery: 0 day(s)
+=> cost: None
+------------------------------------------------------------------------------------------------
+Car 170
+------------------------------------------------------------------------------------------------
+origin: GER01PLANT, available at 2024-03-16 00:00:00
+(2): GER01PLANT -> GER02TERM, departure: 2024-03-23 00:00:00, arrival: 2024-03-25 00:00:00
+(6): GER02TERM -> ITA01DEAL, departure: 2024-03-26 00:00:00, arrival: 2024-03-27 00:00:00
+destination: ITA01DEAL, due at: -, net delivery time (reference): 4.0 day(s)
+total delivery time: 11.0 day(s), delay: 0 day(s), time over 2x net delivery: 0 day(s)
+=> cost: None
+------------------------------------------------------------------------------------------------
+Car 171
+------------------------------------------------------------------------------------------------
+origin: GER01PLANT, available at 2024-03-12 00:00:00
+(3): GER01PLANT -> GER02TERM, departure: 2024-03-14 00:00:00, arrival: 2024-03-17 00:00:00
+(7): GER02TERM -> FRA01DEAL, departure: 2024-03-20 00:00:00, arrival: 2024-03-22 00:00:00
+destination: FRA01DEAL, due at: -, net delivery time (reference): 5.0 day(s)
+total delivery time: 10.0 day(s), delay: 0 day(s), time over 2x net delivery: 0 day(s)
+=> cost: None
+------------------------------------------------------------------------------------------------
+Car 172
+------------------------------------------------------------------------------------------------
+origin: GER01PLANT, available at 2024-03-12 00:00:00
+(2): GER01PLANT -> GER02TERM, departure: 2024-03-12 00:00:00, arrival: 2024-03-14 00:00:00
+(7): GER02TERM -> FRA01DEAL, departure: 2024-03-15 00:00:00, arrival: 2024-03-17 00:00:00
+destination: FRA01DEAL, due at: 2024-03-16 00:00:00, net delivery time (reference): 5.0 day(s)
+total delivery time: 5.0 day(s), delay: 1.0 day(s), time over 2x net delivery: 0 day(s)
+=> cost: None
+------------------------------------------------------------------------------------------------
+Car 173
+------------------------------------------------------------------------------------------------
+origin: GER01PLANT, available at 2024-03-12 00:00:00
+(2): GER01PLANT -> GER02TERM, departure: 2024-03-12 00:00:00, arrival: 2024-03-14 00:00:00
+(7): GER02TERM -> FRA01DEAL, departure: 2024-03-15 00:00:00, arrival: 2024-03-17 00:00:00
+destination: FRA01DEAL, due at: 2024-03-17 00:00:00, net delivery time (reference): 5.0 day(s)
+total delivery time: 5.0 day(s), delay: 0.0 day(s), time over 2x net delivery: 0 day(s)
+=> cost: None
+------------------------------------------------------------------------------------------------
+Car 174
+------------------------------------------------------------------------------------------------
+origin: GER01PLANT, available at 2024-03-12 00:00:00
+(3): GER01PLANT -> GER02TERM, departure: 2024-03-14 00:00:00, arrival: 2024-03-17 00:00:00
+(7): GER02TERM -> FRA01DEAL, departure: 2024-03-20 00:00:00, arrival: 2024-03-22 00:00:00
+destination: FRA01DEAL, due at: -, net delivery time (reference): 5.0 day(s)
+total delivery time: 10.0 day(s), delay: 0 day(s), time over 2x net delivery: 0 day(s)
+=> cost: None
+------------------------------------------------------------------------------------------------
+Car 175
+------------------------------------------------------------------------------------------------
+origin: GER01PLANT, available at 2024-03-12 00:00:00
+(3): GER01PLANT -> GER02TERM, departure: 2024-03-14 00:00:00, arrival: 2024-03-17 00:00:00
+(7): GER02TERM -> FRA01DEAL, departure: 2024-03-20 00:00:00, arrival: 2024-03-22 00:00:00
+destination: FRA01DEAL, due at: -, net delivery time (reference): 5.0 day(s)
+total delivery time: 10.0 day(s), delay: 0 day(s), time over 2x net delivery: 0 day(s)
+=> cost: None
+------------------------------------------------------------------------------------------------
+Car 176
+------------------------------------------------------------------------------------------------
+origin: GER01PLANT, available at 2024-03-13 00:00:00
+(2): GER01PLANT -> GER02TERM, departure: 2024-03-13 00:00:00, arrival: 2024-03-15 00:00:00
+(7): GER02TERM -> FRA01DEAL, departure: 2024-03-16 00:00:00, arrival: 2024-03-18 00:00:00
+destination: FRA01DEAL, due at: 2024-03-18 00:00:00, net delivery time (reference): 5.0 day(s)
+total delivery time: 5.0 day(s), delay: 0.0 day(s), time over 2x net delivery: 0 day(s)
+=> cost: None
+------------------------------------------------------------------------------------------------
+Car 177
+------------------------------------------------------------------------------------------------
+origin: GER01PLANT, available at 2024-03-13 00:00:00
+(2): GER01PLANT -> GER02TERM, departure: 2024-03-13 00:00:00, arrival: 2024-03-15 00:00:00
+(7): GER02TERM -> FRA01DEAL, departure: 2024-03-16 00:00:00, arrival: 2024-03-18 00:00:00
+destination: FRA01DEAL, due at: 2024-03-18 00:00:00, net delivery time (reference): 5.0 day(s)
+total delivery time: 5.0 day(s), delay: 0.0 day(s), time over 2x net delivery: 0 day(s)
+=> cost: None
+------------------------------------------------------------------------------------------------
+Car 178
+------------------------------------------------------------------------------------------------
+origin: GER01PLANT, available at 2024-03-13 00:00:00
+(3): GER01PLANT -> GER02TERM, departure: 2024-03-14 00:00:00, arrival: 2024-03-17 00:00:00
+(7): GER02TERM -> FRA01DEAL, departure: 2024-03-20 00:00:00, arrival: 2024-03-22 00:00:00
+destination: FRA01DEAL, due at: -, net delivery time (reference): 5.0 day(s)
+total delivery time: 9.0 day(s), delay: 0 day(s), time over 2x net delivery: 0 day(s)
+=> cost: None
+------------------------------------------------------------------------------------------------
+Car 179
+------------------------------------------------------------------------------------------------
+origin: GER01PLANT, available at 2024-03-13 00:00:00
+(3): GER01PLANT -> GER02TERM, departure: 2024-03-14 00:00:00, arrival: 2024-03-17 00:00:00
+(7): GER02TERM -> FRA01DEAL, departure: 2024-03-20 00:00:00, arrival: 2024-03-22 00:00:00
+destination: FRA01DEAL, due at: -, net delivery time (reference): 5.0 day(s)
+total delivery time: 9.0 day(s), delay: 0 day(s), time over 2x net delivery: 0 day(s)
+=> cost: None
+------------------------------------------------------------------------------------------------
+Car 180
+------------------------------------------------------------------------------------------------
+origin: GER01PLANT, available at 2024-03-13 00:00:00
+(2): GER01PLANT -> GER02TERM, departure: 2024-03-13 00:00:00, arrival: 2024-03-15 00:00:00
+(7): GER02TERM -> FRA01DEAL, departure: 2024-03-16 00:00:00, arrival: 2024-03-18 00:00:00
+destination: FRA01DEAL, due at: 2024-03-17 00:00:00, net delivery time (reference): 5.0 day(s)
+total delivery time: 5.0 day(s), delay: 1.0 day(s), time over 2x net delivery: 0 day(s)
+=> cost: None
+------------------------------------------------------------------------------------------------
+Car 181
+------------------------------------------------------------------------------------------------
+origin: GER01PLANT, available at 2024-03-14 00:00:00
+(3): GER01PLANT -> GER02TERM, departure: 2024-03-14 00:00:00, arrival: 2024-03-17 00:00:00
+(7): GER02TERM -> FRA01DEAL, departure: 2024-03-20 00:00:00, arrival: 2024-03-22 00:00:00
+destination: FRA01DEAL, due at: -, net delivery time (reference): 7.0 day(s)
+total delivery time: 8.0 day(s), delay: 0 day(s), time over 2x net delivery: 0 day(s)
+=> cost: None
+------------------------------------------------------------------------------------------------
+Car 182
+------------------------------------------------------------------------------------------------
+origin: GER01PLANT, available at 2024-03-14 00:00:00
+(2): GER01PLANT -> GER02TERM, departure: 2024-03-15 00:00:00, arrival: 2024-03-17 00:00:00
+(7): GER02TERM -> FRA01DEAL, departure: 2024-03-19 00:00:00, arrival: 2024-03-21 00:00:00
+destination: FRA01DEAL, due at: 2024-03-19 00:00:00, net delivery time (reference): 7.0 day(s)
+total delivery time: 7.0 day(s), delay: 2.0 day(s), time over 2x net delivery: 0 day(s)
+=> cost: None
+------------------------------------------------------------------------------------------------
+Car 183
+------------------------------------------------------------------------------------------------
+origin: GER01PLANT, available at 2024-03-14 00:00:00
+(2): GER01PLANT -> GER02TERM, departure: 2024-03-15 00:00:00, arrival: 2024-03-17 00:00:00
+(7): GER02TERM -> FRA01DEAL, departure: 2024-03-19 00:00:00, arrival: 2024-03-21 00:00:00
+destination: FRA01DEAL, due at: 2024-03-19 00:00:00, net delivery time (reference): 7.0 day(s)
+total delivery time: 7.0 day(s), delay: 2.0 day(s), time over 2x net delivery: 0 day(s)
+=> cost: None
+------------------------------------------------------------------------------------------------
+Car 184
+------------------------------------------------------------------------------------------------
+origin: GER01PLANT, available at 2024-03-14 00:00:00
+(2): GER01PLANT -> GER02TERM, departure: 2024-03-16 00:00:00, arrival: 2024-03-18 00:00:00
+(7): GER02TERM -> FRA01DEAL, departure: 2024-03-19 00:00:00, arrival: 2024-03-21 00:00:00
+destination: FRA01DEAL, due at: 2024-03-19 00:00:00, net delivery time (reference): 7.0 day(s)
+total delivery time: 7.0 day(s), delay: 2.0 day(s), time over 2x net delivery: 0 day(s)
+=> cost: None
+------------------------------------------------------------------------------------------------
+Car 185
+------------------------------------------------------------------------------------------------
+origin: GER01PLANT, available at 2024-03-14 00:00:00
+(2): GER01PLANT -> GER02TERM, departure: 2024-03-15 00:00:00, arrival: 2024-03-17 00:00:00
+(7): GER02TERM -> FRA01DEAL, departure: 2024-03-19 00:00:00, arrival: 2024-03-21 00:00:00
+destination: FRA01DEAL, due at: 2024-03-18 00:00:00, net delivery time (reference): 7.0 day(s)
+total delivery time: 7.0 day(s), delay: 3.0 day(s), time over 2x net delivery: 0 day(s)
+=> cost: None
+------------------------------------------------------------------------------------------------
+Car 186
+------------------------------------------------------------------------------------------------
+origin: GER01PLANT, available at 2024-03-15 00:00:00
+(2): GER01PLANT -> GER02TERM, departure: 2024-03-22 00:00:00, arrival: 2024-03-24 00:00:00
+(7): GER02TERM -> FRA01DEAL, departure: 2024-03-26 00:00:00, arrival: 2024-03-28 00:00:00
+destination: FRA01DEAL, due at: -, net delivery time (reference): 6.0 day(s)
+total delivery time: 13.0 day(s), delay: 0 day(s), time over 2x net delivery: 0 day(s)
+=> cost: None
+------------------------------------------------------------------------------------------------
+Car 187
+------------------------------------------------------------------------------------------------
+origin: GER01PLANT, available at 2024-03-15 00:00:00
+(2): GER01PLANT -> GER02TERM, departure: 2024-03-22 00:00:00, arrival: 2024-03-24 00:00:00
+(7): GER02TERM -> FRA01DEAL, departure: 2024-03-26 00:00:00, arrival: 2024-03-28 00:00:00
+destination: FRA01DEAL, due at: -, net delivery time (reference): 6.0 day(s)
+total delivery time: 13.0 day(s), delay: 0 day(s), time over 2x net delivery: 0 day(s)
+=> cost: None
+------------------------------------------------------------------------------------------------
+Car 188
+------------------------------------------------------------------------------------------------
+origin: GER01PLANT, available at 2024-03-15 00:00:00
+(2): GER01PLANT -> GER02TERM, departure: 2024-03-16 00:00:00, arrival: 2024-03-18 00:00:00
+(7): GER02TERM -> FRA01DEAL, departure: 2024-03-19 00:00:00, arrival: 2024-03-21 00:00:00
+destination: FRA01DEAL, due at: 2024-03-19 00:00:00, net delivery time (reference): 6.0 day(s)
+total delivery time: 6.0 day(s), delay: 2.0 day(s), time over 2x net delivery: 0 day(s)
+=> cost: None
+------------------------------------------------------------------------------------------------
+Car 189
+------------------------------------------------------------------------------------------------
+origin: GER01PLANT, available at 2024-03-15 00:00:00
+(2): GER01PLANT -> GER02TERM, departure: 2024-03-19 00:00:00, arrival: 2024-03-21 00:00:00
+(7): GER02TERM -> FRA01DEAL, departure: 2024-03-22 00:00:00, arrival: 2024-03-24 00:00:00
+destination: FRA01DEAL, due at: 2024-03-21 00:00:00, net delivery time (reference): 6.0 day(s)
+total delivery time: 9.0 day(s), delay: 3.0 day(s), time over 2x net delivery: 0 day(s)
+=> cost: None
+------------------------------------------------------------------------------------------------
+Car 190
+------------------------------------------------------------------------------------------------
+origin: GER01PLANT, available at 2024-03-15 00:00:00
+(2): GER01PLANT -> GER02TERM, departure: 2024-03-22 00:00:00, arrival: 2024-03-24 00:00:00
+(7): GER02TERM -> FRA01DEAL, departure: 2024-03-26 00:00:00, arrival: 2024-03-28 00:00:00
+destination: FRA01DEAL, due at: -, net delivery time (reference): 6.0 day(s)
+total delivery time: 13.0 day(s), delay: 0 day(s), time over 2x net delivery: 0 day(s)
+=> cost: None
+------------------------------------------------------------------------------------------------
+Car 191
+------------------------------------------------------------------------------------------------
+origin: GER01PLANT, available at 2024-03-16 00:00:00
+(2): GER01PLANT -> GER02TERM, departure: 2024-03-20 00:00:00, arrival: 2024-03-22 00:00:00
+(7): GER02TERM -> FRA01DEAL, departure: 2024-03-23 00:00:00, arrival: 2024-03-25 00:00:00
+destination: FRA01DEAL, due at: 2024-03-21 00:00:00, net delivery time (reference): 5.0 day(s)
+total delivery time: 9.0 day(s), delay: 4.0 day(s), time over 2x net delivery: 0 day(s)
+=> cost: None
+------------------------------------------------------------------------------------------------
+Car 192
+------------------------------------------------------------------------------------------------
+origin: GER01PLANT, available at 2024-03-16 00:00:00
+(2): GER01PLANT -> GER02TERM, departure: 2024-03-20 00:00:00, arrival: 2024-03-22 00:00:00
+(7): GER02TERM -> FRA01DEAL, departure: 2024-03-23 00:00:00, arrival: 2024-03-25 00:00:00
+destination: FRA01DEAL, due at: 2024-03-21 00:00:00, net delivery time (reference): 5.0 day(s)
+total delivery time: 9.0 day(s), delay: 4.0 day(s), time over 2x net delivery: 0 day(s)
+=> cost: None
+------------------------------------------------------------------------------------------------
+Car 193
+------------------------------------------------------------------------------------------------
+origin: GER01PLANT, available at 2024-03-16 00:00:00
+(2): GER01PLANT -> GER02TERM, departure: 2024-03-23 00:00:00, arrival: 2024-03-25 00:00:00
+(7): GER02TERM -> FRA01DEAL, departure: 2024-03-26 00:00:00, arrival: 2024-03-28 00:00:00
+destination: FRA01DEAL, due at: -, net delivery time (reference): 5.0 day(s)
+total delivery time: 12.0 day(s), delay: 0 day(s), time over 2x net delivery: 0 day(s)
+=> cost: None
+------------------------------------------------------------------------------------------------
+Car 194
+------------------------------------------------------------------------------------------------
+origin: GER01PLANT, available at 2024-03-16 00:00:00
+(2): GER01PLANT -> GER02TERM, departure: 2024-03-20 00:00:00, arrival: 2024-03-22 00:00:00
+(7): GER02TERM -> FRA01DEAL, departure: 2024-03-23 00:00:00, arrival: 2024-03-25 00:00:00
+destination: FRA01DEAL, due at: 2024-03-22 00:00:00, net delivery time (reference): 5.0 day(s)
+total delivery time: 9.0 day(s), delay: 3.0 day(s), time over 2x net delivery: 0 day(s)
+=> cost: None
+------------------------------------------------------------------------------------------------
+Car 195
+------------------------------------------------------------------------------------------------
+origin: GER01PLANT, available at 2024-03-16 00:00:00
+(2): GER01PLANT -> GER02TERM, departure: 2024-03-20 00:00:00, arrival: 2024-03-22 00:00:00
+(7): GER02TERM -> FRA01DEAL, departure: 2024-03-23 00:00:00, arrival: 2024-03-25 00:00:00
+destination: FRA01DEAL, due at: 2024-03-21 00:00:00, net delivery time (reference): 5.0 day(s)
+total delivery time: 9.0 day(s), delay: 4.0 day(s), time over 2x net delivery: 0 day(s)
+=> cost: None
+------------------------------------------------------------------------------------------------
+Car 196
+------------------------------------------------------------------------------------------------
+origin: GER01PLANT, available at 2024-03-16 00:00:00
+(2): GER01PLANT -> GER02TERM, departure: 2024-03-23 00:00:00, arrival: 2024-03-25 00:00:00
+(7): GER02TERM -> FRA01DEAL, departure: 2024-03-26 00:00:00, arrival: 2024-03-28 00:00:00
+destination: FRA01DEAL, due at: -, net delivery time (reference): 5.0 day(s)
+total delivery time: 12.0 day(s), delay: 0 day(s), time over 2x net delivery: 0 day(s)
+=> cost: None
+------------------------------------------------------------------------------------------------
+Car 197
+------------------------------------------------------------------------------------------------
+origin: GER01PLANT, available at 2024-03-16 00:00:00
+(2): GER01PLANT -> GER02TERM, departure: 2024-03-19 00:00:00, arrival: 2024-03-21 00:00:00
+(7): GER02TERM -> FRA01DEAL, departure: 2024-03-22 00:00:00, arrival: 2024-03-24 00:00:00
+destination: FRA01DEAL, due at: 2024-03-20 00:00:00, net delivery time (reference): 5.0 day(s)
+total delivery time: 8.0 day(s), delay: 4.0 day(s), time over 2x net delivery: 0 day(s)
+=> cost: None
+------------------------------------------------------------------------------------------------
+Car 198
+------------------------------------------------------------------------------------------------
+origin: GER01PLANT, available at 2024-03-16 00:00:00
+(2): GER01PLANT -> GER02TERM, departure: 2024-03-19 00:00:00, arrival: 2024-03-21 00:00:00
+(7): GER02TERM -> FRA01DEAL, departure: 2024-03-22 00:00:00, arrival: 2024-03-24 00:00:00
+destination: FRA01DEAL, due at: 2024-03-20 00:00:00, net delivery time (reference): 5.0 day(s)
+total delivery time: 8.0 day(s), delay: 4.0 day(s), time over 2x net delivery: 0 day(s)
+=> cost: None
+------------------------------------------------------------------------------------------------
+Car 199
+------------------------------------------------------------------------------------------------
+origin: GER01PLANT, available at 2024-03-16 00:00:00
+(2): GER01PLANT -> GER02TERM, departure: 2024-03-20 00:00:00, arrival: 2024-03-22 00:00:00
+(7): GER02TERM -> FRA01DEAL, departure: 2024-03-23 00:00:00, arrival: 2024-03-25 00:00:00
+destination: FRA01DEAL, due at: 2024-03-22 00:00:00, net delivery time (reference): 5.0 day(s)
+total delivery time: 9.0 day(s), delay: 3.0 day(s), time over 2x net delivery: 0 day(s)
+=> cost: None
+------------------------------------------------------------------------------------------------
+Car 200
+------------------------------------------------------------------------------------------------
+origin: GER01PLANT, available at 2024-03-16 00:00:00
+(2): GER01PLANT -> GER02TERM, departure: 2024-03-20 00:00:00, arrival: 2024-03-22 00:00:00
+(7): GER02TERM -> FRA01DEAL, departure: 2024-03-23 00:00:00, arrival: 2024-03-25 00:00:00
+destination: FRA01DEAL, due at: 2024-03-22 00:00:00, net delivery time (reference): 5.0 day(s)
+total delivery time: 9.0 day(s), delay: 3.0 day(s), time over 2x net delivery: 0 day(s)
+=> cost: None
+------------------------------------------------------------------------------------------------
+Car 201
+------------------------------------------------------------------------------------------------
+origin: GER01PLANT, available at 2024-03-12 00:00:00
+(2): GER01PLANT -> GER02TERM, departure: 2024-03-12 00:00:00, arrival: 2024-03-14 00:00:00
+(7): GER02TERM -> FRA01DEAL, departure: 2024-03-15 00:00:00, arrival: 2024-03-17 00:00:00
+destination: FRA01DEAL, due at: 2024-03-18 00:00:00, net delivery time (reference): 5.0 day(s)
+total delivery time: 5.0 day(s), delay: -1.0 day(s), time over 2x net delivery: 0 day(s)
+=> cost: None
+------------------------------------------------------------------------------------------------
+Car 202
+------------------------------------------------------------------------------------------------
+origin: GER01PLANT, available at 2024-03-12 00:00:00
+(2): GER01PLANT -> GER02TERM, departure: 2024-03-12 00:00:00, arrival: 2024-03-14 00:00:00
+(7): GER02TERM -> FRA01DEAL, departure: 2024-03-15 00:00:00, arrival: 2024-03-17 00:00:00
+destination: FRA01DEAL, due at: 2024-03-16 00:00:00, net delivery time (reference): 5.0 day(s)
+total delivery time: 5.0 day(s), delay: 1.0 day(s), time over 2x net delivery: 0 day(s)
+=> cost: None
+------------------------------------------------------------------------------------------------
+Car 203
+------------------------------------------------------------------------------------------------
+origin: GER01PLANT, available at 2024-03-12 00:00:00
+(3): GER01PLANT -> GER02TERM, departure: 2024-03-14 00:00:00, arrival: 2024-03-17 00:00:00
+(7): GER02TERM -> FRA01DEAL, departure: 2024-03-20 00:00:00, arrival: 2024-03-22 00:00:00
+destination: FRA01DEAL, due at: -, net delivery time (reference): 5.0 day(s)
+total delivery time: 10.0 day(s), delay: 0 day(s), time over 2x net delivery: 0 day(s)
+=> cost: None
+------------------------------------------------------------------------------------------------
+Car 204
+------------------------------------------------------------------------------------------------
+origin: GER01PLANT, available at 2024-03-12 00:00:00
+(2): GER01PLANT -> GER02TERM, departure: 2024-03-12 00:00:00, arrival: 2024-03-14 00:00:00
+(7): GER02TERM -> FRA01DEAL, departure: 2024-03-15 00:00:00, arrival: 2024-03-17 00:00:00
+destination: FRA01DEAL, due at: 2024-03-17 00:00:00, net delivery time (reference): 5.0 day(s)
+total delivery time: 5.0 day(s), delay: 0.0 day(s), time over 2x net delivery: 0 day(s)
+=> cost: None
+------------------------------------------------------------------------------------------------
+Car 205
+------------------------------------------------------------------------------------------------
+origin: GER01PLANT, available at 2024-03-12 00:00:00
+(3): GER01PLANT -> GER02TERM, departure: 2024-03-14 00:00:00, arrival: 2024-03-17 00:00:00
+(7): GER02TERM -> FRA01DEAL, departure: 2024-03-20 00:00:00, arrival: 2024-03-22 00:00:00
+destination: FRA01DEAL, due at: -, net delivery time (reference): 5.0 day(s)
+total delivery time: 10.0 day(s), delay: 0 day(s), time over 2x net delivery: 0 day(s)
+=> cost: None
+------------------------------------------------------------------------------------------------
+Car 206
+------------------------------------------------------------------------------------------------
+origin: GER01PLANT, available at 2024-03-13 00:00:00
+(3): GER01PLANT -> GER02TERM, departure: 2024-03-14 00:00:00, arrival: 2024-03-17 00:00:00
+(7): GER02TERM -> FRA01DEAL, departure: 2024-03-20 00:00:00, arrival: 2024-03-22 00:00:00
+destination: FRA01DEAL, due at: -, net delivery time (reference): 5.0 day(s)
+total delivery time: 9.0 day(s), delay: 0 day(s), time over 2x net delivery: 0 day(s)
+=> cost: None
+------------------------------------------------------------------------------------------------
+Car 207
+------------------------------------------------------------------------------------------------
+origin: GER01PLANT, available at 2024-03-13 00:00:00
+(2): GER01PLANT -> GER02TERM, departure: 2024-03-15 00:00:00, arrival: 2024-03-17 00:00:00
+(7): GER02TERM -> FRA01DEAL, departure: 2024-03-19 00:00:00, arrival: 2024-03-21 00:00:00
+destination: FRA01DEAL, due at: 2024-03-19 00:00:00, net delivery time (reference): 5.0 day(s)
+total delivery time: 8.0 day(s), delay: 2.0 day(s), time over 2x net delivery: 0 day(s)
+=> cost: None
+------------------------------------------------------------------------------------------------
+Car 208
+------------------------------------------------------------------------------------------------
+origin: GER01PLANT, available at 2024-03-13 00:00:00
+(2): GER01PLANT -> GER02TERM, departure: 2024-03-13 00:00:00, arrival: 2024-03-15 00:00:00
+(7): GER02TERM -> FRA01DEAL, departure: 2024-03-16 00:00:00, arrival: 2024-03-18 00:00:00
+destination: FRA01DEAL, due at: 2024-03-18 00:00:00, net delivery time (reference): 5.0 day(s)
+total delivery time: 5.0 day(s), delay: 0.0 day(s), time over 2x net delivery: 0 day(s)
+=> cost: None
+------------------------------------------------------------------------------------------------
+Car 209
+------------------------------------------------------------------------------------------------
+origin: GER01PLANT, available at 2024-03-13 00:00:00
+(2): GER01PLANT -> GER02TERM, departure: 2024-03-13 00:00:00, arrival: 2024-03-15 00:00:00
+(7): GER02TERM -> FRA01DEAL, departure: 2024-03-16 00:00:00, arrival: 2024-03-18 00:00:00
+destination: FRA01DEAL, due at: 2024-03-18 00:00:00, net delivery time (reference): 5.0 day(s)
+total delivery time: 5.0 day(s), delay: 0.0 day(s), time over 2x net delivery: 0 day(s)
+=> cost: None
+------------------------------------------------------------------------------------------------
+Car 210
+------------------------------------------------------------------------------------------------
+origin: GER01PLANT, available at 2024-03-13 00:00:00
+(2): GER01PLANT -> GER02TERM, departure: 2024-03-13 00:00:00, arrival: 2024-03-15 00:00:00
+(7): GER02TERM -> FRA01DEAL, departure: 2024-03-16 00:00:00, arrival: 2024-03-18 00:00:00
+destination: FRA01DEAL, due at: 2024-03-17 00:00:00, net delivery time (reference): 5.0 day(s)
+total delivery time: 5.0 day(s), delay: 1.0 day(s), time over 2x net delivery: 0 day(s)
+=> cost: None
+------------------------------------------------------------------------------------------------
+Car 211
+------------------------------------------------------------------------------------------------
+origin: GER01PLANT, available at 2024-03-14 00:00:00
+(3): GER01PLANT -> GER02TERM, departure: 2024-03-14 00:00:00, arrival: 2024-03-17 00:00:00
+(7): GER02TERM -> FRA01DEAL, departure: 2024-03-19 00:00:00, arrival: 2024-03-21 00:00:00
+destination: FRA01DEAL, due at: 2024-03-20 00:00:00, net delivery time (reference): 7.0 day(s)
+total delivery time: 7.0 day(s), delay: 1.0 day(s), time over 2x net delivery: 0 day(s)
+=> cost: None
+------------------------------------------------------------------------------------------------
+Car 212
+------------------------------------------------------------------------------------------------
+origin: GER01PLANT, available at 2024-03-14 00:00:00
+(3): GER01PLANT -> GER02TERM, departure: 2024-03-14 00:00:00, arrival: 2024-03-17 00:00:00
+(7): GER02TERM -> FRA01DEAL, departure: 2024-03-20 00:00:00, arrival: 2024-03-22 00:00:00
+destination: FRA01DEAL, due at: -, net delivery time (reference): 7.0 day(s)
+total delivery time: 8.0 day(s), delay: 0 day(s), time over 2x net delivery: 0 day(s)
+=> cost: None
+------------------------------------------------------------------------------------------------
+Car 213
+------------------------------------------------------------------------------------------------
+origin: GER01PLANT, available at 2024-03-14 00:00:00
+(3): GER01PLANT -> GER02TERM, departure: 2024-03-14 00:00:00, arrival: 2024-03-17 00:00:00
+(7): GER02TERM -> FRA01DEAL, departure: 2024-03-21 00:00:00, arrival: 2024-03-23 00:00:00
+destination: FRA01DEAL, due at: -, net delivery time (reference): 7.0 day(s)
+total delivery time: 9.0 day(s), delay: 0 day(s), time over 2x net delivery: 0 day(s)
+=> cost: None
+------------------------------------------------------------------------------------------------
+Car 214
+------------------------------------------------------------------------------------------------
+origin: GER01PLANT, available at 2024-03-14 00:00:00
+(2): GER01PLANT -> GER02TERM, departure: 2024-03-16 00:00:00, arrival: 2024-03-18 00:00:00
+(7): GER02TERM -> FRA01DEAL, departure: 2024-03-19 00:00:00, arrival: 2024-03-21 00:00:00
+destination: FRA01DEAL, due at: 2024-03-19 00:00:00, net delivery time (reference): 7.0 day(s)
+total delivery time: 7.0 day(s), delay: 2.0 day(s), time over 2x net delivery: 0 day(s)
+=> cost: None
+------------------------------------------------------------------------------------------------
+Car 215
+------------------------------------------------------------------------------------------------
+origin: GER01PLANT, available at 2024-03-14 00:00:00
+(3): GER01PLANT -> GER02TERM, departure: 2024-03-14 00:00:00, arrival: 2024-03-17 00:00:00
+(7): GER02TERM -> FRA01DEAL, departure: 2024-03-21 00:00:00, arrival: 2024-03-23 00:00:00
+destination: FRA01DEAL, due at: -, net delivery time (reference): 7.0 day(s)
+total delivery time: 9.0 day(s), delay: 0 day(s), time over 2x net delivery: 0 day(s)
+=> cost: None
+------------------------------------------------------------------------------------------------
+Car 216
+------------------------------------------------------------------------------------------------
+origin: GER01PLANT, available at 2024-03-15 00:00:00
+(2): GER01PLANT -> GER02TERM, departure: 2024-03-19 00:00:00, arrival: 2024-03-21 00:00:00
+(7): GER02TERM -> FRA01DEAL, departure: 2024-03-22 00:00:00, arrival: 2024-03-24 00:00:00
+destination: FRA01DEAL, due at: 2024-03-20 00:00:00, net delivery time (reference): 6.0 day(s)
+total delivery time: 9.0 day(s), delay: 4.0 day(s), time over 2x net delivery: 0 day(s)
+=> cost: None
+------------------------------------------------------------------------------------------------
+Car 217
+------------------------------------------------------------------------------------------------
+origin: GER01PLANT, available at 2024-03-15 00:00:00
+(2): GER01PLANT -> GER02TERM, departure: 2024-03-19 00:00:00, arrival: 2024-03-21 00:00:00
+(7): GER02TERM -> FRA01DEAL, departure: 2024-03-22 00:00:00, arrival: 2024-03-24 00:00:00
+destination: FRA01DEAL, due at: 2024-03-20 00:00:00, net delivery time (reference): 6.0 day(s)
+total delivery time: 9.0 day(s), delay: 4.0 day(s), time over 2x net delivery: 0 day(s)
+=> cost: None
+------------------------------------------------------------------------------------------------
+Car 218
+------------------------------------------------------------------------------------------------
+origin: GER01PLANT, available at 2024-03-15 00:00:00
+(2): GER01PLANT -> GER02TERM, departure: 2024-03-20 00:00:00, arrival: 2024-03-22 00:00:00
+(7): GER02TERM -> FRA01DEAL, departure: 2024-03-23 00:00:00, arrival: 2024-03-25 00:00:00
+destination: FRA01DEAL, due at: 2024-03-21 00:00:00, net delivery time (reference): 6.0 day(s)
+total delivery time: 10.0 day(s), delay: 4.0 day(s), time over 2x net delivery: 0 day(s)
+=> cost: None
+------------------------------------------------------------------------------------------------
+Car 219
+------------------------------------------------------------------------------------------------
+origin: GER01PLANT, available at 2024-03-15 00:00:00
+(2): GER01PLANT -> GER02TERM, departure: 2024-03-16 00:00:00, arrival: 2024-03-18 00:00:00
+(7): GER02TERM -> FRA01DEAL, departure: 2024-03-19 00:00:00, arrival: 2024-03-21 00:00:00
+destination: FRA01DEAL, due at: 2024-03-19 00:00:00, net delivery time (reference): 6.0 day(s)
+total delivery time: 6.0 day(s), delay: 2.0 day(s), time over 2x net delivery: 0 day(s)
+=> cost: None
+------------------------------------------------------------------------------------------------
+Car 220
+------------------------------------------------------------------------------------------------
+origin: GER01PLANT, available at 2024-03-15 00:00:00
+(2): GER01PLANT -> GER02TERM, departure: 2024-03-16 00:00:00, arrival: 2024-03-18 00:00:00
+(7): GER02TERM -> FRA01DEAL, departure: 2024-03-19 00:00:00, arrival: 2024-03-21 00:00:00
+destination: FRA01DEAL, due at: 2024-03-19 00:00:00, net delivery time (reference): 6.0 day(s)
+total delivery time: 6.0 day(s), delay: 2.0 day(s), time over 2x net delivery: 0 day(s)
+=> cost: None
+------------------------------------------------------------------------------------------------
+Car 221
+------------------------------------------------------------------------------------------------
+origin: GER01PLANT, available at 2024-03-16 00:00:00
+(2): GER01PLANT -> GER02TERM, departure: 2024-03-23 00:00:00, arrival: 2024-03-25 00:00:00
+(7): GER02TERM -> FRA01DEAL, departure: 2024-03-26 00:00:00, arrival: 2024-03-28 00:00:00
+destination: FRA01DEAL, due at: -, net delivery time (reference): 5.0 day(s)
+total delivery time: 12.0 day(s), delay: 0 day(s), time over 2x net delivery: 0 day(s)
+=> cost: None
+------------------------------------------------------------------------------------------------
+Car 222
+------------------------------------------------------------------------------------------------
+origin: GER01PLANT, available at 2024-03-16 00:00:00
+(2): GER01PLANT -> GER02TERM, departure: 2024-03-20 00:00:00, arrival: 2024-03-22 00:00:00
+(7): GER02TERM -> FRA01DEAL, departure: 2024-03-23 00:00:00, arrival: 2024-03-25 00:00:00
+destination: FRA01DEAL, due at: 2024-03-21 00:00:00, net delivery time (reference): 5.0 day(s)
+total delivery time: 9.0 day(s), delay: 4.0 day(s), time over 2x net delivery: 0 day(s)
+=> cost: None
+------------------------------------------------------------------------------------------------
+Car 223
+------------------------------------------------------------------------------------------------
+origin: GER01PLANT, available at 2024-03-16 00:00:00
+(2): GER01PLANT -> GER02TERM, departure: 2024-03-23 00:00:00, arrival: 2024-03-25 00:00:00
+(7): GER02TERM -> FRA01DEAL, departure: 2024-03-26 00:00:00, arrival: 2024-03-28 00:00:00
+destination: FRA01DEAL, due at: -, net delivery time (reference): 5.0 day(s)
+total delivery time: 12.0 day(s), delay: 0 day(s), time over 2x net delivery: 0 day(s)
+=> cost: None
+------------------------------------------------------------------------------------------------
+Car 224
+------------------------------------------------------------------------------------------------
+origin: GER01PLANT, available at 2024-03-16 00:00:00
+(2): GER01PLANT -> GER02TERM, departure: 2024-03-19 00:00:00, arrival: 2024-03-21 00:00:00
+(7): GER02TERM -> FRA01DEAL, departure: 2024-03-22 00:00:00, arrival: 2024-03-24 00:00:00
+destination: FRA01DEAL, due at: 2024-03-20 00:00:00, net delivery time (reference): 5.0 day(s)
+total delivery time: 8.0 day(s), delay: 4.0 day(s), time over 2x net delivery: 0 day(s)
+=> cost: None
+------------------------------------------------------------------------------------------------
+Car 225
+------------------------------------------------------------------------------------------------
+origin: GER01PLANT, available at 2024-03-16 00:00:00
+(2): GER01PLANT -> GER02TERM, departure: 2024-03-23 00:00:00, arrival: 2024-03-25 00:00:00
+(7): GER02TERM -> FRA01DEAL, departure: 2024-03-26 00:00:00, arrival: 2024-03-28 00:00:00
+destination: FRA01DEAL, due at: -, net delivery time (reference): 5.0 day(s)
+total delivery time: 12.0 day(s), delay: 0 day(s), time over 2x net delivery: 0 day(s)
+=> cost: None
+------------------------------------------------------------------------------------------------
+Car 226
+------------------------------------------------------------------------------------------------
+origin: GER01PLANT, available at 2024-03-16 00:00:00
+(2): GER01PLANT -> GER02TERM, departure: 2024-03-20 00:00:00, arrival: 2024-03-22 00:00:00
+(7): GER02TERM -> FRA01DEAL, departure: 2024-03-23 00:00:00, arrival: 2024-03-25 00:00:00
+destination: FRA01DEAL, due at: 2024-03-21 00:00:00, net delivery time (reference): 5.0 day(s)
+total delivery time: 9.0 day(s), delay: 4.0 day(s), time over 2x net delivery: 0 day(s)
+=> cost: None
+------------------------------------------------------------------------------------------------
+Car 227
+------------------------------------------------------------------------------------------------
+origin: GER01PLANT, available at 2024-03-16 00:00:00
+(2): GER01PLANT -> GER02TERM, departure: 2024-03-23 00:00:00, arrival: 2024-03-25 00:00:00
+(7): GER02TERM -> FRA01DEAL, departure: 2024-03-26 00:00:00, arrival: 2024-03-28 00:00:00
+destination: FRA01DEAL, due at: -, net delivery time (reference): 5.0 day(s)
+total delivery time: 12.0 day(s), delay: 0 day(s), time over 2x net delivery: 0 day(s)
+=> cost: None
+------------------------------------------------------------------------------------------------
+Car 228
+------------------------------------------------------------------------------------------------
+origin: GER01PLANT, available at 2024-03-16 00:00:00
+(3): GER01PLANT -> GER02TERM, departure: 2024-03-21 00:00:00, arrival: 2024-03-24 00:00:00
+(7): GER02TERM -> FRA01DEAL, departure: 2024-03-26 00:00:00, arrival: 2024-03-28 00:00:00
+destination: FRA01DEAL, due at: -, net delivery time (reference): 5.0 day(s)
+total delivery time: 12.0 day(s), delay: 0 day(s), time over 2x net delivery: 0 day(s)
+=> cost: None
+------------------------------------------------------------------------------------------------
+Car 229
+------------------------------------------------------------------------------------------------
+origin: GER01PLANT, available at 2024-03-16 00:00:00
+(2): GER01PLANT -> GER02TERM, departure: 2024-03-19 00:00:00, arrival: 2024-03-21 00:00:00
+(7): GER02TERM -> FRA01DEAL, departure: 2024-03-22 00:00:00, arrival: 2024-03-24 00:00:00
+destination: FRA01DEAL, due at: 2024-03-20 00:00:00, net delivery time (reference): 5.0 day(s)
+total delivery time: 8.0 day(s), delay: 4.0 day(s), time over 2x net delivery: 0 day(s)
+=> cost: None
+------------------------------------------------------------------------------------------------
+Car 230
+------------------------------------------------------------------------------------------------
+origin: GER01PLANT, available at 2024-03-16 00:00:00
+(2): GER01PLANT -> GER02TERM, departure: 2024-03-19 00:00:00, arrival: 2024-03-21 00:00:00
+(7): GER02TERM -> FRA01DEAL, departure: 2024-03-22 00:00:00, arrival: 2024-03-24 00:00:00
+destination: FRA01DEAL, due at: 2024-03-20 00:00:00, net delivery time (reference): 5.0 day(s)
+total delivery time: 8.0 day(s), delay: 4.0 day(s), time over 2x net delivery: 0 day(s)
+=> cost: None
