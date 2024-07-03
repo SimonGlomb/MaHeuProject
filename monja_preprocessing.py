@@ -121,9 +121,10 @@ def construct_instance(dataframes):
 
 # ids of cars, for which it is impossible to be delivered in the given network
 def undeliverable(cars, paths, segments, eot):
-    return [id for id in a.keys() if assign_timeslots(cars[id], paths, segments, eot)[1] == None]
+    return [id for id in cars.keys() if assign_timeslots(cars[id], paths, segments, eot)[1] == None]
 
-
+def always_late(cars, paths, segments, eot):
+    return [id for id in cars.keys() if cars[id]['dueDate'] != "-" and assign_timeslots(cars[id], paths, segments, eot)[2] > cars[id]['dueDate']]
 
 
 
