@@ -1,23 +1,7 @@
-import math
 from datetime import timedelta
-
-
-# compute the costs induced by a single car
-def compute_car_costs(avlDate, dueDate, deliveryDate, referenceTime):
-    # case 1: car has no deadline -> 1 euro per day before arrival
-    if dueDate == "-":
-        arrival_day = deliveryDate.replace(hour=0, minute=0, second=0, microsecond=0) # only count time before arrival day
-        return math.ceil((arrival_day - avlDate).total_seconds()/(24*60*60)) # round UP to full days
-    
-    # case 2: car has a deadline -> componentwise costs:
-    cost = 0
-    if deliveryDate > dueDate:
-        cost = cost + 100 # single time delay penalty: 100 euro
-        cost = cost + 25*(math.ceil((deliveryDate-dueDate).total_seconds()/(24*60*60))) # delay penalty per day: 25 euro
-    if (deliveryDate-avlDate).total_seconds()/(60*60) > 2*referenceTime:
-        cost = cost + 5*(math.ceil(((deliveryDate - avlDate).total_seconds()/(60*60) - 2*referenceTime)/24)) # additional delay penalty per day (after 2*net transport time is exceeded): 5 euro
-
-    return cost
+from monja_preprocessing import get_all_dates
+from monja_utility import compute_car_costs
+import math
 
 # compute the value of the complete solution
 def compute_total_costs(cars):
@@ -79,7 +63,7 @@ def print_transport_usage(cars, segments):
 
     return
 
-# check wether the schedules of the given cars represent correct paths and respect time and capacity constraints
+# check whether the schedules of the given cars represent correct paths and respect time and capacity constraints
 def validate_assignments(cars, segments):
     valid = True
     # check path properties and timing constraints
@@ -130,3 +114,75 @@ def validate_assignments(cars, segments):
         print("all capacities are respected")
     return valid
 
+# for a given solution (set of cars) check: which are late, on time, not delivered, structurally impossible to deliver on time or at all (and whether they have due dates)
+def classify_arrivals(cars):
+    cars_with_dl = [id for id in cars.keys() if cars[id]['dueDate'] != "-"]
+    late_cars = [id for id in cars_with_dl if cars[id]['currentDelivery'] > cars[id]['dueDate']]
+    not_delivered_cars = [id for id in cars.keys() if cars[id]['assignedPath'] == None]
+    late_nd = [id for id in late_cars if cars[id]['assignedPath'] == None]
+    always_late = [id for id in cars_with_dl if cars[id]['costBound'] >= 125] # not really true
+    total = len(cars.keys())
+    print(f"Of {len(cars_with_dl)} cars with a due date {len(late_cars)} are late. For {len(always_late)} of the cars punctual delivery is impossible.")
+    print(f"In total {len(not_delivered_cars)} of the {total} cars are not delivered. {len(late_nd)} of which have due dates.")
+    not_penalty_free = [id for id in cars_with_dl if cars[id]['costBound'] > 0]
+    print(f"{len(not_penalty_free)} due cars are impossible to deliver cost free")
+    return cars_with_dl, late_cars, not_delivered_cars, late_nd, always_late
+
+# compute for how long a car has (unnecessarily) waited between transport segments
+# in addition: how many cars are waiting at a given time and position?
+def waiting_times(cars, paths, segments):
+    times = get_all_dates(cars, segments)
+    locations = []
+    for s in segments.keys():
+        if segments[s]['start'] not in locations:
+            locations.append(segments[s]['start'])
+        if segments[s]['end'] not in locations:
+            locations.append(segments[s]['end']) 
+
+    waiting_cars = {}
+    for c in cars.keys():
+        waiting_cars[c] = {}
+        if cars[c]['assignedPath'] == None:
+            waiting_cars[c][cars[c]['origin']] = (times[-1] - cars[c]['avlDate']).total_seconds()/(24*60*60)
+        else:
+            path_locations = [segments[s]['start'] for s in paths[cars[c]['assignedPath']]] # end location is omitted, because cars "disappear" from destinations
+            prev_avl = cars[c]['avlDate'] # track the earliest possible departure from current location
+            for l in range(len(path_locations)):
+                waiting_cars[c][path_locations[l]] = (cars[c]['schedule'][l][1] - prev_avl).total_seconds()/(24*60*60)
+                prev_avl = (cars[c]['schedule'][l][1] + timedelta(hours=segments[cars[c]['schedule'][l][0]]['duration']+24)).replace(hour=0, minute=0, second=0, microsecond=0) # forced waiting does not count
+
+    loc_usage = {} # -> init?
+
+    return waiting_cars, loc_usage
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+######################################################################################
+import pickle
+import parse_txt
+from monja_preprocessing import construct_instance
+
+instances = ["1","2a","2b","2c","3","4","5a","5b","6a","6b","6c","6d","6e","6f","6g",]
+for i in range(len(instances)):
+    df=parse_txt.parse_file(f"data\inst00{instances[i]}.txt")
+    a,b,c,d = construct_instance(df)
+    mapping = pickle.load(open(f"results\mapping_als_00{instances[i]}.txt", 'rb'))
+    wc, lu = waiting_times(mapping[0], b, c)
+    for c in a.keys():
+        print([wc[c][l] for l in wc[c].keys()])
+     #   print(wc[c])
+    break

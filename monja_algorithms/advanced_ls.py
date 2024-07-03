@@ -2,8 +2,8 @@
 # uses random greedy for the start solution
 
 from datetime import timedelta
-from monja_evaluation import compute_car_costs, compute_total_costs
-from monja_utility import earliest_timeslots_from_loc, random_greedy, random_solution
+from monja_evaluation import compute_total_costs
+from monja_utility import compute_car_costs, earliest_timeslots_from_loc, random_greedy, random_solution
 import time
 
 def advanced_local_search(cars, paths, segments, eot):

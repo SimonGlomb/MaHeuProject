@@ -1,7 +1,7 @@
 # simple local search approach: try to swap the paths of two cars with the same start and end location
 
-from monja_evaluation import compute_car_costs, compute_total_costs
-from monja_utility import random_greedy
+from monja_evaluation import compute_total_costs
+from monja_utility import compute_car_costs, random_greedy
 import time
 
 def local_search(cars, paths, segments, eot):

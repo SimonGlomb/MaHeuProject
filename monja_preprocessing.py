@@ -1,10 +1,9 @@
 import pandas as pd
 from datetime import datetime, timedelta
 import parse_txt
-from monja_evaluation import compute_car_costs
-from monja_utility import assign_timeslots
+from monja_utility import assign_timeslots, compute_car_costs
 
-# stolen from preprocessing.py to convert date-string into something to work with 
+# convert date-string into something to work with 
 def handle_dates(date_str):
     if date_str == "-":
         return date_str
@@ -18,6 +17,17 @@ def end_of_timeframe(segments):
     eot = max(arrivals)
     return eot
 
+# computes all dates of the time frame (not just those given in "timeslots") and returns them as an ordered list
+def get_all_dates(cars, segments):
+    earliest = min([cars[i]['avlDate'] for i in cars.keys()]) # earliest avl date of a car
+    latest = end_of_timeframe(segments) # latest arrival of a transport
+    dates = []
+    current = earliest
+    while current <= latest:
+        dates.append(current)
+        current += timedelta(days=1.0)
+    return dates
+
 # compute a very simple lower bound on the costs induced by the given car
 def simple_lower_bound(car, paths, segments, eot):
     # determine earliest possible delivery date
@@ -28,7 +38,6 @@ def simple_lower_bound(car, paths, segments, eot):
 def simple_upper_bound(car, end_timeframe):
     # costs if tha rar arrives at the last dat of the timeframe
     return compute_car_costs(car['avlDate'], car['dueDate'], end_timeframe, car['deliveryRef'])
-
 
 # transform the data from the dataframes of the file input into more intuitive structures
 # only keep the relevant information and precompute some relevant values
@@ -109,3 +118,21 @@ def construct_instance(dataframes):
         cars[id] = car
 
     return cars, paths, segments, eot
+
+# ids of cars, for which it is impossible to be delivered in the given network
+def undeliverable(cars, paths, segments, eot):
+    return [id for id in a.keys() if assign_timeslots(cars[id], paths, segments, eot)[1] == None]
+
+
+
+
+
+
+
+
+
+
+# instances = ["1","2a","2b","2c","3","4","5a","5b","6a","6b","6c","6d","6e","6f","6g",]
+# for i in range(len(instances)):
+#     df=parse_txt.parse_file(f"data\inst00{instances[i]}.txt")
+#     a,b,c,d = construct_instance(df)

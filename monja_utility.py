@@ -1,6 +1,24 @@
 from datetime import timedelta
 import random
-from monja_evaluation import compute_car_costs
+import math
+
+
+# compute the costs induced by a single car
+def compute_car_costs(avlDate, dueDate, deliveryDate, referenceTime):
+    # case 1: car has no deadline -> 1 euro per day before arrival
+    if dueDate == "-":
+        arrival_day = deliveryDate.replace(hour=0, minute=0, second=0, microsecond=0) # only count time before arrival day
+        return math.ceil((arrival_day - avlDate).total_seconds()/(24*60*60)) # round UP to full days
+    
+    # case 2: car has a deadline -> componentwise costs:
+    cost = 0
+    if deliveryDate > dueDate:
+        cost = cost + 100 # single time delay penalty: 100 euro
+        cost = cost + 25*(math.ceil((deliveryDate-dueDate).total_seconds()/(24*60*60))) # delay penalty per day: 25 euro
+    if (deliveryDate-avlDate).total_seconds()/(60*60) > 2*referenceTime:
+        cost = cost + 5*(math.ceil(((deliveryDate - avlDate).total_seconds()/(60*60) - 2*referenceTime)/24)) # additional delay penalty per day (after 2*net transport time is exceeded): 5 euro
+
+    return cost
 
 # find the earliest possible timeslots (and corresponding path) for a car
 def assign_timeslots(car, paths, segments, eot):
