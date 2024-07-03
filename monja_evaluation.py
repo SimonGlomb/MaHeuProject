@@ -174,7 +174,7 @@ def waiting_times(cars, paths, segments):
 ######################################################################################
 import pickle
 import parse_txt
-from monja_preprocessing import construct_instance
+from monja_preprocessing import construct_instance, always_late
 
 instances = ["1","2a","2b","2c","3","4","5a","5b","6a","6b","6c","6d","6e","6f","6g",]
 for i in range(len(instances)):
@@ -182,7 +182,7 @@ for i in range(len(instances)):
     a,b,c,d = construct_instance(df)
     mapping = pickle.load(open(f"results\mapping_als_00{instances[i]}.txt", 'rb'))
     wc, lu = waiting_times(mapping[0], b, c)
+    print(always_late(a,b,c,d), len(always_late(a,b,c,d)))
     for c in a.keys():
         print([wc[c][l] for l in wc[c].keys()])
-     #   print(wc[c])
     break
