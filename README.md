@@ -1,6 +1,17 @@
 # MaHeu Project
-## We implemented three Heuristics; one greedy and two variations of local search. The algorithms can be tested on any of the provided inputfiles by executing testscript.py.
-- depencies
+
+## depencies
+'''
+python 3.10.8
+pandas
+argparse
+datetime
+time
+math
+pickle
+matplotlib
+re
+'''
 - übersicht repo?
 - test der algorithmen
 - wo ergebnisse?
