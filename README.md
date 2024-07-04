@@ -1,7 +1,7 @@
 # MaHeu Project
 
 ## depencies
-'''
+'
 python 3.10.8
 pandas
 argparse
@@ -11,7 +11,7 @@ math
 pickle
 matplotlib
 re
-'''
+'
 - übersicht repo?
 - test der algorithmen
 - wo ergebnisse?
