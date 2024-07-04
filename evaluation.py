@@ -1,7 +1,8 @@
 from datetime import timedelta
-from monja_preprocessing import get_all_dates
-from monja_utility import compute_car_costs
+from preprocessing import get_all_dates
+from utility import compute_car_costs
 import math
+import matplotlib.pyplot as plt
 
 # compute the value of the complete solution
 def compute_total_costs(cars):
@@ -169,10 +170,23 @@ def waiting_times(cars, paths, segments):
     return times, cars_waittimes, loc_usage
 
 
+# plots the number of cars waiting at each location and time
+def plot_storage_use(usage, times, title):
+    # usage: mapping from locations to times and carlists -> transform
+    locations = usage.keys()
+    for l in locations: # draw one graph for each location
+        car_counts = [len(usage[l][t]) for t in times]
+        plt.step(times, car_counts, where='post', label=l)
+        plt.tight_layout()
+    plt.legend(title='location:')
+    plt.xticks(rotation=-20, ha='left')  
+    plt.savefig(f'{title}.png')
+    plt.close()
+    return
 
-
-
-
+# plot which timeslots are used how much for each segment
+def plot_capacity_usage():
+    return
 
 
 
@@ -187,14 +201,15 @@ def waiting_times(cars, paths, segments):
 ######################################################################################
 import pickle
 import parse_txt
-from monja_preprocessing import construct_instance, always_late
+from preprocessing import construct_instance, always_late
 
 instances = ["1","2a","2b","2c","3","4","5a","5b","6a","6b","6c","6d","6e","6f","6g",]
 for i in range(len(instances)):
     df=parse_txt.parse_file(f"data\inst00{instances[i]}.txt")
     a,b,c,d = construct_instance(df)
-    mapping = pickle.load(open(f"results\mapping_als_00{instances[i]}.txt", 'rb'))
+    mapping = pickle.load(open(f"results\mapping_greedy_00{instances[i]}.txt", 'rb'))
     ts, wc, lu = waiting_times(mapping[0], b, c)
-    for l in lu.keys():
-        print([len(lu[l][t]) for t in ts])
-    break
+    
+    plot_storage_use(lu, ts, f"usage_greedy_{instances[i]}")
+
+

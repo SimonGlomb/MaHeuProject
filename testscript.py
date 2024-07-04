@@ -1,9 +1,9 @@
-from monja_algorithms.greedy import greedy
-from monja_algorithms.simple_ls import local_search
-from monja_algorithms.advanced_ls import advanced_local_search
+from algorithms.greedy import greedy
+from algorithms.simple_ls import local_search
+from algorithms.advanced_ls import advanced_local_search
 from parse_txt import parse_file
-import monja_preprocessing
-from monja_evaluation import print_all_timetables, compute_total_costs, print_transport_usage
+import preprocessing
+from evaluation import print_all_timetables, compute_total_costs, print_transport_usage
 import argparse
 import random
 import time
@@ -42,7 +42,7 @@ random.seed(0)
 df = parse_file(f"data\inst{instance}.txt")
 
 if repetitions == 1:
-    cars, paths, segments, eot = monja_preprocessing.construct_instance(df)
+    cars, paths, segments, eot = preprocessing.construct_instance(df)
     start_time = time.time()
     res = algo(cars, paths, segments, eot)
     end_time = time.time()
@@ -80,7 +80,7 @@ else: # more than one repetition -> store all results as lists for analysis, pre
     best_solution_index = -1 # track position of best solution found
 
     for i in range(repetitions):
-        cars, paths, segments, eot = monja_preprocessing.construct_instance(df)
+        cars, paths, segments, eot = preprocessing.construct_instance(df)
         start_time = time.time()
         res = algo(cars, paths, segments, eot)
         end_time = time.time()

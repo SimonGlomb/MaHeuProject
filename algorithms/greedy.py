@@ -1,7 +1,7 @@
 # greedy algorithm
 
 from datetime import timedelta
-from monja_utility import assign_timeslots
+from utility import assign_timeslots
 
 
 

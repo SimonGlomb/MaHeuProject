@@ -1,7 +1,7 @@
 import pandas as pd
 from datetime import datetime, timedelta
 import parse_txt
-from monja_utility import assign_timeslots, compute_car_costs
+from utility import assign_timeslots, compute_car_costs
 
 # convert date-string into something to work with 
 def handle_dates(date_str):
@@ -123,6 +123,7 @@ def construct_instance(dataframes):
 def undeliverable(cars, paths, segments, eot):
     return [id for id in cars.keys() if assign_timeslots(cars[id], paths, segments, eot)[1] == None]
 
+# ids of cars that cannot be on time
 def always_late(cars, paths, segments, eot):
     return [id for id in cars.keys() if cars[id]['dueDate'] != "-" and assign_timeslots(cars[id], paths, segments, eot)[2] > cars[id]['dueDate']]
 

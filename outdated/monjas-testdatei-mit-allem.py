@@ -593,12 +593,12 @@ def advanced_local_search(cars, paths, segments, eot):
 
 ###################### do stuff #######################
 import sys
-import monja_utility
-from monja_evaluation import print_all_timetables
-from monja_algorithms.greedy import greedy
-from monja_algorithms.advanced_ls import advanced_local_search
-from monja_utility import random_greedy, random_solution, assign_random_timeslots
-from monja_algorithms.simple_ls import local_search
+import utility
+from evaluation import print_all_timetables
+from algorithms.greedy import greedy
+from algorithms.advanced_ls import advanced_local_search
+from utility import random_greedy, random_solution, assign_random_timeslots
+from algorithms.simple_ls import local_search
 
 instances = ["1","2a","2b","2c","3","4","5a","5b","6a","6b","6c","6d","6e","6f","6g",]
 for i in range(len(instances)):
