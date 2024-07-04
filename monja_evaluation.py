@@ -137,23 +137,36 @@ def waiting_times(cars, paths, segments):
         if segments[s]['start'] not in locations:
             locations.append(segments[s]['start'])
         if segments[s]['end'] not in locations:
-            locations.append(segments[s]['end']) 
+            locations.append(segments[s]['end'])
 
-    waiting_cars = {}
+    loc_usage = {}
+    for l in locations:
+        loc_usage[l] = {}
+        for t in times:
+            loc_usage[l][t] = []
+
+    cars_waittimes = {}
     for c in cars.keys():
-        waiting_cars[c] = {}
-        if cars[c]['assignedPath'] == None:
-            waiting_cars[c][cars[c]['origin']] = (times[-1] - cars[c]['avlDate']).total_seconds()/(24*60*60)
+        cars_waittimes[c] = {}
+        if cars[c]['assignedPath'] == None: # cars that are not delivered wait in their origin until eot
+            cars_waittimes[c][cars[c]['origin']] = (times[-1] - cars[c]['avlDate']).total_seconds()/(24*60*60)
+            avl_index = times.index(cars[c]['avlDate'])
+            for t in times[avl_index:]:
+                loc_usage[cars[c]['origin']][t].append(c)
         else:
             path_locations = [segments[s]['start'] for s in paths[cars[c]['assignedPath']]] # end location is omitted, because cars "disappear" from destinations
             prev_avl = cars[c]['avlDate'] # track the earliest possible departure from current location
+            prev_avl_index = times.index(prev_avl)
             for l in range(len(path_locations)):
-                waiting_cars[c][path_locations[l]] = (cars[c]['schedule'][l][1] - prev_avl).total_seconds()/(24*60*60)
+                cars_waittimes[c][path_locations[l]] = (cars[c]['schedule'][l][1] - prev_avl).total_seconds()/(24*60*60)
+                for t in times[prev_avl_index : int(cars_waittimes[c][path_locations[l]] + prev_avl_index)]:
+                    loc_usage[path_locations[l]][t].append(c)
                 prev_avl = (cars[c]['schedule'][l][1] + timedelta(hours=segments[cars[c]['schedule'][l][0]]['duration']+24)).replace(hour=0, minute=0, second=0, microsecond=0) # forced waiting does not count
+                prev_avl_index = times.index(prev_avl)
 
-    loc_usage = {} # -> init?
 
-    return waiting_cars, loc_usage
+
+    return times, cars_waittimes, loc_usage
 
 
 
@@ -181,8 +194,7 @@ for i in range(len(instances)):
     df=parse_txt.parse_file(f"data\inst00{instances[i]}.txt")
     a,b,c,d = construct_instance(df)
     mapping = pickle.load(open(f"results\mapping_als_00{instances[i]}.txt", 'rb'))
-    wc, lu = waiting_times(mapping[0], b, c)
-    print(always_late(a,b,c,d), len(always_late(a,b,c,d)))
-    for c in a.keys():
-        print([wc[c][l] for l in wc[c].keys()])
+    ts, wc, lu = waiting_times(mapping[0], b, c)
+    for l in lu.keys():
+        print([len(lu[l][t]) for t in ts])
     break
