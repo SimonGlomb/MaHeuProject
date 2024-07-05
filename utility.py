@@ -46,7 +46,6 @@ def assign_timeslots(car, paths, segments, eot):
                     earliest_arrival = arrival
                     departures = current_timetable
                     path = p
-          
     if departures == []: # all paths are blocked, pretend that car arrives at the end of timeframe but assign no path
         return [], None, eot
     
@@ -109,6 +108,7 @@ def random_greedy(cars, paths, segments, eot):
         # link car to chosen path, save corresponding delivery date
         cars[id]['assignedPath'] = p
         cars[id]['currentDelivery'] = a
+        breakpoint()
 
         # if a path was assigned, construct schedule and block capacities
         if p != None:
