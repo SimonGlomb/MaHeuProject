@@ -12,7 +12,7 @@
     matplotlib
     re
 # Repository structure
-
+The *data*-directory contains the provided test instances, the algorithms are implemented in seperate files in the *algorithms* directory. The files *preprocessing.py, parse_txt.py, utility.py* and *evaluation.py* contain auxiliary functions to read and process the data from the provided instance files and analyze the outputs of the algorithms. With *testscript.py* you can execute an algorithm on a selected inputfile. The results from this are stored in the *results*-directory.
 # Running algorithms
 In order to execute one of the algorithms on a specific instance, run:  
 `testscript.py [-h] [-i INPUT] [-a {greedy,local_search,advanced_local_search}] [-r REPETITIONS]`  
@@ -28,7 +28,8 @@ If a local search variant is used (the solution develops over multiple iteration
 
 - the tuple (times, costs) in the file *results\development_{algorithm}_{input}.txt*; where times is a list of the times (in seconds from start of the algorithm) after which a new solution was found and costs a list with the corresponding objective values  
 
-If more than one repetition is run, the same data is stored, but in lists, with one element for each iteration.
+If more than one repetition is run, the same data is stored, but in lists, with one element for each iteration. The stored files additionally have the number of repetitions in their name,  
+for example *results\developments_{repetitions}\_{algorithm}_{input}.txt*  
 If only a single iteration is run, we additionally store two readable versions of the schedule as text-files:  
-- *results\schedules_{short_name}_{instance}.txt* is the routing information for each car
+- *results\schedules_{algorithm}_{instance}.txt* is the routing information for each car
 - *results\carsAtTransport_{algorithm}_{input}.txt* is the utilization of the transports
