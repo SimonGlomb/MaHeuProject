@@ -36,8 +36,6 @@ match args.algorithm:
         long_name = "advanced local search algorithm"
 
 repetitions = args.repetitions
-# loop function -> results as arrays, uniform names
-
 random.seed(0)
 df = parse_file(f"data\inst{instance}.txt")
 

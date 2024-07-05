@@ -127,14 +127,3 @@ def undeliverable(cars, paths, segments, eot):
 def always_late(cars, paths, segments, eot):
     return [id for id in cars.keys() if cars[id]['dueDate'] != "-" and assign_timeslots(cars[id], paths, segments, eot)[2] > cars[id]['dueDate']]
 
-
-
-
-
-
-
-
-# instances = ["1","2a","2b","2c","3","4","5a","5b","6a","6b","6c","6d","6e","6f","6g",]
-# for i in range(len(instances)):
-#     df=parse_txt.parse_file(f"data\inst00{instances[i]}.txt")
-#     a,b,c,d = construct_instance(df)
