@@ -12,7 +12,7 @@
     matplotlib
     re
 # Repository structure
-The *data*-directory contains the provided test instances, the algorithms are implemented in seperate files in the *algorithms* directory. The files *preprocessing.py, parse_txt.py, utility.py* and *evaluation.py* contain auxiliary functions to read and process the data from the provided instance files and analyze the outputs of the algorithms. With *testscript.py* you can execute an algorithm on a selected inputfile. The results from this are stored in the *results*-directory. The *study_results*-directory contains the data derived during our computational study.
+The *outdated*-directory contains files from the development process that are no longer in use. The *SLURM*-directory contains (sketches) of our slurm scripts. The *data*-directory contains the provided test instances, the algorithms are implemented in seperate files in the *algorithms* directory. The files *preprocessing.py, parse_txt.py, utility.py* and *evaluation.py* contain auxiliary functions to read and process the data from the provided instance files and analyze the outputs of the algorithms. With *testscript.py* you can execute an algorithm on a selected inputfile. The results from this are stored in the *results*-directory. The *study_results*-directory contains the data derived during our computational study.
 # Running algorithms
 In order to execute one of the algorithms on a specific instance, run:  
 `testscript.py [-h] [-i INPUT] [-a {greedy,local_search,advanced_local_search}] [-r REPETITIONS]`  
