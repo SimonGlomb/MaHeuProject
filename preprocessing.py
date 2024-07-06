@@ -125,6 +125,10 @@ def undeliverable(cars, paths, segments, eot):
 
 # ids of cars that cannot be on time
 def always_late(cars, paths, segments, eot):
-    est = assign_timeslots(cars[id], paths, segments, eot)
-    return [id for id in cars.keys() if cars[id]['dueDate'] != "-" and est[2] > cars[id]['dueDate'] and est[1] != None]
+    late = []
+    for id in cars.keys():
+        est = assign_timeslots(cars[id], paths, segments, eot)
+        if cars[id]['dueDate'] != "-" and est[2] > cars[id]['dueDate'] and est[1] != None:
+            late.append(id)
+    return late
 
