@@ -13,9 +13,9 @@ import preprocessing
 model = cp_model.CpModel()
 
 # DEFINE SETS
-
-dataframes = parse_txt.parse_file("./data/" + "inst001.txt")
-dataframes_type_casted = parse_txt.parse_file("./data/" + "inst001.txt")
+file_path = "inst001.txt"
+dataframes = parse_txt.parse_file("./data/" + file_path)
+dataframes_type_casted = parse_txt.parse_file("./data/" + file_path)
 # call it for the typecasting of dataframes_type_casted etc.
 result = convert_to_dataframe(dataframes_type_casted)
 
@@ -45,6 +45,25 @@ S = {code: {"OriginCode": origin, "DestinationCode": destination, "PathCode": pa
                                                                     pd.Series([dataframes_type_casted["PTH"].iloc[0]["PathDestinationCode"]] * ((dataframes_type_casted["PTHSG"]["PathCode"] == dataframes_type_casted["PTH"].iloc[0]["PathCode"]).sum())),
                                                                     )}
 
+# # list_of_pathcode = dataframes_type_casted["PTHSG"].groupby('SegmentCode')['PathCode'].apply(lambda x: list(set(x))).reset_index()
+# list_of_pathcode = dataframes_type_casted["PTHSG"].groupby('SegmentCode')['PathCode'].apply(list).reset_index()
+# path_origin_code = dataframes_type_casted["PTH"].groupby("PathCode")["PathOriginCode"].first() # unique, no list needed
+# path_destination_code = dataframes_type_casted["PTH"].groupby("PathCode")["PathDestinationCode"].first() # unique, no list needed
+# dataframes_type_casted["PTH"].groupby("PathCode").apply(lambda x: list(set(x))).reset_index()
+# S = {}
+# for index, row in dataframes_type_casted["PTHSG"].iterrows():
+#     segment_code = row["SegmentCode"]
+#     path_codes = list_of_pathcode.loc[list_of_pathcode['SegmentCode'] == segment_code]["PathCode"].values[0], #[0][0] to unpack
+#     S[segment_code] = {"OriginCode": row["SegmentOriginCode"], 
+#                      "DestinationCode": row["SegmentDestinationCode"], 
+#                      "PathCode": path_codes,
+#                      "PathOriginCode": [path_origin_code[path_code] for path_code in path_codes][0], # [0] as it is unique
+#                      "PathDestinationCode": [path_destination_code[path_code] for path_code in path_codes][0], # [0] as it is unique
+#                      }
+
+
+# #dataframes_type_casted["PTHSG"].groupby('SegmentCode')['PathCode'].apply(list).reset_index()
+# #dataframes_type_casted["PTHSG"].groupby('SegmentCode')['PathCode'].apply(list).apply(lambda x: list(set(x))).reset_index()
 
 def find_first_match(df, segment_e_value, time_value):
     matching_rows = df[(df['PathSegmentCode'] == segment_e_value) & (df['TimeSlotDate'] == time_value)]
@@ -120,8 +139,6 @@ for a in A:
                 model.Add(x[(a, t)] == 0)
 
 # ensure that we wait at a place leadtimehours for the next day before assigning another transport
-# Gedanke von monja: zeitintervalle deifnieren, und es darf maximal 1 sein für alle ; man hat für jede auto-transport instanz das 
-# müssen nur passen wenn beide x[a,t] == 1 ist
 for a in A:
     for t1 in T:
         code1, time1 = t1
@@ -235,9 +252,11 @@ def compute_car_costs_modified_per_car(avlDate, dueDate, deliveryTime, reference
         # # # inequality to round up i.e. math.ceil
         model.Add(days_over_net_transport == result_division3).OnlyEnforceIf(additional_deadline_not_met)
         model.Add(days_over_net_transport == 0).OnlyEnforceIf(additional_deadline_not_met.Not())
-        model.Add(days_over_net_transport == 0).OnlyEnforceIf(x.Not())
 
-        return 100 * deadline_not_met + 25 * days_too_late + 5 * days_over_net_transport#inner_costs
+        model.Add(intermediate_result == 100 * deadline_not_met + 25 * days_too_late + 5 * days_over_net_transport).OnlyEnforceIf(x)
+        model.Add(intermediate_result == 0).OnlyEnforceIf(x.Not())
+        
+        return intermediate_result
 
 
 ## TODO: Idee, verspätung (deliveryDate-dueDate) in tagen
