@@ -13,7 +13,7 @@ import preprocessing
 model = cp_model.CpModel()
 
 # DEFINE SETS
-# file_path = "inst002a.txt"
+# file_path = "inst002b.txt"
 file_path = "inst001.txt"
 dataframes = parse_txt.parse_file("./data/" + file_path)
 dataframes_type_casted = parse_txt.parse_file("./data/" + file_path)
@@ -275,7 +275,7 @@ solver = cp_model.CpSolver()
 status = solver.Solve(model)
 print("  - wall time       : %f s" % solver.WallTime())
 # Check the result and print the values
-if status == cp_model.OPTIMAL or status == cp_model.FEASIBLE:
+if status == cp_model.OPTIMAL:# or status == cp_model.FEASIBLE:
     print('Solution:')
     for a in A:
         for t in T:
