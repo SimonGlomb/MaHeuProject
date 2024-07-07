@@ -51,8 +51,6 @@ for index, row in dataframes_type_casted["PTHSG"].iterrows():
                      "PathDestinationCode": [path_destination_code[path_code].iloc[0] for path_code in path_codes],
                      }
 
-# #dataframes_type_casted["PTHSG"].groupby('SegmentCode')['PathCode'].apply(list).reset_index()
-# #dataframes_type_casted["PTHSG"].groupby('SegmentCode')['PathCode'].apply(list).apply(lambda x: list(set(x))).reset_index()
 
 def find_first_match(df, segment_e_value, time_value):
     matching_rows = df[(df['PathSegmentCode'] == segment_e_value) & (df['TimeSlotDate'] == time_value)]
@@ -188,7 +186,6 @@ for a in A:
         days_over_net_transport[a, t] = model.NewIntVar(0, int(pd.Timestamp.max.timestamp()), "days_over_net_transport")
         
 
-# compute the costs induced by a single car
 # def compute_car_costs_modified(avlDate, dueDate, deliveryDate, referenceTime, a, x):
 #     costs = 0
 #     for t in T:
@@ -196,6 +193,7 @@ for a in A:
 #         costs += x[a, t] * compute_car_costs_modified_per_car(avlDate, dueDate, deliveryDate, referenceTime, travel_time[a])
 #     return costs
 
+# compute the costs induced by a single car
 def compute_car_costs_modified(avlDate, dueDate, deliveryDate, referenceTime, a, x):
     costs = 0
     for t in T:
@@ -244,16 +242,6 @@ def compute_car_costs_modified_per_car(avlDate, dueDate, deliveryTime, reference
         
         return intermediate_result
 
-
-# def custom_objective(int_var, bool_var, normal_var):
-#     cost_deadline_missed = model.NewIntVar(0, 1000000, 'cost_deadline_missed')
-#     # Define a custom objective function
-#     cost = 0
-#     condition = model.NewBoolVar('condition')
-#     model.Add(int_var > normal_var).OnlyEnforceIf(condition)
-#     model.Add(int_var <= normal_var).OnlyEnforceIf(condition.Not())
-#     model.Add(cost == 100 * condition)
-#     return cost
 
 total_costs = sum(compute_car_costs_modified(
                 dataframes_type_casted["TRO"][(dataframes_type_casted["TRO"]['ID(long)'] == a)].iloc[0]["AvailableDateOrigin"], 
